@@ -1,0 +1,102 @@
+11:44 19.11.2018
+
+Bestellnr.: 94-500425	Winkel-Bitsatz 1,75 €
+Bestellnr.: 94-641110	Breitbandlautsprecher VISATON BG 20, 8 Ohm Anzahl 6 Summe 150,60 €
+Bestellnr.: 94-410178	Drehknopf 24 x 16 mm Kunststoff schwarz Anzahl	3	Summe	2,55 €	
+Bestellnr.: 94-560529	Audio-Adapterkabel Anzahl 1 Summe 0,48 €
+Bestellnr.: 94-562084	Audio-Adapterkabel, Klinke/Cinch, 1,5 m, schwarz Anzahl	1 Summe	2,15 €
+Bestellnr.: 94-450558	Klinkenadapter Anzahl 1 Summe 0,24 €
+Bestellnr.: 94-450632	Klinkenadapter Anzahl 1 Summe 0,30 €
+Bestellnr.: 94-501434	Feinmechanik-Gabelschlüsselsatz, 3...5,5 mm, 7-teilig Summe 4,95 €
+
+09.01.2018
+
+
+20:51 22.09.2017
+LM 386 DIP	 Audioverstärker, DIP-8 1 4 0,34 € 1,36 €
+LED LL 5-8000RGB RGB-LED, 5 mm, bedrahtet, 4-Pin, rt/gn/bl, 8000 mcd, 25° 1 20 0,61 € 12,20 €
+H25PR500 	 Lochrasterplatine, Hartpapier, 500x100mm 1 2 6,25 € 12,50 €
+
+11.09.2017 Pollin
+Tantal-Kondensator, 0,1/35, radial 
+ 	94-170041 	15 	0,27EUR	4,05 EUR
+Spannungsregler ST L7805CV 
+3 	94-271261 	15 	1,20EUR	18,00 EUR
+9V-Blockbatterie DURACELL INDUSTRIAL 
+4 	94-120195 	1 	0,35EUR	0,35 EUR
+Elkos, radial, 63V, 10 Stück 
+5 	94-120183 	2 	0,30EUR	0,60 EUR
+Elkos, radial, 35V, 10 Stück 
+6 	94-101122 	22 	0,50EUR	11,00 EUR
+Audio-Verstärker LM386N-1 
+7 	94-660109 	15 	0,25EUR	3,75 EUR
+Elektret-Kondensatormikrofon-Kapsel WM 52-BT 
+8 	94-200318 	1 	0,95EUR	0,95 EUR
+Folienkondensator EPCOS B32560, 47 nF, 10 Stück 
+9 	94-270188 	5 	0,23EUR	1,15 EUR
+Druckknopfanschluss 
+10 	94-450222 	2 	0,30EUR	0,60 EUR
+Codierbrücken (Jumper) 
+11 	94-130651 	50 	0,03EUR	1,50 EUR
+Kleinleistungs-Transistor BC546B 
+12 	94-511446 	1 	5,95EUR	5,95 EUR
+Sortimentkasten, 28x38,5x6,5cm 
+13 	94-121557 	15 	0,18EUR	2,70 EUR
+LED HUEY-JANN HB3b-448ABD-B, 3 mm, blau, 7200 mcd 
+14 	94-121556 	15 	0,05EUR	0,75 EUR
+LED AVAGO HLMP-C215, 5 mm, rot, 300 mcd 
+15 	94-830012 	1 	1,50EUR	1,50 EUR
+Messleitungen mit Krokodilklemmen, 10 Stück 
+16 	94-351962 	1 	2,95EUR	2,95 EUR
+Schaltnetzteil KTEC KSAP0401200333DM2, 12 V-/3,33 A, gebraucht 
+17 	94-562082 	1 	1,75EUR	1,75 EUR
+Superslim Klinken-Verlängerung, 1,5 m, schwarz 
+18 	94-641150 	15 	0,85EUR	12,75 EUR
+Kleinlautsprecher DIGISOUND SAL5050MC 
+19 	94-220052 	1 	1,50EUR	1,50 EUR
+Kohleschicht-Widerstand 
+Grundpreis: 1,50 € / 1 St 
+20 	94-220055 	1 	1,50EUR	1,50 EUR
+Kohleschicht-Widerstand 
+21 	94-220059 	1 	1,50EUR	1,50 EUR
+Kohleschicht-Widerstand 
+Grundpreis: 1,50 € / 1 St 
+
+
+
+?Freitag, ?28. ?Juli ?2017, ??13:06:31 - othering machines
+
+L 7805 CV	Spannungsregler 5V
+VM 0610 A 3.0	Vibrationsmotor 3V, 150mA
+LIT 9V ECO XC	Lithiumbatterie 9V, 1200mA
+LITZE		Kupferlitze 0.14 mm²
+Lautsprecher	DIGISOUND SAL 5050 MC
+
+
+13.07.2017 Pollin
+Streifenrasterplatine 
+2 	94-442129 	1 	0,99EUR	0,99 EUR
+Kabelbinder DAYTOOLS K3.2X140, 100 Stück 
+3 	94-510174 	1 	3,80EUR	3,80 EUR
+Labor-Steckboard 
+4 	94-830677 	1 	18,95EUR	18,95 EUR
+Digital-Multimeter MASTECH MS8321B 
+5 	94-840186 	1 	14,95EUR	14,95 EUR
+Lötstation DAYTOOLS LS-8906, 480 °C 
+6 	94-140724 	1 	0,75EUR	0,75 EUR
+Dioden 1N4148, 50 Stück 
+7 	94-220064 	1 	1,50EUR	1,50 EUR
+Kohleschicht-Widerstand 
+Grundpreis: 1,50 € / 1 St 
+8 	94-220068 	1 	1,50EUR	1,50 EUR
+Kohleschicht-Widerstand, 0,25 W, 10K, 5 %, 100 Stück 
+Grundpreis: 1,50 € / 1 St 
+9 	94-800401 	1 	3,95EUR	3,95 EUR
+Sortiment Elkos, 1...1000 µF, 16 V-, 70-teilig 
+10 	94-201099 	10 	0,04EUR	0,40 EUR
+Keramikkondensator, 1000 pF 
+11 	94-200937 	10 	0,05EUR	0,50 EUR
+Keramikkondensator, 220 pF 
+12 	94-101122 	3 	0,60EUR	1,80 EUR
+Audio-Verstärker LM386N-1 
+

@@ -1,0 +1,643 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><script type="text/javascript" charset="utf-8" id="zm-extension" src="AVR%20Tutorial%20-%20AVRDUDE-Dateien/webrtc-patch.js" async=""></script><!-- InstanceBegin template="/Templates/library/avrtutorial.dwt" codeOutsideHTMLIsLocked="false" --><head>
+<link rel="alternate" type="application/rss+xml" title="ladyada.net blog  RSS Feed" href="http://www.ladyada.net/feed/">
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script src="AVR%20Tutorial%20-%20AVRDUDE-Dateien/ga.js" type="text/javascript"></script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-7723544-2");
+pageTracker._trackPageview();
+} catch(err) {}</script> 
+
+<!-- InstanceBeginEditable name="overlib" -->
+<script type="text/javascript" src="AVR%20Tutorial%20-%20AVRDUDE-Dateien/overlib.js"><!-- overLIB (c) Erik Bosrup --></script>
+<!-- InstanceEndEditable -->
+<meta http-equiv="imagetoolbar" content="no">
+<link rel="stylesheet" href="AVR%20Tutorial%20-%20AVRDUDE-Dateien/make.css" type="text/css">
+<link rel="stylesheet" href="AVR%20Tutorial%20-%20AVRDUDE-Dateien/skeleton.css" type="text/css">
+<link rel="stylesheet" media="all" type="text/css" href="AVR%20Tutorial%20-%20AVRDUDE-Dateien/css_002.css">
+<link rel="stylesheet" media="screen" type="text/css" href="AVR%20Tutorial%20-%20AVRDUDE-Dateien/css.css">
+<link rel="stylesheet" type="text/css" href="AVR%20Tutorial%20-%20AVRDUDE-Dateien/wiki.css">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>AVR Tutorial - AVRDUDE</title>
+<!-- InstanceEndEditable -->
+<!-- InstanceBeginEditable name="head" -->
+<style type="text/css">
+<!--
+.style1 {font-weight: bold}
+.style4 {	font-family: "Courier New", Courier, mono;
+	font-weight: bold;
+}
+.userinput {font-family: "Courier New", Courier, mono}
+.useroutput {font-family: "Courier New", Courier, mono; font-weight: bold; }
+.style5 {font-family: "Courier New", Courier, mono; font-weight: bold; color: #FF0000; }
+-->
+</style>
+<!-- InstanceEndEditable -->
+<style type="text/css">
+<!--
+.style1 {font-weight: bold}
+-->
+</style>
+
+</head>
+
+<body>
+
+    <div id="overDiv" style="position:absolute; visibility:hidden; z-index:1000;"></div>
+  
+<!-- InstanceBeginEditable name="badge" -->
+<div class="topheader"><img src="AVR%20Tutorial%20-%20AVRDUDE-Dateien/topheaderbadge.jpg" width="171" height="190"></div>
+<!-- InstanceEndEditable -->
+<span class="topheadertext"><!-- InstanceBeginEditable name="heading" -->AVR Tutorial <!-- InstanceEndEditable --></span>
+<span class="topsubheadertext"><!-- InstanceBeginEditable name="Subheading" -->Starting out with avrdude <!-- InstanceEndEditable --></span>
+
+<ul id="menu">
+	<li class="first"></li> 
+  
+    <li>
+      <div class="smenuitemtext"><a href="http://ladyada.net/learn/avr/index.html">Intro</a></div>
+    </li>
+  
+    <li>
+      <div class="smenuitemtext"><a href="http://ladyada.net/learn/avr/whatisit.html">What is it? </a></div>
+    </li>
+  
+    <li>
+      <div class="smenuitemtext"><a href="http://ladyada.net/learn/avr/setup-mac.html">Mac Setup </a></div>
+    </li>
+  
+    <li>
+      <div class="smenuitemtext"><a href="http://ladyada.net/learn/avr/setup-win.html">Win Setup</a></div>
+    </li>
+  
+    <li>
+      <div class="smenuitemtext"><a href="http://ladyada.net/learn/avr/setup-unix.html">Unix Setup </a></div>
+    </li>
+  
+    <li>
+      <div class="smenuitemtext"><a href="http://ladyada.net/learn/avr/programming.html">Programming</a></div>
+    </li>
+  
+    <li>
+      <div class="smenuitemtext"><a href="http://ladyada.net/learn/avr/programmers.html">Programmer</a></div>
+    </li>
+  
+    <li>
+      <div class="smenuitemtext"><a href="http://ladyada.net/learn/avr/avrdude.html">Avrdude</a></div>
+    </li>
+  
+    <li>
+      <div class="smenuitemtext">Blinky</div>
+    </li>
+  
+    <li>
+      <div class="smenuitemtext">Clocks</div>
+    </li>
+  
+    <li>
+      <div class="smenuitemtext"><a href="http://ladyada.net/learn/avr/fuses.html">Fuses</a></div>
+    </li>
+  
+    <li>
+      <div class="smenuitemtext">Compiler</div>
+    </li>
+  
+    <li>
+      <div class="smenuitemtext">Compiling</div>
+    </li>
+  
+    <li>
+      <div class="smenuitemtext">Makefile</div>
+    </li>
+  
+    <li><div class="smenuitemtext"><a href="http://forums.ladyada.net/">Forums</a></div></li>
+  
+	<li class="last"></li>
+</ul>
+
+<ul id="nav">
+
+<li><a href="http://www.ladyada.net/">Home</a></li>
+
+<li><a href="http://www.ladyada.net/about.html">About<!--[if gte IE 7]><!--></a><!--<![endif]-->
+<!--[if lte IE 6]><table><tr><td><![endif]-->
+<ul>
+	<li><a href="http://www.ladyada.net/about.html">ladyada.net</a></li>
+	<li><a href="http://www.ladyada.net/portfolio/2007/index.html">Portfolio</a></li>
+	<li><a href="http://www.ladyada.net/pub/research.html">Research</a></li>
+	<li><a href="http://www.ladyada.net/pub/press.html">Press</a></li>
+	<li><a href="http://www.ladyada.net/pub/pub.html">Publication &amp; Presentation</a></li>
+	<li><a href="http://www.flickr.com/photos/ladyada/">Photos</a></li>
+	<li><a href="http://www.ladyada.net/wiki">Wiki (backend)</a></li>
+	</ul>
+<!--[if lte IE 6]></td></tr></table></a><![endif]-->
+</li>
+
+<li><a href="http://www.ladyada.net/make/">Projects<!--[if gte IE 7]><!--></a><!--<![endif]-->
+<!--[if lte IE 6]><table><tr><td><![endif]-->
+<ul>
+	<li><a href="#nogo">Arduino »<!--[if gte IE 7]><!--></a><!--<![endif]-->
+	<!--[if lte IE 6]><table><tr><td><![endif]-->
+	<ul>
+    	<li><a href="http://www.ladyada.net/make/logshield/">Datalogger&nbsp;Shield</a></li>
+	    <li><a href="http://www.ladyada.net/make/eshield/">Ethernet&nbsp;Shield</a></li>
+	    <li><a href="http://www.ladyada.net/make/gpsshield/">GPS&nbsp;Shield</a></li>
+	  	<li><a href="http://www.ladyada.net/make/pshield/">Proto&nbsp;Shield</a></li>
+	  	<li><a href="http://www.ladyada.net/make/mshield/">Motor&nbsp;Shield</a></li>
+	  	<li><a href="http://www.ladyada.net/make/waveshield/">Wave&nbsp;Shield</a></li>
+	  </ul>
+	<!--[if lte IE 6]></td></tr></table></a><![endif]-->
+	</li><li><a href="http://www.ladyada.net/make/bbpsup/">Adj.&nbsp;power&nbsp;supply</a></li>
+	<li><a href="http://www.ladyada.net/make/brain/">Brain&nbsp;Machine</a></li>
+	<li><a href="http://www.ladyada.net/make/boarduino/">BoArduino</a></li>
+	<li><a href="http://www.ladyada.net/make/digg/">DIGG&nbsp;Button</a></li>
+	<li><a href="http://www.ladyada.net/make/drawdio/">Drawdio</a></li>
+    <li><a href="http://www.ladyada.net/make/fuzebox/">Fuzebox</a></li>
+    <li><a href="http://www.ladyada.net/make/gamegrrl/">Game&nbsp;Grrl</a></li>
+	<li><a href="http://www.ladyada.net/make/conway/">Game&nbsp;of&nbsp;Life</a></li>
+	<li><a href="http://www.ladyada.net/make/icetube/">Ice&nbsp;Tube&nbsp;clock</a></li>
+    <li><a href="http://www.ladyada.net/make/midisense/">MIDIsense</a></li>
+	<li><a href="http://www.ladyada.net/make/minipov2/">MiniPOV2</a></li>
+	<li><a href="http://www.ladyada.net/make/minipov3/">MiniPOV3</a></li>
+	<li><a href="http://www.ladyada.net/make/minty/">MintyMP3</a></li>
+	<li><a href="http://www.ladyada.net/make/mintyboost/">MintyBoost</a></li>
+    <li><a href="http://www.ladyada.net/make/monochron/">MONOCHRON</a></li>
+    <li><a href="http://www.ladyada.net/make/simreader/">SIM&nbsp;Reader</a></li>
+	<li><a href="http://www.ladyada.net/make/spokepov/">SpokePOV</a></li>
+	<li><a href="http://www.ladyada.net/make/tvbgone/">TV-B-Gone</a></li>
+	<li><a href="http://www.ladyada.net/make/tweetawatt/">Tweet-a-Watt</a></li>
+    <li><a href="http://www.ladyada.net/make/usbtinyisp/">USBtinyISP</a></li>
+	<li><a href="http://www.ladyada.net/make/wavebubble/">Wave&nbsp;Bubble</a></li>
+	<li><a href="http://www.ladyada.net/make/x0xb0x/">x0xb0x</a></li>
+	<li><a href="http://www.ladyada.net/make/xbee/">XBee</a></li>
+	<li><a href="http://www.ladyada.net/make/ybox2/">YBox2</a></li>
+	<li><a href="#nogo">Quickies »<!--[if gte IE 7]><!--></a><!--<![endif]-->
+	<!--[if lte IE 6]><table><tr><td><![endif]-->
+	<ul>
+    <li><a href="http://www.ladyada.net/make/usbgamepad/index.html">USB&nbsp;Gamepad</a></li>
+	    <li><a href="http://www.ladyada.net/make/pumpkin/pumpkin.html">Halloween&nbsp;Pumpkin</a></li>
+	    <li><a href="http://www.ladyada.net/make/vintagelight/index.html">Vintage&nbsp;Bike&nbsp;Lite</a></li>
+	  	<li><a href="http://www.ladyada.net/make/sudc4kap/index.html">Kite&nbsp;Arial&nbsp;Photo</a></li>
+	  	<li><a href="http://www.ladyada.net/make/bikestand/index.html">Bike&nbsp;Stand</a></li>
+	  	<li><a href="http://www.ladyada.net/make/bikelite/index.html">LiIon&nbsp;Bike&nbsp;Lite</a></li>
+     	<li><a href="http://www.ladyada.net/make/pogojig/index.html">Pogo&nbsp;Jib</a></li>
+	  	<li><a href="http://www.ladyada.net/make/massprog/index.html">Mass&nbsp;Programming</a></li>
+	  	<li><a href="http://www.ladyada.net/make/solarlipo/index.html">Solar&nbsp;LiPo&nbsp;Charging</a></li>
+	  	<li><a href="http://www.ladyada.net/make/magstripe/index.html">Magstripe&nbsp;Reader</a></li>
+	  	<li><a href="http://www.ladyada.net/make/solarlogger/index.html">Solar&nbsp;Tracker</a></li>
+        <li><a href="http://www.ladyada.net/make/tronbag/">TRON&nbsp;Bag</a></li>
+	  </ul><!--[if lte IE 6]></td></tr></table></a><![endif]-->
+      </li>
+   	<li><a href="http://www.ladyada.net/make/">More...</a></li>
+	<li><a href="http://www.instructables.com/member/ladyada/">-&gt;Instructables</a></li>
+</ul>
+<!--[if lte IE 6]></td></tr></table></a><![endif]-->
+</li>
+
+<li><a href="http://www.ladyada.net/learn/">Learn<!--[if gte IE 7]><!--></a><!--<![endif]-->
+<!--[if lte IE 6]><table><tr><td><![endif]-->
+<ul>
+	<li><a href="http://www.ladyada.net/learn/arduino/">Arduino&nbsp;tutorial</a></li>
+	<li><a href="http://www.ladyada.net/learn/avr/">AVR&nbsp;tutorial</a></li>
+	<li><a href="http://www.ladyada.net/learn/barcodescan/">Barcode&nbsp;scanners</a></li>
+	<li><a href="http://www.ladyada.net/learn/el-wire/">EL&nbsp;Wire&nbsp;tutorial</a></li>
+	<li><a href="http://www.ladyada.net/learn/lcd/">LCDs</a></li>
+	<li><a href="http://www.ladyada.net/learn/arduino/LEDs.html">LEDs</a></li>
+	<li><a href="http://www.ladyada.net/learn/multimeter/">Multimeter&nbsp;tutorial</a></li>
+   	<li><a href="http://www.ladyada.net/learn/scale/">Digital&nbsp;scales</a></li>
+    <li><a href="http://www.ladyada.net/learn/sensors/">Sensors »<!--[if gte IE 7]><!--></a><!--<![endif]-->
+	<!--[if lte IE 6]><table><tr><td><![endif]-->
+	<ul>
+    	<li><a href="http://www.ladyada.net/learn/sensors/fsr.html">FSR</a></li>
+	    <li><a href="http://www.ladyada.net/learn/sensors/cds.html">CdS&nbsp;Photocell</a></li>
+	    <li><a href="http://www.ladyada.net/learn/sensors/tmp36.html">Temperature</a></li>
+	  	<li><a href="http://www.ladyada.net/learn/sensors/tilt.html">Tilt</a></li>
+	  	<li><a href="http://www.ladyada.net/learn/sensors/pir.html">PIR</a></li>
+        <li><a href="http://www.ladyada.net/learn/sensors/thermocouple.html">Thermocouple</a></li>
+        <li><a href="http://www.ladyada.net/learn/sensors/ir.html">IR&nbsp;Receiver</a></li>
+	  </ul>
+	<!--[if lte IE 6]></td></tr></table></a><![endif]-->
+    </li>
+        <li><a href="http://www.ladyada.net/learn/breakoutplus/">Breakout boards »<!--[if gte IE 7]><!--></a><!--<![endif]-->
+	<!--[if lte IE 6]><table><tr><td><![endif]-->
+	<ul>
+    	<li><a href="http://www.ladyada.net/learn/breakoutplus/ds1307rtc.html">DS1307&nbsp;RTC</a></li>
+        <li><a href="http://www.ladyada.net/learn/sensors/thermocouple.html">MAX6675</a></li>
+        <li><a href="http://www.ladyada.net/learn/products/atmega32u4breakout/">ATmega32u4&nbsp;Breakout+</a></li>
+	  </ul>
+	<!--[if lte IE 6]></td></tr></table></a><![endif]-->
+    </li>
+  
+          <li><a href="http://www.ladyada.net/products/">Products »<!--[if gte IE 7]><!--></a><!--<![endif]-->
+	<!--[if lte IE 6]><table><tr><td><![endif]-->
+	<ul>
+     <li><a href="http://www.ladyada.net/products/i2cspilcdbackpack/">i2c/SPI&nbsp;LCD&nbsp;backpack</a></li>
+     <li><a href="http://www.ladyada.net/products/usbboarduino/">USB&nbsp;Boarduino</a></li>
+     <li><a href="http://www.ladyada.net/products/atmega32u4breakout/">ATmega32u4&nbsp;Breakout+</a></li>
+     <li><a href="http://www.ladyada.net/products/tfttouchbreakout/">2.8&nbsp;TFT&nbsp;touchscreen</a></li>
+     <li><a href="http://www.ladyada.net/products/18tftbreakout/">1.8&nbsp;SPI&nbsp;TFT&nbsp;</a></li>
+     <li><a href="http://www.ladyada.net/products/rfidnfc/">RFID/NFC</a></li>
+     	  </ul>
+	<!--[if lte IE 6]></td></tr></table></a><![endif]-->
+    </li>
+      
+	<li><a href="http://www.ladyada.net/learn/chumby/">Chumby&nbsp;Hacker&nbsp;Board</a></li>
+	<li><a href="http://www.ladyada.net/learn/soldering/">Soldering&nbsp;tutorial</a></li>
+	<li><a href="http://www.ladyada.net/learn/powersupply/">Power&nbsp;Supply&nbsp;tutorial</a></li>
+    <li><a href="http://www.ladyada.net/learn/electroknit/">Brother&nbsp;KH-9033&nbsp;tutorial</a></li>
+	<li><a href="http://www.ladyada.net/learn/diykinect/">USB&nbsp;reverse-engineering&nbsp;tutorial</a></li>
+    <li><a href="http://www.ladyada.net/learn/calipers/">Calipers&nbsp;tutorial</a></li>
+    <li><a href="http://www.ladyada.net/products/rgbledstrip/">RGB&nbsp;LED&nbsp;Strips</a></li>
+    <li><a href="http://www.ladyada.net/products/rgbledpixels/">RGB&nbsp;LED&nbsp;Pixels</a></li>
+    <li><a href="http://www.ladyada.net/learn/lipoly/">LiIon&nbsp;&amp;&nbsp;LiPoly&nbsp;Batteries</a></li>
+</ul>
+<!--[if lte IE 6]></td></tr></table></a><![endif]-->
+</li>
+
+	
+<li><a href="http://www.ladyada.net/library/">Library<!--[if gte IE 7]><!--></a><!--<![endif]-->
+<!--[if lte IE 6]><table><tr><td><![endif]-->
+<ul>	
+	<li><a href="http://www.ladyada.net/library/arduino/">Arduino&nbsp;Hacks</a></li>
+    <li><a href="http://www.ladyada.net/library/batteries.html">Batteries</a></li>
+	<li><a href="http://www.ladyada.net/library/diyboostcalc.html">Boost&nbsp;Calc</a></li>
+    <li><a href="http://www.ladyada.net/library/equipt/">E.E.&nbsp;Tools</a></li>
+	<li><a href="http://www.ladyada.net/library/hackcomputer.html">E.E.&nbsp;Computer</a></li>
+    <li><a href="http://www.ladyada.net/library/procure/">Find&nbsp;Parts</a></li>
+	<li><a href="http://www.ladyada.net/library/kits/">Kits</a></li>
+	<li><a href="http://www.ladyada.net/library/laser/">Laser</a></li>
+	<li><a href="http://www.ladyada.net/library/ucannoyances.html">uC Annoyances</a></li>
+	<li><a href="http://www.ladyada.net/library/openhardware/">Open Source Hardware</a></li>
+	<li><a href="http://www.ladyada.net/library/pcb/">PCB&nbsp;Design&nbsp;&amp;&nbsp;Tips</a></li>
+	<li><a href="http://www.ladyada.net/library/picvsavr.html">PIC&nbsp;vs.&nbsp;AVR</a></li>
+	<li><a href="http://www.ladyada.net/library/software/index.html">Software</a></li>
+	<li><a href="http://www.ladyada.net/library/smt/index.html">SMT</a></li>
+        <li><a href="http://www.ladyada.net/library/zencart/">Zen-Cart&nbsp;Mods</a></li>
+</ul>
+<!--[if lte IE 6]></td></tr></table></a><![endif]-->
+</li>
+
+<li><a href="http://www.adafruit.com/blog/">Blog</a></li>
+
+<li><a href="http://www.adafruit.com/" target="_blank">Store</a></li>
+
+<li><a href="http://forums.adafruit.com/" target="_blank">Forums</a></li>
+
+</ul>
+
+<div id="searchbox">
+<!-- Google CSE Search Box Begins -->
+<form id="searchbox_012941403977924873237:omv8mprm6ek" action="http://www.google.com/cse" target="_top"> <input type="hidden" name="cx" value="012941403977924873237:omv8mprm6ek"> <input name="q" type="text" size="23" style="border: 1px solid rgb(126, 157, 185); padding: 2px; background: rgb(255, 255, 255) url(&quot;https://www.google.com/cse/static/images/1x/googlelogo_lightgrey_46x16dp.png&quot;) no-repeat scroll left center; text-indent: 48px;" placeholder="Custom Search"><br> <span class="style1">ladyada.net</span> <input type="submit" name="sa" value="Search"> <input type="hidden" name="cof" value="FORID:0"> <input name="siteurl" type="hidden" value="ladyada.net/learn/avr/avrdude.html"><input name="ref" type="hidden" value="www.ecosia.org/"><input name="ss" type="hidden"></form><script type="text/javascript" src="AVR%20Tutorial%20-%20AVRDUDE-Dateien/brand"></script>
+<!-- Google CSE Search Box Ends -->
+</div>
+
+<div id="lefttcol">
+<!-- this is just a buffer -->
+</div>
+
+<div id="content">
+  <!-- InstanceBeginRepeat name="texts" --><!-- InstanceBeginRepeatEntry --><div class="textblockheader"> <!-- InstanceBeginEditable name="Header" -->Introduction<!-- InstanceEndEditable --> </div>
+  <div class="textblock"> <!-- InstanceBeginEditable name="text" -->
+    <p>OK now you have a <a href="http://www.evilmadscientist.com/article.php/avrtargetboards">target board</a> and a <a href="http://ladyada.net/learn/avr/programmers.html">programmer</a> next you will use the software you <a href="http://ladyada.net/learn/avr/setup-win.html">installed in step 2</a>
+ to talk to the chip. This software is very powerful but its also 
+difficult to use the first time. However, you should persevere and after
+ a few times it will become (easier) to use. </p>
+    <p>Comments? Suggestions? Post to the <a href="http://www.ladyada.net/forums/">forum</a>!</p>
+    <!-- InstanceEndEditable --> </div>
+  <!-- InstanceEndRepeatEntry --><!-- InstanceBeginRepeatEntry --><div class="textblockheader"> <!-- InstanceBeginEditable name="Header" -->Running AVRDUDE <!-- InstanceEndEditable --> </div>
+  <div class="textblock"> <!-- InstanceBeginEditable name="text" -->
+    <p>Avrdude is a command line program, so you'll have to type in all 
+the commands (later you'll find out how to shortcut this with a 
+Makefile)</p>
+    <p>Under
+    Windows, you'll need to open up a command window, select <strong class="style4">Run...</strong> from the <span class="style4">Start Menu</span> and type in <strong class="style4">cmd </strong>and hit <strong>OK</strong>. </p>
+    <p align="center"><img src="AVR%20Tutorial%20-%20AVRDUDE-Dateien/run.jpg" width="215" height="274" border="2"> <img src="AVR%20Tutorial%20-%20AVRDUDE-Dateien/cmd.jpg" width="347" height="186" border="2"> </p>
+    <p align="left">Under MacOS X, you can use the <strong>Terminal</strong> program to pull up a command line interface, its in the <strong>Utilities </strong>folder </p>
+    <p align="center"><img src="AVR%20Tutorial%20-%20AVRDUDE-Dateien/findterminal.jpg" width="438" height="351"> </p>
+    <p align="left"> Now in the new terminal window type in <span class="style4">avrdude</span> you should get this response, which is basically a simple list of what <span class="style4">avrdude </span>can do...</p>
+    <p align="left"><img src="AVR%20Tutorial%20-%20AVRDUDE-Dateien/avrtest.jpg" width="669" height="482"></p>
+    <!-- InstanceEndEditable --> </div>
+  <!-- InstanceEndRepeatEntry --><!-- InstanceBeginRepeatEntry --><div class="textblockheader"> <!-- InstanceBeginEditable name="Header" -->AVRDUDE option <!-- InstanceEndEditable --> </div>
+  <div class="textblock"> <!-- InstanceBeginEditable name="text" -->
+    <p>There are a lot of options, lets review them quickly. Don't try to memorize them, just get a sense of what some of them may do. </p>
+    <ul>
+      <li> <span class="useroutput menubuy">-p &lt;partno&gt;</span>: This is just to tell it what microcontroller its programming. For example, if you are programming an ATtiny2313,  use <span class="userinput">attiny2313</span> as the partnumber</li>
+      <li><span class="style4">-b &lt;baudrate&gt;</span>: This is for overriding the serial baud rate for programmers like the STK500. Don't use this switch, the default is correct. </li>
+      <li><span class="useroutput">-B &lt;bitrate&gt;</span>: This is 
+for changing the bitrate, which is how fast the programmer talks to the 
+chip. If your chip is being clocked very slowly you'll need to talk 
+slowly to it to let it keep up. It'll be discussed later, for now don't 
+use it. </li>
+      <li><span class="useroutput">-C &lt;config-file&gt;</span>: The 
+config file tells avrdude about all the different ways it can talk to 
+the programmer. Theres a default configuration file, so lets just use 
+that: don't use this command switch</li>
+      <li> <span class="style5">-c &lt;programmer&gt;</span>: Here is where we specify the programmer type, if you're using an STK500 use <span class="style4">stk500</span>, if you're using a DT006 programmer use <span class="style4">dt006</span>, etc. </li>
+      <li> <span class="useroutput">-D</span>: This disables erasing the chip before programming. We don't want that so don't use this command switch.</li>
+      <li><span class="style5">-P &lt;port&gt;</span>: This is the 
+communication port to use to talk to the programmer. It might be COM1 
+for serial or LPT1 for parallel or USB for, well, USB. </li>
+      <li><span class="useroutput">-F</span>: This overrides the 
+signature check to make sure the chip you think you're programming is. 
+The test is strongly recommended as it tests the connection, so don't 
+use this switch.</li>
+      <li> <span class="useroutput">-e</span>: This erases the chip, in general we don't use this because we auto-erase the flash before programming.</li>
+      <li><span class="useroutput menubuy">-U &lt;memtype&gt;:r|w|v:&lt;filename&gt;[:format]</span><span class="menubuy">: </span>OK this one is the important command. Its the one that actually does the programming. The <span class="useroutput">&lt;memtype&gt;</span> is either <span class="style4">flash</span> or <span class="style4">eeprom</span> (or <span class="style4">hfuse</span>, <span class="useroutput">lfuse</span> or <span class="style4">efuse</span> for the chip configuration fuses, but we aren't going to mess with those). the <span class="useroutput">r|w|v</span> means you can use <span class="useroutput">r</span> (read)<span class="useroutput"> w</span> (write) or <span class="useroutput">v</span> (verify) as the command. The <span class="useroutput">&lt;filename&gt;</span> is, well, the file that you want to write to or read from. and <span class="useroutput">[:format]</span> means theres an optional format flag. We will always be using "Intel Hex" format, so use <span class="useroutput">i</span><br>
+    So, for example. If you wanted to write the file <span class="useroutput">test.hex</span> to the flash memory, you would use <span class="useroutput">-U flash:w:test.hex:i</span>. If you wanted to read the eeprom memory into the file "eedump.hex" you would use <span class="useroutput">-U eeprom:r:eedump.hex:i</span></li>
+      <li><span class="useroutput">-n</span>: This means you don't 
+actually write anything, its good if you want to make sure you don't 
+send any other commands that could damage the chip, sort of a 'safety 
+lock'.</li>
+      <li> <span class="useroutput">-V</span>: This turns off the auto-verify when writing. We want to verify when we write to flash so don't use this. </li>
+      <li><span class="useroutput">-u</span>: If you want to modify the <a href="http://ladyada.net/learn/avr/fuses.html">fuse bits</a>, use this switch to tell it you really mean it. </li>
+      <li><span class="useroutput">-t</span>: This is a 'terminal' mode where you can type out commands in a row. Don't use this, it is confusing to beginners. </li>
+      <li> <span class="useroutput">-E</span>: This lists some programmer specifications, don't use it. </li>
+      <li><span class="useroutput">-v</span>: This gives you 'verbose' output...in case you want to debug something. If you want you can use it, but in general we won't.</li>
+      <li><span class="useroutput">-q</span>: This is the opposite of the above, makes less output. In general we won't use it but maybe after a while you wold like to.</li>
+    </ul>
+    <p>The ones you'll use 99% of the time are highlighted in red. Let's review them in more detail</p>
+    <!-- InstanceEndEditable --> </div>
+  <!-- InstanceEndRepeatEntry --><!-- InstanceBeginRepeatEntry --><div class="textblockheader"> <!-- InstanceBeginEditable name="Header" --><span class="menubuy">-c &lt;programmer&gt;</span><!-- InstanceEndEditable --> </div>
+  <div class="textblock"> <!-- InstanceBeginEditable name="text" -->
+    <p>To get a list of supported programmers, type in <strong>avrdude -c asdf</strong> (<strong>asdf</strong>
+ is just some nonsense to get it to spit out the list of programmers) 
+Here is my output, yours may vary a little. Don't bother memorizing it, 
+just glance through the list.</p>
+    <p><strong>C:\&gt;avrdude -c asdf</strong></p>
+    <blockquote>
+      <p align="left">avrdude: Can't find programmer id "asdf"</p>
+      <p align="left">Valid programmers are:<br>
+      dasa3 = serial port banging, reset=!dtr sck=rts mosi=txd miso=cts [C:\WinAVR\bin\avrdude.conf:763]<br>
+      dasa = serial port banging, reset=rts sck=dtr mosi=txd miso=cts [C:\WinAVR\bin\avrdude.conf:750]<br>
+      siprog = Lancos SI-Prog &lt;http://www.lancos.com/siprogsch.html&gt; [C:\WinAVR\bin\avrdude.conf:737]<br>
+      ponyser = design ponyprog serial, reset=!txd sck=rts mosi=dtr miso=cts [C:\WinAVR\bin\avrdude.conf:724]<br>
+      frank-stk200 = Frank STK200 [C:\WinAVR\bin\avrdude.conf:689]<br>
+      blaster = Altera ByteBlaster [C:\WinAVR\bin\avrdude.conf:676]<br>
+        ere-isp-avr = ERE ISP-AVR &lt;http://www.ere.co.th/download/sch050713.pdf&gt; [C:\WinAVR\bin\avrdude.conf:666]<br>
+  atisp = AT-ISP V1.1 programming cable for AVR-SDK1 from &lt;http://micro-research.co.th/&gt; [C:\WinAVR\bin\avrdude.conf:656]<br>
+        dapa = Direct AVR Parallel Access cable [C:\WinAVR\bin\avrdude.conf:645]<br>
+        xil = Xilinx JTAG cable [C:\WinAVR\bin\avrdude.conf:632]<br>
+        futurlec = Futurlec.com programming cable. [C:\WinAVR\bin\avrdude.conf:615]<br>
+        abcmini = ABCmini Board, aka Dick Smith HOTCHIP [C:\WinAVR\bin\avrdude.conf:605]<br>
+        picoweb = Picoweb Programming Cable, http://www.picoweb.net/ [C:\WinAVR\bin\avrdude.conf:595]<br>
+        sp12 = Steve Bolt's Programmer [C:\WinAVR\bin\avrdude.conf:584]<br>
+        alf = Nightshade ALF-PgmAVR, http://nightshade.homeip.net/ [C:\WinAVR\bin\avrdude.conf:568]<br>
+        bascom = Bascom SAMPLE programming cable [C:\WinAVR\bin\avrdude.conf:558]<br>
+        dt006 = Dontronics DT006 [C:\WinAVR\bin\avrdude.conf:548]<br>
+        pony-stk200 = Pony Prog STK200 [C:\WinAVR\bin\avrdude.conf:536]<br>
+        stk200 = STK200 [C:\WinAVR\bin\avrdude.conf:520]<br>
+        bsd = Brian Dean's Programmer, http://www.bsdhome.com/avrdude/ [C:\WinAVR\bin\avrdude.conf:509]<br>
+        pavr = Jason Kyle's pAVR Serial Programmer [C:\WinAVR\bin\avrdude.conf:501]<br>
+        dragon_dw = Atmel AVR Dragon in debugWire mode [C:\WinAVR\bin\avrdude.conf:494]<br>
+        dragon_hvsp = Atmel AVR Dragon in HVSP mode [C:\WinAVR\bin\avrdude.conf:486]<br>
+        dragon_pp = Atmel AVR Dragon in PP mode [C:\WinAVR\bin\avrdude.conf:478]<br>
+        dragon_isp = Atmel AVR Dragon in ISP mode [C:\WinAVR\bin\avrdude.conf:470]<br>
+        dragon_jtag = Atmel AVR Dragon in JTAG mode [C:\WinAVR\bin\avrdude.conf:462]<br>
+        jtag2dw = Atmel JTAG ICE mkII in debugWire mode [C:\WinAVR\bin\avrdude.conf:454]<br>
+        jtag2isp = Atmel JTAG ICE mkII in ISP mode [C:\WinAVR\bin\avrdude.conf:446]<br>
+        jtag2 = Atmel JTAG ICE mkII [C:\WinAVR\bin\avrdude.conf:438]<br>
+        jtag2fast = Atmel JTAG ICE mkII [C:\WinAVR\bin\avrdude.conf:430]<br>
+        jtag2slow = Atmel JTAG ICE mkII [C:\WinAVR\bin\avrdude.conf:422]<br>
+        jtagmkII = Atmel JTAG ICE mkII [C:\WinAVR\bin\avrdude.conf:414]<br>
+        jtag1slow = Atmel JTAG ICE (mkI) [C:\WinAVR\bin\avrdude.conf:407]<br>
+        jtag1 = Atmel JTAG ICE (mkI) [C:\WinAVR\bin\avrdude.conf:399]<br>
+        jtagmkI = Atmel JTAG ICE (mkI) [C:\WinAVR\bin\avrdude.conf:391]<br>
+        avr911 = Atmel AppNote AVR911 AVROSP [C:\WinAVR\bin\avrdude.conf:385]<br>
+        avr109 = Atmel AppNote AVR109 Boot Loader [C:\WinAVR\bin\avrdude.conf:379]<br>
+      butterfly = Atmel Butterfly Development Board [C:\WinAVR\bin\avrdude.conf:373]<br>
+      usbtiny = USBtiny simple USB programmer [C:\WinAVR\bin\avrdude.conf:367]<br>
+        usbasp = USBasp, http://www.fischl.de/usbasp/ [C:\WinAVR\bin\avrdude.conf:361]<br>
+        avr910 = Atmel Low Cost Serial Programmer [C:\WinAVR\bin\avrdude.conf:355]<br>
+        stk500hvsp = Atmel STK500 V2 in high-voltage serial programming mode [C:\WinAVR\bin\avrdude.conf:349]<br>
+        stk500pp = Atmel STK500 V2 in parallel programming mode [C:\WinAVR\bin\avrdude.conf:343]<br>
+        stk500v2 = Atmel STK500 Version 2.x firmware [C:\WinAVR\bin\avrdude.conf:337]<br>
+        stk500v1 = Atmel STK500 Version 1.x firmware [C:\WinAVR\bin\avrdude.conf:331]<br>
+        stk500 = Atmel STK500 [C:\WinAVR\bin\avrdude.conf:325]<br>
+        avrisp2 = Atmel AVR ISP mkII [C:\WinAVR\bin\avrdude.conf:315]<br>
+        avrispmkII = Atmel AVR ISP mkII [C:\WinAVR\bin\avrdude.conf:309]<br>
+        avrispv2 = Atmel AVR ISP V2 [C:\WinAVR\bin\avrdude.conf:303]<br>
+      avrisp = Atmel AVR ISP [C:\WinAVR\bin\avrdude.conf:297]</p>
+    </blockquote>
+    <p align="left">You'll note that the programmers mentioned before are listed here, including the <strong>avrisp</strong>, <strong>avrispv2</strong>, <strong>stk500</strong>, <strong>dragon</strong>, <strong>dasa/dasa3/ponyser</strong> (serial port bitbanging programmers), <strong>dapa/dt006/stk200</strong> (parallel port bitbanging programmers) </p>
+    <p align="left">Look up the name of the programmer you're using, and commit it to heart! </p>
+  <!-- InstanceEndEditable --> </div>
+  <!-- InstanceEndRepeatEntry --><!-- InstanceBeginRepeatEntry --><div class="textblockheader"> <!-- InstanceBeginEditable name="Header" -->
+  <p class="menubuy">-p &lt;partno&gt; </p>
+  <!-- InstanceEndEditable --> </div>
+  <div class="textblock"> <!-- InstanceBeginEditable name="text" -->
+    <p>To get a list of parts supported by avrdude, type in <strong>avrdude -c avrisp</strong>
+ (it doesnt matter if you're not useing an avrisp programmer) without a 
+part number into the command line. Don't memorize this list, just glance
+ over it to get an idea of the chips that are supported.</p>
+    <p><strong>C:\&gt;avrdude -c avrisp</strong><br>
+    avrdude: No AVR part has been specified, use "-p Part"</p>
+    <blockquote>
+      <p>Valid parts are:<br>
+      m6450 = ATMEGA6450 [C:\WinAVR\bin\avrdude.conf:10974]<br>
+      m3250 = ATMEGA3250 [C:\WinAVR\bin\avrdude.conf:10785]<br>
+      m645 = ATMEGA645 [C:\WinAVR\bin\avrdude.conf:10596]<br>
+      m325 = ATMEGA325 [C:\WinAVR\bin\avrdude.conf:10407]<br>
+      usb1287 = AT90USB1287 [C:\WinAVR\bin\avrdude.conf:10219]<br>
+      usb1286 = AT90USB1286 [C:\WinAVR\bin\avrdude.conf:10030]<br>
+      usb647 = AT90USB647 [C:\WinAVR\bin\avrdude.conf:9841]<br>
+      usb646 = AT90USB646 [C:\WinAVR\bin\avrdude.conf:9651]<br>
+      t84 = ATtiny84 [C:\WinAVR\bin\avrdude.conf:9468]<br>
+      t44 = ATtiny44 [C:\WinAVR\bin\avrdude.conf:9286]<br>
+      t24 = ATtiny24 [C:\WinAVR\bin\avrdude.conf:9104]<br>
+      m2561 = ATMEGA2561 [C:\WinAVR\bin\avrdude.conf:8911]<br>
+      m2560 = ATMEGA2560 [C:\WinAVR\bin\avrdude.conf:8718]<br>
+      m1281 = ATMEGA1281 [C:\WinAVR\bin\avrdude.conf:8530]<br>
+      m1280 = ATMEGA1280 [C:\WinAVR\bin\avrdude.conf:8341]<br>
+      m640 = ATMEGA640 [C:\WinAVR\bin\avrdude.conf:8153]<br>
+      t85 = ATtiny85 [C:\WinAVR\bin\avrdude.conf:7972]<br>
+      t45 = ATtiny45 [C:\WinAVR\bin\avrdude.conf:7793]<br>
+      t25 = ATtiny25 [C:\WinAVR\bin\avrdude.conf:7613]<br>
+      pwm3 = AT90PWM3 [C:\WinAVR\bin\avrdude.conf:7431]<br>
+      pwm2 = AT90PWM2 [C:\WinAVR\bin\avrdude.conf:7247]<br>
+      t2313 = ATtiny2313 [C:\WinAVR\bin\avrdude.conf:7060]<br>
+      m168 = ATMEGA168 [C:\WinAVR\bin\avrdude.conf:6872]<br>
+      m88 = ATMEGA88 [C:\WinAVR\bin\avrdude.conf:6686]<br>
+      m48 = ATMEGA48 [C:\WinAVR\bin\avrdude.conf:6499]<br>
+      t861 = ATTINY861 [C:\WinAVR\bin\avrdude.conf:6311]<br>
+      t461 = ATTINY461 [C:\WinAVR\bin\avrdude.conf:6122]<br>
+      t261 = ATTINY261 [C:\WinAVR\bin\avrdude.conf:5933]<br>
+      t26 = ATTINY26 [C:\WinAVR\bin\avrdude.conf:5776]<br>
+      m8535 = ATMEGA8535 [C:\WinAVR\bin\avrdude.conf:5618]<br>
+      m8515 = ATMEGA8515 [C:\WinAVR\bin\avrdude.conf:5460]<br>
+      m8 = ATMEGA8 [C:\WinAVR\bin\avrdude.conf:5300]<br>
+      m161 = ATMEGA161 [C:\WinAVR\bin\avrdude.conf:5160]<br>
+      m32 = ATMEGA32 [C:\WinAVR\bin\avrdude.conf:4985]<br>
+      m6490 = ATMEGA6490 [C:\WinAVR\bin\avrdude.conf:4792]<br>
+      m649 = ATMEGA649 [C:\WinAVR\bin\avrdude.conf:4607]<br>
+      m3290 = ATMEGA3290 [C:\WinAVR\bin\avrdude.conf:4424]<br>
+      m329 = ATMEGA329 [C:\WinAVR\bin\avrdude.conf:4239]<br>
+      m169 = ATMEGA169 [C:\WinAVR\bin\avrdude.conf:4059]<br>
+      m163 = ATMEGA163 [C:\WinAVR\bin\avrdude.conf:3916]<br>
+      m162 = ATMEGA162 [C:\WinAVR\bin\avrdude.conf:3720]<br>
+      m644 = ATMEGA644 [C:\WinAVR\bin\avrdude.conf:3530]<br>
+      m324 = ATMEGA324 [C:\WinAVR\bin\avrdude.conf:3338]<br>
+      m164 = ATMEGA164 [C:\WinAVR\bin\avrdude.conf:3146]<br>
+      m16 = ATMEGA16 [C:\WinAVR\bin\avrdude.conf:2968]<br>
+      c128 = AT90CAN128 [C:\WinAVR\bin\avrdude.conf:2777]<br>
+      m128 = ATMEGA128 [C:\WinAVR\bin\avrdude.conf:2599]<br>
+      m64 = ATMEGA64 [C:\WinAVR\bin\avrdude.conf:2418]<br>
+      m103 = ATMEGA103 [C:\WinAVR\bin\avrdude.conf:2278]<br>
+      8535 = AT90S8535 [C:\WinAVR\bin\avrdude.conf:2157]<br>
+      8515 = AT90S8515 [C:\WinAVR\bin\avrdude.conf:2043]<br>
+      4434 = AT90S4434 [C:\WinAVR\bin\avrdude.conf:1960]<br>
+      4433 = AT90S4433 [C:\WinAVR\bin\avrdude.conf:1836]<br>
+      2343 = AT90S2343 [C:\WinAVR\bin\avrdude.conf:1712]<br>
+      2333 = AT90S2333 [C:\WinAVR\bin\avrdude.conf:1627]<br>
+      2313 = AT90S2313 [C:\WinAVR\bin\avrdude.conf:1514]<br>
+      4414 = AT90S4414 [C:\WinAVR\bin\avrdude.conf:1401]<br>
+      1200 = AT90S1200 [C:\WinAVR\bin\avrdude.conf:1286]<br>
+      t15 = ATtiny15 [C:\WinAVR\bin\avrdude.conf:1153]<br>
+      t13 = ATtiny13 [C:\WinAVR\bin\avrdude.conf:980]<br>
+      t12 = ATtiny12 [C:\WinAVR\bin\avrdude.conf:847]<br>
+      t11 = ATtiny11 [C:\WinAVR\bin\avrdude.conf:783]</p>
+    </blockquote>
+    <p>That's all the chips that <strong>avrdude</strong> knows about. Almost all of them are ISP programmable. </p>
+    <p><u>Watch out</u>: <strong>t2313</strong> and <strong>2313</strong>, <strong>m8</strong> and <strong>m88</strong>, <strong>c128 </strong>and <strong>m128</strong>,
+ etc look very similar but they are in fact quite different chips! For 
+that reason I suggest you type out the name of the chip, that is, 
+instead of <strong>t2313</strong> use <strong>attiny2313</strong> or <strong>m8 </strong>use <strong>atmega8</strong>. Avrdude is smart enough to know what you mean if you type out the full name. </p>
+    <p>We're going to use the <strong>ATtiny2313 </strong> so use the part number <strong>attiny2313</strong> or (<strong>t2313</strong>) </p>
+    <p>Double check what chip you are using by looking at the top of the
+ chip, these say ATTINY2313 and ATMEGA8 (respectively) the -20PI and 
+-16PC are just the speed ratings and package descriptions so ignore them
+ for now.</p>
+    <p align="center"><img src="AVR%20Tutorial%20-%20AVRDUDE-Dateien/attiny2313dip_t.jpg" width="200" height="135"><img src="AVR%20Tutorial%20-%20AVRDUDE-Dateien/atmega8_t.jpg" width="322" height="120"></p>
+    <p align="center">&nbsp;</p>
+  <!-- InstanceEndEditable --> </div>
+  <!-- InstanceEndRepeatEntry --><!-- InstanceBeginRepeatEntry --><div class="textblockheader"> <!-- InstanceBeginEditable name="Header" --><span class="menubuy">-P &lt;port&gt; </span><!-- InstanceEndEditable --> </div>
+  <div class="textblock"> <!-- InstanceBeginEditable name="text" -->
+    <p>This switch tells avrdude where to look for your programmer. If you are using a USB connected device, you can just use <strong>-P usb</strong> or, leave it out. The programmer automatically knows when the programmer is a USB device. </p>
+    <p>If you are using a parallel port or serial port programmer, you 
+should use this option to indicate what port the programmer is connected
+ to. 99% of the time its <strong>lpt1</strong> (parallel) or <strong>com1</strong> (serial) but you can always check it by looking under the <strong>Device Manager</strong>. Open the <strong>System Properties</strong> control panel </p>
+    <p align="center"><img src="AVR%20Tutorial%20-%20AVRDUDE-Dateien/sysprop.jpg" width="419" height="486"></p>
+    <p align="left">Click on <strong>Device Manager</strong>, and open up the <strong>Ports</strong> submenu. </p>
+    <p align="center"> <img src="AVR%20Tutorial%20-%20AVRDUDE-Dateien/devices.gif" width="367" height="467"></p>
+    <p align="left">All of the serial and parallel ports are listed. 
+There may be multiple COM ports but there's usually only one parallel 
+(printer) port.</p>
+    <p align="left">For Mac's, there are no parallel ports. However, if you're using a <a href="http://www.keyspan.com/products/usb/usa19hs/homepage.spml">USB-serial adapter</a>
+ (which lets you use an STK500 or AVRISP v1 with a Mac) then you'll need
+ to specify the serial port. I don't know a foolproof way yet but the 
+way I do it is in the <strong>Terminal</strong> I type in <strong>ls -l /dev/cu.*</strong>
+ and it will spit out a bunch of stuff (I screwed up the screen capture,
+ this image has another window in front of it, but just ignore that) </p>
+    <p align="center"><img src="AVR%20Tutorial%20-%20AVRDUDE-Dateien/findadaptor.jpg" width="527" height="210" border="1"> </p>
+    <p align="left"><strong>/dev/cu.Bluetooth</strong> is the built in bluetooth stuff, dont use that. <strong>/dev/cu.modem</strong> is the modem (if there is one), dont use that either. What you're looking for is something like <strong>/dev/cu.usbserial</strong> or <strong>/dev/cu.KeySerial1</strong> or something similar. In this case its <strong>/dev/cu.usbserial-FTCTYG5U</strong></p>
+  <!-- InstanceEndEditable --> </div>
+  <!-- InstanceEndRepeatEntry --><!-- InstanceBeginRepeatEntry --><div class="textblockheader"> <!-- InstanceBeginEditable name="Header" --><span class="useroutput menubuy">-U &lt;memtype&gt;:r|w|v:&lt;filename&gt;[:format]</span><span class="menubuy">:</span><!-- InstanceEndEditable --> </div>
+  <div class="textblock"> <!-- InstanceBeginEditable name="text" -->
+    <p>OK we're at the important part. This is where we actually get around to telling <strong>avrdude</strong> how to put the data onto the chip. This command is rather complex, but we'll break it down.</p>
+    <p><strong>&lt;memtype&gt;</strong> - can be <strong>flash</strong>, <strong>eeprom, </strong> <strong>hfuse </strong>(high fuse), <strong>lfuse </strong>(low fuse), or <strong>efuse</strong> (extended fuse)<br>
+      <strong>r|w|v</strong> - can be <strong>r </strong>(read), <strong>w</strong> (write), <strong>v</strong> (verify) <br>
+      <strong>&lt;filename&gt;</strong> - the input (writing or verifying) or output file (reading)<br>
+      <strong>[:format]</strong> - optional, the format of the file. You can leave this off for writing, but for reading use <strong>i</strong> for Intel Hex (the prevailing standard ) </p>
+    <p>For example:</p>
+    <ul>
+      <li>To write a file called <strong>firmware.hex</strong> to the flash use the command: <strong>-U flash:w:firmware.hex</strong></li>
+      <li>To verify a file called <strong>mydata.eep</strong> from the eeprom use the command <strong>-U eeprom:v:mydata.eep</strong></li>
+      <li>To read the low fuse into a file use the command <strong>-U lfuse:r:lfusefile.hex:i</strong></li>
+    </ul>
+    <!-- InstanceEndEditable --> </div>
+  <!-- InstanceEndRepeatEntry --><!-- InstanceBeginRepeatEntry --><div class="textblockheader"> <!-- InstanceBeginEditable name="Header" -->Pulling it together<!-- InstanceEndEditable --> </div>
+  <div class="textblock"> <!-- InstanceBeginEditable name="text" -->
+    <p>OK enough of this jibber-jabber. Its time to program the firmware into a chip!</p>
+    <p>Get your AVR target board ready to go, we'll be using an <strong>attiny2313</strong>
+ in this example but of course you should substitute the chip you're 
+using (in which case the code will probably not do anything). Make sure 
+the device is powered, either by batteries or a wall plug or by the 
+programmer if the programmer can do it. </p>
+    <p>Download the <a href="http://ladyada.net/learn/avr/test_leds.hex">test_leds.hex</a> file and place it in <strong>C:\</strong> (Windows) or your home directory (Mac) </p>
+    <p>Figure out what programmer you are using and which port its connected to (in this example I'll be using a <a href="http://ladyada.net/make/usbtinyisp/index.html">usbtinyisp</a> but anything is fine.) Since the usbtinyisp is a USB programmer I can leave off the <strong>-P &lt;port&gt;</strong> switch. </p>
+    <p>type in <strong>avrdude -c usbtiny -p attiny2313 -U flash:w:test_leds.hex</strong></p>
+    <ul>
+      <li>If you're using a DT006 parallel bitbang programmer (such as a <a href="http://www.ladyada.net/make/minipov2">MiniPOV2</a>) you probably want to use a command like <strong>avrdude -c dt006 -P lpt1 -p attiny2313 -U flash:w:test_leds.hex</strong></li>
+      <li>If you're using a DASA serial bitbang programmer (such as a <a href="http://www.ladyada.net/make/minipov2">MiniPOV3</a>) you probably want to use a command like <strong>avrdude -c dasa -P com1 -p attiny2313 -U flash:w:test_leds.hex</strong></li>
+      <li>If you're using an STK500 devboard programmer you probably want to use a command like <strong>avrdude -c stk500 -P com1 -p attiny2313 -U flash:w:test_leds.hex</strong></li>
+      <li>If you're using an AVRISP v2 USB programmer you probably want to use a command like <strong>avrdude -c avrispv2  -p attiny2313 -U flash:w:test_leds.hex</strong></li>
+      <li>etc...
+        <strong>    </strong></li>
+    </ul>
+    <p><img src="AVR%20Tutorial%20-%20AVRDUDE-Dateien/testledshexprog.jpg" width="669" height="542"></p>
+    <p>Avrdude should go through the following steps:</p>
+    <ol>
+      <li>Initializing the programmer (you wont see this if it works)</li>
+      <li>Initializing the AVR device and making sure its ready for instructions</li>
+      <li>Reading the device signature (<strong>0x1e910a</strong>) which confirms that the chip you specified in the command line (<strong>attiny2313</strong>) is in fact the chip that the programmer is connected to </li>
+      <li>Erasing the chip</li>
+      <li>Reading the file and verifying its a valid file</li>
+      <li>Writing the flash</li>
+      <li>Verifying the flash</li>
+    </ol>
+    <!-- InstanceEndEditable --> </div>
+  <!-- InstanceEndRepeatEntry --><!-- InstanceBeginRepeatEntry --><div class="textblockheader"> <!-- InstanceBeginEditable name="Header" -->Burning fuses<!-- InstanceEndEditable --> </div>
+  <div class="textblock"> <!-- InstanceBeginEditable name="text" -->
+    <p>Fuse memory is a seperate chunk of flash that is not written to 
+when you update the firmware. Instead, the 3fuses tend to be set once 
+(altho they can be set as many times as you'd like). The fuses define 
+things like the clock speed, crystal type, whether JTAG is enabled, what
+ the brownout (minimum voltage) level is, etc. <a href="http://ladyada.net/learn/avr/fuses.html">For more information on fuses you can read about 'em here.</a></p>
+    <p>First you'll want to calculate fuses using the very convenient <a href="http://www.engbedded.com/cgi-bin/fc.cgi/" title="http://palmavr.sourceforge.net/cgi-bin/fc.cgi" rel="nofollow">AVR Fuse Calculator</a> </p>
+    
+	     <p>To program the fuses, use:	       </p>
+	     <blockquote>
+	       <p class="codefragment"><strong>avrdude -c usbtiny -p attiny2313 -U lfuse:w:&lt;0xHH&gt;:m<br>
+  avrdude -c usbtiny -p attiny2313 -U hfuse:w:&lt;0xHH&gt;:m<br>
+  avrdude -c usbtiny -p attiny2313 -U efuse:w:&lt;0xHH&gt;:m</strong></p>
+    </blockquote>
+	     <p>Where <strong>&lt;0xHH&gt;</strong> is the desired fuse value, in hex. For example to set the high fuse to 0xDA:</p>
+	     <blockquote>
+	       <p><strong>avrdude -c usbtiny -p attiny2313 -U hfuse:w:0xDA:m</strong></p>
+         </blockquote>
+         <p>Setting the fuses incorrectly can 'brick' the chip - for 
+example you can disable future programming, or make it so the chip is 
+expecting an external crystal when there isn't one. For that reason I 
+suggest triple-checking the fuse values. Then check again, make sure you
+ aren't disabling ISP programming or the Reset pin or setting the clock 
+speed to 32kHz. Then verify again that you have the correct chip for 
+calculation. Then finally you can try writing them to the chip! </p>
+         <p>Remember: once you set the fuses you do not have to set them again</p>
+  <!-- InstanceEndEditable --> </div>
+  <!-- InstanceEndRepeatEntry --><!-- InstanceBeginRepeatEntry --><div class="textblockheader"> <!-- InstanceBeginEditable name="Header" -->Stuff that can go wrong: AVR initilization failed <!-- InstanceEndEditable --> </div>
+  <div class="textblock"> <!-- InstanceBeginEditable name="text" -->
+    <p>If the programmer is not properly connected to the chip, you'll get the following message: <strong>initialization failed, rc=-1 Double check connections and try again, or use -F to override this check </strong></p>
+    <p><img src="AVR%20Tutorial%20-%20AVRDUDE-Dateien/initfailed.jpg" width="669" height="266"></p>
+    <p class="menubuy" align="center"><strong>Don't use -F to override the check, even though it is suggested! </strong></p>
+    <p>This means that the programmer couldn't talk to the chip. If you 
+are using a "simple" programmer such as a serial or parallel port 
+bitbang programmer, it could mean the programmer is at fault. Otherwise,
+ it usually means the programmer is OK but it couldnt find the chip.</p>
+    <p>Check that the chip is powered, plugged into the socket or 
+programmer properly, the programming cables are plugged in correctly, 
+the header is wired correctly, etc. 99% of the time, it is a problem 
+with wiring.</p>
+  <!-- InstanceEndEditable --> </div>
+  <!-- InstanceEndRepeatEntry --><!-- InstanceBeginRepeatEntry --><div class="textblockheader"> <!-- InstanceBeginEditable name="Header" -->Stuff that can go wrong: Signature failure<!-- InstanceEndEditable --> </div>
+  <div class="textblock"> <!-- InstanceBeginEditable name="text" -->
+    <p>Just for kicks try running this command <strong>avrdude -c usbtiny -p atmega8 -U flash:w:test_leds.hex</strong><img src="AVR%20Tutorial%20-%20AVRDUDE-Dateien/sigfail.jpg" width="669" height="266"></p>
+    <p>You'll see that it stops at step 2, once the signature is 
+different than the expected one it stops. This is because code that is 
+compiled for an <strong>attiny2313</strong> wont run on an <strong>atmega8</strong> (this is true of most microcontrollers, the .hex files are not cross compatible)</p>
+  <!-- InstanceEndEditable --> </div>
+  <!-- InstanceEndRepeatEntry --><!-- InstanceEndRepeat --></div>
+
+<div id="rightcol">
+<!-- this is just a buffer -->
+</div>
+
+
+
+<div id="history">
+<!-- #BeginDate format:Am1m -->April 27, 2012  11:17<!-- #EndDate --></div>
+
+
+</body><!-- InstanceEnd --></html>
