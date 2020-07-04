@@ -1,0 +1,22 @@
+{
+	"folders": [
+		{
+			"name": "spresense",
+			"path": "spresense"
+		},
+		{
+			"name": "myproject",
+			"path": "myproject"
+		}
+	],
+	"settings": {
+		"spresense.sdk.path": "/home/dav/digital_electronics/SONY_SPRESENSE/spresense",
+		"spresense.sdk.tools.path": "/home/dav/digital_electronics/SONY_SPRESENSE/spresense/sdk/tools",
+		"terminal.integrated.env.linux": {
+			"PATH": "/home/dav/spresenseenv/usr/bin:/home/dav/.cargo/bin:/home/dav/bin:/home/dav/.local/bin:/home/dav/spresenseenv/usr/bin:/home/dav/spresenseenv/usr/bin:/home/dav/.cargo/bin:/home/dav/bin:/home/dav/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin"
+		},
+		"spresense.env.toolchain.path": "/home/dav/spresenseenv/usr/bin",
+		"cortex-debug.armToolchainPath": "/home/dav/spresenseenv/usr/bin",
+		"cortex-debug.openocdPath": "/home/dav/spresenseenv/usr/bin/openocd"
+	}
+}

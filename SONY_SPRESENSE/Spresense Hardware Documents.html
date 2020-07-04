@@ -1,0 +1,2088 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.10">
+<title>Spresense Hardware Documents</title>
+<link rel="stylesheet" href="Spresense%20Hardware%20Documents_files/sony.css">
+<link rel="stylesheet" href="Spresense%20Hardware%20Documents_files/font-awesome-4.css">
+<meta name="generator" content="AGED 1.0">
+
+<script src="Spresense%20Hardware%20Documents_files/jquery-3.js"></script>
+<script src="Spresense%20Hardware%20Documents_files/elasticlunr.js"></script>
+<script async="" src="Spresense%20Hardware%20Documents_files/jquery.js"></script>
+<script async="" src="Spresense%20Hardware%20Documents_files/polyfill.js"></script>
+
+<link rel="apple-touch-icon" sizes="180x180" href="https://developer.sony.com/develop/spresense/docs/images/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://developer.sony.com/develop/spresense/docs/images/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://developer.sony.com/develop/spresense/docs/images/favicon/favicon-16x16.png">
+<link rel="manifest" href="https://developer.sony.com/develop/spresense/docs/images/favicon/site.webmanifest">
+<link rel="mask-icon" href="https://developer.sony.com/develop/spresense/docs/images/favicon/safari-pinned-tab.svg'%20color='#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+<script type="text/javascript">var $jscomp=$jscomp||{};$jscomp.scope={};$jscomp.ASSUME_ES5=!1;$jscomp.ASSUME_NO_NATIVE_MAP=!1;$jscomp.ASSUME_NO_NATIVE_SET=!1;$jscomp.defineProperty=$jscomp.ASSUME_ES5||"function"==typeof Object.defineProperties?Object.defineProperty:function(a,b,c){a!=Array.prototype&&a!=Object.prototype&&(a[b]=c.value)};$jscomp.getGlobal=function(a){return"undefined"!=typeof window&&window===a?a:"undefined"!=typeof global&&null!=global?global:a};$jscomp.global=$jscomp.getGlobal(this);$jscomp.SYMBOL_PREFIX="jscomp_symbol_";
+$jscomp.initSymbol=function(){$jscomp.initSymbol=function(){};$jscomp.global.Symbol||($jscomp.global.Symbol=$jscomp.Symbol)};$jscomp.Symbol=function(){var a=0;return function(b){return $jscomp.SYMBOL_PREFIX+(b||"")+a++}}();
+$jscomp.initSymbolIterator=function(){$jscomp.initSymbol();var a=$jscomp.global.Symbol.iterator;a||(a=$jscomp.global.Symbol.iterator=$jscomp.global.Symbol("iterator"));"function"!=typeof Array.prototype[a]&&$jscomp.defineProperty(Array.prototype,a,{configurable:!0,writable:!0,value:function(){return $jscomp.arrayIterator(this)}});$jscomp.initSymbolIterator=function(){}};$jscomp.arrayIterator=function(a){var b=0;return $jscomp.iteratorPrototype(function(){return b<a.length?{done:!1,value:a[b++]}:{done:!0}})};
+$jscomp.iteratorPrototype=function(a){$jscomp.initSymbolIterator();a={next:a};a[$jscomp.global.Symbol.iterator]=function(){return this};return a};$jscomp.polyfill=function(a,b,c,e){if(b){c=$jscomp.global;a=a.split(".");for(e=0;e<a.length-1;e++){var d=a[e];d in c||(c[d]={});c=c[d]}a=a[a.length-1];e=c[a];b=b(e);b!=e&&null!=b&&$jscomp.defineProperty(c,a,{configurable:!0,writable:!0,value:b})}};
+$jscomp.polyfill("Array.from",function(a){return a?a:function(a,c,e){$jscomp.initSymbolIterator();c=null!=c?c:function(a){return a};var b=[],f=a[Symbol.iterator];if("function"==typeof f)for(a=f.call(a);!(f=a.next()).done;)b.push(c.call(e,f.value));else{f=a.length;for(var g=0;g<f;g++)b.push(c.call(e,a[g]))}return b}},"es6","es3");$jscomp.findInternal=function(a,b,c){a instanceof String&&(a=String(a));for(var e=a.length,d=0;d<e;d++){var f=a[d];if(b.call(c,f,d,a))return{i:d,v:f}}return{i:-1,v:void 0}};
+$jscomp.polyfill("Array.prototype.find",function(a){return a?a:function(a,c){return $jscomp.findInternal(this,a,c).v}},"es6","es3");function _toConsumableArray(a){return _arrayWithoutHoles(a)||_iterableToArray(a)||_nonIterableSpread()}function _nonIterableSpread(){throw new TypeError("Invalid attempt to spread non-iterable instance");}function _iterableToArray(a){if(Symbol.iterator in Object(a)||"[object Arguments]"===Object.prototype.toString.call(a))return Array.from(a)}
+function _arrayWithoutHoles(a){if(Array.isArray(a)){for(var b=0,c=Array(a.length);b<a.length;b++)c[b]=a[b];return c}}
+function do_search(a,b){a=a.search(b,{fields:{title:{boost:2,bool:"AND"},body:{boost:1}},boolean:"OR",expand:!0})||[];$("#search-results").empty();$("#search-results").removeClass("is-active");for(b=0;b<a.length;b++){var c=a[b].doc.title,e=a[b].doc.url,d=a[b].doc.description;$("#search-results").append('<div><a href="'+e+'">'+c+"</a></div><div><small>"+d+"</small></div><hr>");$("#search-results").addClass("is-active")}return a}
+window.onresize=function(a){768<window.outerWidth?$("#main-nav > ul").slideDown():$("#main-nav > ul").slideUp()};function toggle_main_nav(){$("#main-nav > ul").slideToggle()}
+function highlightFirstActive(a){var b=document.querySelectorAll(".is-visible");a.forEach(function(a){a.classList.remove("active");a.parentNode.classList.remove("open")});if(0<b.length)for(b[b.length-1].classList.add("active"),a=b[b.length-1];null!=a&&!a.classList.contains("sectlevel1");)"LI"===a.parentNode.tagName&&a.parentNode.classList.add("open"),a=a.parentNode}
+window.onload=function(){768<window.outerWidth?$("#main-nav > ul").slideDown():$("#main-nav > ul").slideUp();elasticlunr.tokenizer.setSeperator(/[\s\-\.\\\/:,;]+/);var a=elasticlunr.Index.load(search_index);if(void 0!=sessionStorage){var b=sessionStorage.getItem("search-input")||"";$("#search-input").val(b);3<=b.length&&$("#content").mark(b)}b=$("#search-input").val();0<b.length&&do_search(a,b);$("#search-input").keyup(function(){var b=$("#search-input").val();0<do_search(a,b).length?$("#search-results").slideDown():
+$("#search-results").slideUp()});$("#search-input").on("input",function(a){$("#content").unmark();3<=a.currentTarget.value.length?(void 0!=sessionStorage&&sessionStorage.setItem("search-input",a.currentTarget.value),$("#content").mark(a.currentTarget.value,{separateWordSearch:"false"})):void 0!=sessionStorage&&sessionStorage.removeItem("search-input")});$("#search > form").on("reset",function(a){void 0!=sessionStorage&&(sessionStorage.removeItem("search-input"),$("#content").unmark())})};
+$(document).ready(function(){$("#search a").mousedown(function(a){a.preventDefault();var b=$(this).attr("href");$("#search-results").slideUp(function(){window.location=b})});$("#search-input").focusout(function(){$("#search-results").slideUp()});$("#search-input").focusin(function(){$("#search-results").hasClass("is-active")&&$("#search-results").slideDown()});$(window).resize(function(){768<=$(window).width()&&$("#main-nav > ul").slideDown()});var a,b=$("#top-header").outerHeight(),c=$("#main-nav"),
+e=b+c.outerHeight()+1;$("#main-nav a").each(function(){var a=$(this).attr("href").split("/").slice(-1)[0];if(0<=location.pathname.split("/").slice(-1).indexOf(a))for(a=$(this);0<a.length&&!a.is("#main-nav");)a=a.parent(),a.is("li")&&a.addClass("current_page")});$("#toc a").each(function(){$(this).click(function(a){if(0>a.offsetX)return $(this).parent().toggleClass("forceopen"),!1})});var d=_toConsumableArray(document.querySelectorAll("#toc a"));b=d.map(function(a){a=a.getAttribute("href").substr(1);
+return document.getElementById(decodeURI(a)).parentNode});if("IntersectionObserver"in window){var f=new IntersectionObserver(function(a,b){a.forEach(function(a){var b="#".concat(a.target.querySelector("h1,h2,h3,h4,h5,h6,h7,h8").getAttribute("id")),c=d.find(function(a){return decodeURI(a.getAttribute("href"))===b});a.isIntersecting?c.classList.add("is-visible"):c.classList.remove("is-visible");highlightFirstActive(d)})},{root:null,rootMargin:"0px 0px -40% 0px"});b.forEach(function(a){f.observe(a)})}else{var g=
+$("#toc").find("a"),h=g.map(function(){var a=$(decodeURI($(this).attr("href")));if(a.length)return a});$(window).scroll(function(){if(768>$(window).width())g.removeClass("active");else{var b=$(this).scrollTop()+e;if($(window).scrollTop()+$(window).height()>$(document).height()-$("#footer").outerHeight())var c=h[h.length-1];else c=h.map(function(){if($(this).offset().top<b)return this}),c=c[c.length-1];c=c&&c.length?c[0].id:"";if(a!==c)for(a=c,g.removeClass("active").filter("[href='#"+encodeURI(c)+
+"']").addClass("active"),g.parent().removeClass("open"),c=g.parent().end().filter("[href='#"+encodeURI(c)+"']").parent().addClass("open");0<c.length&&!c.hasClass("sectlevel1");){var d=c.parent();"LI"==c.parent().prop("nodeName")&&d.addClass("open");c=d}}})}});
+</script>
+<script type="text/javascript">document.addEventListener("DOMContentLoaded",function(){var b=[].slice.call(document.querySelectorAll("img.lazy"));if("IntersectionObserver"in window){var c=new IntersectionObserver(function(a,b){a.forEach(function(a){a.isIntersecting&&(a=a.target,a.src=(new URL(a.dataset.src,window.location.href)).href,a.classList.remove("lazy"),c.unobserve(a))})});b.forEach(function(a){c.observe(a)})}else b=[].slice.call(document.querySelectorAll("img.lazy")),b.forEach(function(a){a.src=a.dataset.src;a.classList.remove("lazy")})});
+</script>
+</head>
+<body id="_HARDWARE_DOCUMENTS" class="article toc2 toc-left">
+<div id="top-header">
+<a class="header-logo" href="https://developer.sony.com/develop/spresense/"><img class="" alt="Developer World" src="Spresense%20Hardware%20Documents_files/sonylogo.png" data-src="images/sonylogo.png"></a><a class="project-name" id="project-name-0" href="https://developer.sony.com/">Developer World</a><a class="project-name" id="project-name-1" href="https://developer.sony.com/develop/spresense/">Spresense</a><div class="languages">
+<a class="language" href="https://developer.sony.com/develop/spresense/docs/hw_docs_ja.html">日本語 </a><a class="language" href="https://developer.sony.com/develop/spresense/docs/hw_docs_zh.html">中文 </a>
+</div>
+</div>
+<div id="main-nav">
+<ul>
+<li>
+<p><a href="https://developer.sony.com/develop/spresense/docs/home_en.html">Home</a></p>
+</li>
+<li>
+<p><a href="https://developer.sony.com/develop/spresense/docs/introduction_en.html">Introduction</a></p>
+</li>
+<li>
+<p>Arduino</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://developer.sony.com/develop/spresense/docs/arduino_set_up_en.html">Getting Started Guide</a></p>
+</li>
+<li>
+<p><a href="https://developer.sony.com/develop/spresense/docs/arduino_developer_guide_en.html">Developer Guide</a></p>
+</li>
+<li>
+<p><a href="https://developer.sony.com/develop/spresense/developer-tools/api-reference/api-references-arduino/" target="_blank" rel="noopener">API references</a></p>
+</li>
+<li>
+<p><a href="https://developer.sony.com/develop/spresense/docs/arduino_tutorials_en.html">Examples &amp; Tutorials</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Spresense SDK</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://developer.sony.com/develop/spresense/docs/sdk_set_up_en.html">Getting Started Guide (CLI)</a></p>
+</li>
+<li>
+<p><a href="https://developer.sony.com/develop/spresense/docs/sdk_set_up_ide_en.html">Getting Started Guide (IDE)</a></p>
+</li>
+<li>
+<p><a href="https://developer.sony.com/develop/spresense/docs/sdk_developer_guide_en.html">Developer Guide</a></p>
+</li>
+<li>
+<p><a href="https://developer.sony.com/develop/spresense/developer-tools/api-reference/api-references-spresense-sdk/" target="_blank" rel="noopener">API references</a></p>
+</li>
+<li>
+<p><a href="https://developer.sony.com/develop/spresense/docs/sdk_tutorials_en.html">Examples &amp; Tutorials</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li class="current_page">
+<p><a href="https://developer.sony.com/develop/spresense/docs/hw_docs_en.html">Hardware Guide</a></p>
+</li>
+<li>
+<p><a href="https://developer.sony.com/develop/spresense/docs/faq_en.html">FAQ</a></p>
+</li>
+<li>
+<p>Update information</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://developer.sony.com/develop/spresense/docs/release_arduino_en.html">Spresense Arduino Release Notes</a></p>
+</li>
+<li>
+<p><a href="https://developer.sony.com/develop/spresense/docs/release_sdk_en.html">Spresense SDK Release Notes</a></p>
+</li>
+<li>
+<p><a href="https://developer.sony.com/develop/spresense/docs/release_ide_en.html">Spresense IDE Release Notes</a></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+<div id="search">
+      <form autocomplete="off">
+        <i class="inner-addon fa fa-search"></i>
+        <input type="search" id="search-input" placeholder="Search docs" class="left-addon" required="">
+        <button id="clear_search_field" class="input_field_button" type="reset">
+          <i class="fa fa-times-circle"></i>
+        </button>
+      </form>
+<div id="search-results"></div>
+</div>
+<a id="toggle-menu" href="javascript:void(0);" onclick="toggle_main_nav()" class="icon right"><i class="fa fa-bars"></i></a>
+</div>
+<div id="header">
+<h1>Spresense Hardware Documents</h1>
+
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li class="open"><a href="#_hw_design_files" class="is-visible active">1. HW design files</a></li>
+<li class=""><a href="#_chipset" class="">2. Chipset</a></li>
+<li class="">
+<a href="#_how_to_guides" class="">3. How-to Guides</a>
+<ul class="sectlevel2">
+<li class=""><a href="#_using_mini_spacers_with_the_main_board" class="">3.1. Using mini-spacers with the main board</a></li>
+<li class=""><a href="#_setting_the_operating_voltage_of_the_gpio_pin_sockets_on_the_extension_board" class="">3.2. Setting the operating voltage of the GPIO pin sockets on the extension board</a></li>
+<li><a href="#_how_to_use_reset_function">3.3. How to use reset function</a></li>
+<li><a href="#_cxd5602_io_current">3.4. CXD5602 I/O current</a></li>
+<li><a href="#_how_to_use_the_i2c">3.5. How to use the I2C</a></li>
+<li><a href="#_how_to_use_the_uart">3.6. How to use the UART</a></li>
+<li><a href="#_how_to_use_the_spi">3.7. How to use the SPI</a></li>
+<li><a href="#_how_to_use_the_pwm">3.8. How to use the PWM</a></li>
+<li><a href="#_how_to_use_the_sdio">3.9. How to use the SDIO</a></li>
+<li><a href="#_attention_when_using_digital_signals_uartspipwm_gpio_on_extension_board">3.10. Attention when using digital signals (UART/SPI/PWM /GPIO) on extension board</a></li>
+<li><a href="#_powering_the_main_board_with_external_power">3.11. Powering the main board with external power</a></li>
+<li>
+<a href="#_how_to_use_microphones">3.12. How to use microphones</a>
+<ul class="sectlevel3">
+<li><a href="#_placement_of_the_microphone_channel">3.12.1. Placement of the microphone channel</a></li>
+<li><a href="#_how_to_change_microphone_mode_from_analog_to_digital">3.12.2. How to change microphone mode from analog to digital</a></li>
+<li>
+<a href="#_how_to_connect_analog_microphones">3.12.3. How to connect analog microphones</a>
+<ul class="sectlevel4">
+<li><a href="#_dynamic_microphones">3.12.3.1. Dynamic microphones</a></li>
+<li><a href="#_electret_microphones">3.12.3.2. Electret Microphones</a></li>
+<li><a href="#_analog_mems_microphones">3.12.3.3. Analog MEMS Microphones</a></li>
+</ul>
+</li>
+<li><a href="#_how_to_connect_digital_microphones">3.12.4. How to connect digital microphones</a></li>
+</ul>
+</li>
+<li>
+<a href="#_HOW_TO_USE_SPEAKERS">3.13. How to use speakers</a>
+<ul class="sectlevel3">
+<li><a href="#_main_board_modifications_to_support_speakers">3.13.1. Main board modifications to support speakers</a></li>
+<li><a href="#_extension_board_modifications_to_support_speakers">3.13.2. Extension board modifications to support speakers</a></li>
+</ul>
+</li>
+<li><a href="#_HOW_TO_USE_JTAG_DEBUGGER">3.14. How to use JTAG Debugger</a></li>
+<li><a href="#_how_to_use_the_external_antenna_for_gnss">3.15. How to use the external antenna for GNSS</a></li>
+</ul>
+</li>
+<li><a href="#_differences_between_spresense_and_arduino_uno">4. Differences between Spresense and Arduino Uno</a></li>
+<li>
+<a href="#_spresense_hardware_comparison">5. Spresense Hardware comparison</a>
+<ul class="sectlevel2">
+<li><a href="#_processor_and_os">5.1. Processor and OS</a></li>
+<li><a href="#_memory">5.2. Memory</a></li>
+<li><a href="#_power">5.3. Power</a></li>
+<li><a href="#_audio">5.4. Audio</a></li>
+<li><a href="#_gnss_and_real_time_clock">5.5. GNSS and Real Time clock</a></li>
+<li><a href="#_digital_io">5.6. Digital IO</a></li>
+<li><a href="#_analog_to_digital_converter">5.7. Analog to digital converter</a></li>
+<li><a href="#_connectivity">5.8. Connectivity</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_hw_design_files">
+<a class="anchor" href="#_hw_design_files"></a>1. HW design files</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>HW design files for the Spresense boards are found on <a href="https://github.com/sonydevworld/spresense-hw-design-files" target="_blank" rel="noopener">Spresense HW Design Files repo</a>.
+ There are schematics, Bill of Materials (BOM) and design guidelines to 
+help you design your own boards using Sony CXD5602 chip and add-on 
+boards to the Spresense main board.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tbody><tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Please right-click on below each link to download CAD data.
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Spresense Main board</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/sonydevworld/spresense-hw-design-files/raw/master/CXD5602PWBMAIN1/schematics/CXD5602PWBMAIN1_schematics.pdf" target="_blank" rel="noopener">Schematics (pdf)</a></p>
+</li>
+<li>
+<p><a href="https://github.com/sonydevworld/spresense-hw-design-files/raw/master/CXD5602PWBMAIN1/BOM/CXD5602PWBMAIN1_BOM_list_en.pdf" target="_blank" rel="noopener">Bill of Materials (pdf)</a></p>
+</li>
+<li>
+<p><a href="https://github.com/sonydevworld/spresense-hw-design-files/raw/master/CXD5602PWBMAIN1/board_dimensions/CXD5602PWBMAIN1_board_dimensions_en.pdf" target="_blank" rel="noopener">Dimensions (pdf)</a></p>
+</li>
+<li>
+<p><a href="https://github.com/sonydevworld/spresense-hw-design-files/raw/master/CXD5602PWBMAIN1/parts_layout/CXD5602PWBMAIN1_part_layout.pdf" target="_blank" rel="noopener">Parts layout (pdf)</a></p>
+</li>
+<li>
+<p><a href="https://github.com/sonydevworld/spresense-hw-design-files/raw/master/CXD5602PWBMAIN1/dxf/CXD5602PWBMAIN1_side_a.dxf" target="_blank" rel="noopener">2D CAD DATA(DXF) Side-A (dxf)</a>, <a href="https://github.com/sonydevworld/spresense-hw-design-files/raw/master/CXD5602PWBMAIN1/dxf/CXD5602PWBMAIN1_side_b.dxf" target="_blank" rel="noopener">2D CAD DATA(DXF) Side-B (dxf)</a></p>
+</li>
+<li>
+<p><a href="https://github.com/sonydevworld/spresense-hw-design-files/raw/master/CXD5602PWBMAIN1/stp/CXD5602PWBMAIN1.stp" target="_blank" rel="noopener">3D CAD DATA(STEP) (stp)</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Spresense Extension board</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/sonydevworld/spresense-hw-design-files/raw/master/CXD5602PWBEXT1/schematics/CXD5602PWBEXT1_schematics.pdf" target="_blank" rel="noopener">Schematics (pdf)</a></p>
+</li>
+<li>
+<p><a href="https://github.com/sonydevworld/spresense-hw-design-files/raw/master/CXD5602PWBEXT1/BOM/CXD5602PWBEXT1_BOM_list_en.pdf" target="_blank" rel="noopener">Bill of Materials (pdf)</a></p>
+</li>
+<li>
+<p><a href="https://github.com/sonydevworld/spresense-hw-design-files/raw/master/CXD5602PWBEXT1/board_dimensions/CXD5602PWBEXT1_board_dimensions_en.pdf" target="_blank" rel="noopener">Dimensions (pdf)</a></p>
+</li>
+<li>
+<p><a href="https://github.com/sonydevworld/spresense-hw-design-files/raw/master/CXD5602PWBEXT1/parts_layout/CXD5602PWBEXT1_part_layout.pdf" target="_blank" rel="noopener">Parts layout (pdf)</a></p>
+</li>
+<li>
+<p><a href="https://github.com/sonydevworld/spresense-hw-design-files/raw/master/CXD5602PWBEXT1/dxf/CXD5602PWBEXT1_side_a.dxf" target="_blank" rel="noopener">2D CAD DATA(DXF) Side-A (dxf)</a>, <a href="https://github.com/sonydevworld/spresense-hw-design-files/raw/master/CXD5602PWBEXT1/dxf/CXD5602PWBEXT1_side_b.dxf" target="_blank" rel="noopener">2D CAD DATA(DXF) Side-B (dxf)</a></p>
+</li>
+<li>
+<p><a href="https://github.com/sonydevworld/spresense-hw-design-files/raw/master/CXD5602PWBEXT1/stp/CXD5602PWBEXT1.stp" target="_blank" rel="noopener">3D CAD DATA(STEP) (stp)</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Spresense Camera board</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/sonydevworld/spresense-hw-design-files/raw/master/CXD5602PWBCAM1/schematics/CXD5602PWBCAM1_schematics.pdf" target="_blank" rel="noopener">Schematics (pdf)</a></p>
+</li>
+<li>
+<p><a href="https://github.com/sonydevworld/spresense-hw-design-files/raw/master/CXD5602PWBCAM1/BOM/CXD5602PWBCAM1_BOM_list_en.pdf" target="_blank" rel="noopener">Bill of Materials (pdf)</a></p>
+</li>
+<li>
+<p><a href="https://github.com/sonydevworld/spresense-hw-design-files/raw/master/CXD5602PWBCAM1/board_dimensions/CXD5602PWBCAM1_board_dimensions_en.pdf" target="_blank" rel="noopener">Dimensions (pdf)</a></p>
+</li>
+<li>
+<p><a href="https://github.com/sonydevworld/spresense-hw-design-files/raw/master/CXD5602PWBCAM1/parts_layout/CXD5602PWBCAM1_part_layout.pdf" target="_blank" rel="noopener">Parts layout (pdf)</a></p>
+</li>
+<li>
+<p><a href="https://github.com/sonydevworld/spresense-hw-design-files/raw/master/CXD5602PWBCAM1/dxf/CXD5602PWBCAM1_side_a.dxf" target="_blank" rel="noopener">2D CAD DATA(DXF) Side-A (dxf)</a>, <a href="https://github.com/sonydevworld/spresense-hw-design-files/raw/master/CXD5602PWBCAM1/dxf/CXD5602PWBCAM1_side_b.dxf" target="_blank" rel="noopener">2D CAD DATA(DXF) Side-B (dxf)</a></p>
+</li>
+<li>
+<p><a href="https://github.com/sonydevworld/spresense-hw-design-files/raw/master/CXD5602PWBCAM1/stp/CXD5602PWBCAM1.stp" target="_blank" rel="noopener">3D CAD DATA(STEP) (stp)</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Spresense Add-on board</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/sonydevworld/spresense-hw-design-files/raw/master/main_board_addon_board/en_design_guidelines.pdf" target="_blank" rel="noopener">Add-on Board Design Guide (pdf)</a></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_chipset">
+<a class="anchor" href="#_chipset"></a>2. Chipset</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The datasheets for the chipset are available from <a href="https://www.sony-semicon.co.jp/e/products/smart-sensing/spresense/" target="_blank" rel="noopener">Sony Semiconductor Solutions Corporation website</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_how_to_guides">
+<a class="anchor" href="#_how_to_guides"></a>3. How-to Guides</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_using_mini_spacers_with_the_main_board">
+<a class="anchor" href="#_using_mini_spacers_with_the_main_board"></a>3.1. Using mini-spacers with the main board</h3>
+<div class="paragraph">
+<p>When the Spresense main board is used alone without the extension 
+board, it can be convenient to install mini-spacers in the 4 corners of 
+the main board.<br>
+The mini-spacers are fixed with screws. The mini-spacers and screws must
+ be non metallic. The screw diameter is 2mm, and the screw length is 
+3mm.<br>
+They are not included in the product package of the Spresense main board, so they have to be purchased separately.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tbody><tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Using metal mini-spacers and screws will have big negative effect on the
+ reception performance of the GNSS. Make sure you use non metallic 
+parts.
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="table"><table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. Suggested mini-spacer and screw type:</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Vendor</th>
+<th class="tableblock halign-left valign-top">Mini-spacer</th>
+<th class="tableblock halign-left valign-top">Screw</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HIROSUGI</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AS-2003</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PC-0203</p></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="sect2">
+<h3 id="_setting_the_operating_voltage_of_the_gpio_pin_sockets_on_the_extension_board">
+<a class="anchor" href="#_setting_the_operating_voltage_of_the_gpio_pin_sockets_on_the_extension_board"></a>3.2. Setting the operating voltage of the GPIO pin sockets on the extension board</h3>
+<div class="paragraph">
+<p>The operating voltage on pin socket JP2 and JP13 of the extension 
+board can be set to 5V or 3.3V by changing the position of the jumper on
+ JP1.<br>
+The extension board operating voltage is set to 5V when shipped.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Spresense%20Hardware%20Documents_files/HW_voltage_level_in_extension_E.png" alt="HW voltage level in extension E" class="" data-src="images/HW_voltage_level_in_extension_E.png">
+</div>
+<div class="title">Figure 1. Jumper settings on the extension board to select 5V or 3.3V operating voltage.</div>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tbody><tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="title">WARNING</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Changing the jumper on JP1 while the board is powered on might 
+destroy the Spresense main and extension board. Make sure the board is 
+completely powered off before you change the jumper setting.</p>
+</li>
+<li>
+<p>Please set the voltage to match the operation voltage of the boards 
+you are connecting to the extension board such as Arduino shields. 
+Setting the wrong voltage might destroy the Spresense and connected 
+boards.</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="table"><table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 2. The following pins will have the same voltage level as the set operating voltage:</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Socket</th>
+<th class="tableblock halign-left valign-top">Pin</th>
+<th class="tableblock halign-left valign-top">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">JP3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IOREF</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">JP2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AREF</p></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="sect2">
+<h3 id="_how_to_use_reset_function">
+<a class="anchor" href="#_how_to_use_reset_function"></a>3.3. How to use reset function</h3>
+<div class="paragraph">
+<p>Spresense can reset the system in the following way.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Press SW2 on the main board.</p>
+</li>
+<li>
+<p>UART connection (DTR signal trigger) by serial monitor etc.</p>
+</li>
+<li>
+<p>Reduce the signal level of JP3’s 3rd pin of the extension board to Low (see details below)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>When a system reset is applied, from the CXD5247 of the LSI that 
+manages the power supply and each power supply LSI
+Since power supply stops for a moment, caution is required when 
+connecting an external circuit to an extension board or Add-on board.</p>
+</div>
+<div class="paragraph">
+<p>Resetting pin No.3 of JP3 on the extension board can be used as bidirectional. That is</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Input the signal to reset the system from the extension board.</p>
+</li>
+<li>
+<p>Reset the system connected outside the extension board.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Although it can be used as any of the above, please connect the 
+recommended circuit shown below as an external circuit. However, as a 
+user device to be connected, a microprocessor LSI
+We assume high impedance devices such as.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Spresense%20Hardware%20Documents_files/HW_reset_en_low.jpeg" alt="HW reset en" class="lazy" data-src="images/HW_reset_en.png">
+</div>
+</div>
+<div class="paragraph">
+<p>Also, the reset signal (XRST_PIN_1.8V) on pin No.1 of JP2 on the main
+ board outputs the system reset status. It is Low when the system reset 
+is applied, and in other states
+It outputs High (1.8V). By using this signal, it is possible to reset 
+the Add-on board etc at the same timing as the sensing processor 
+CXD5602.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_cxd5602_io_current">
+<a class="anchor" href="#_cxd5602_io_current"></a>3.4. CXD5602 I/O current</h3>
+<div class="paragraph">
+<p>CXD5602 is a very low power processor. Typical I/O current values are limited to around 6mA.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_how_to_use_the_i2c">
+<a class="anchor" href="#_how_to_use_the_i2c"></a>3.5. How to use the I2C</h3>
+<div class="paragraph">
+<p>Both Spresense main board and extension board have I2C terminals. The
+ interface voltage is 1.8V on the main board, and 5V or 3.3V on the 
+extension board.</p>
+</div>
+<div class="paragraph">
+<p>How to set the interface voltage on the extension board is described <a href="#_setting_the_operating_voltage_of_the_gpio_pin_sockets_on_the_extension_board">in this chapter.</a></p>
+</div>
+<div class="paragraph">
+<p>The main board and extension board use the same system for I2C. They 
+can be connected to several I2C slave devices at the same time if the 
+slave devices have different slave addresses.</p>
+</div>
+<div class="table"><table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 3. I2C on Spresense:</caption>
+<colgroup>
+<col style="width: 8.6206%;">
+<col style="width: 11.2068%;">
+<col style="width: 11.2068%;">
+<col style="width: 8.6206%;">
+<col style="width: 60.3452%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Board</th>
+<th class="tableblock halign-left valign-top">Voltage</th>
+<th class="tableblock halign-left valign-top">Max clock speed</th>
+<th class="tableblock halign-left valign-top">Pull up</th>
+<th class="tableblock halign-left valign-top">Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Main</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1,8V</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1MHz</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.7kΩ</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Additional bus exposed on the B2B connector</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Extension</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5V or 3.3V</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1MHz</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1kΩ</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Voltage selectable via jumper</p></td>
+</tr>
+</tbody>
+</table></div>
+<div class="paragraph">
+<p>Read <a href="#_HARDWARE_DOCUMENTS">Spresense Hardware Documents</a> for more details.</p>
+</div>
+<div class="paragraph">
+<p>Refer the <a href="https://developer.sony.com/develop/spresense/docs/arduino_developer_guide_en.html#_wire_library">Wire Library</a> for more information on how to use the I2C from the Arduino environment.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_how_to_use_the_uart">
+<a class="anchor" href="#_how_to_use_the_uart"></a>3.6. How to use the UART</h3>
+<div class="paragraph">
+<p>The Spresense main board and extension board have UART terminals.</p>
+</div>
+<div class="paragraph">
+<p>It is not possible to use the UART on both the main board and the extension board at the same time.</p>
+</div>
+<div class="paragraph">
+<p>The extension board is configured to have the UART enabled when it is
+ shipped.
+To use the UART pins on the main board when attached to the extension 
+board, a 2.54mm pitch jumper have to be connected to pin 1 and 2 on JP10
+ of the extension board to disable the extension board UART. No jumper 
+is supplied with the Spresense boards so this has to be purchased 
+separately.</p>
+</div>
+<div class="paragraph">
+<p>When the extension board UART is activated, the UART pins (D00, D01, D27 and D28) of the main board cannot be used as GPIO.</p>
+</div>
+<div class="table"><table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 4. UART on Spresense:</caption>
+<colgroup>
+<col style="width: 8.6956%;">
+<col style="width: 8.6956%;">
+<col style="width: 13.0434%;">
+<col style="width: 69.5654%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Board</th>
+<th class="tableblock halign-left valign-top">Voltage</th>
+<th class="tableblock halign-left valign-top">Max transmission rate</th>
+<th class="tableblock halign-left valign-top">Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Main</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1,8V</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.8432Mbps</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Flow control available on pin socket and B2B connector.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Extension</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5V or 3.3V</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.8432Mbps</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Can be disabled via jumper. Initial setting when shipped: On.</p></td>
+</tr>
+</tbody>
+</table></div>
+<div class="paragraph">
+<p>The B2B connector has all the UART related signals (including 
+handshake signals UART2_CTS and UART2_RTS) that can be used on custom 
+boards. Refer to <a href="#_HARDWARE_DOCUMENTS">Spresense Hardware Documents</a> for details.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_how_to_use_the_spi">
+<a class="anchor" href="#_how_to_use_the_spi"></a>3.7. How to use the SPI</h3>
+<div class="paragraph">
+<p>Both the Spresense main board and the extension board have SPI terminals. SPI can only be used in master mode on both boards.</p>
+</div>
+<div class="paragraph">
+<p>You can use both SPI functions on main board and extension board at the same time because the boards do not share the same bus.</p>
+</div>
+<div class="table"><table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 5. SPI on Spresense:</caption>
+<colgroup>
+<col style="width: 10.5263%;">
+<col style="width: 10.5263%;">
+<col style="width: 15.7894%;">
+<col style="width: 10.5263%;">
+<col style="width: 52.6317%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Board</th>
+<th class="tableblock halign-left valign-top">Voltage</th>
+<th class="tableblock halign-left valign-top">Mode</th>
+<th class="tableblock halign-left valign-top">Max speed</th>
+<th class="tableblock halign-left valign-top">Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Main</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1,8V</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Master only</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">13Mbps</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SPI5 + SPI2 (on the B2B connector).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Extension</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5V or 3.3V</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Master only</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">48.75Mbps</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SPI4</p></td>
+</tr>
+</tbody>
+</table></div>
+<div class="paragraph">
+<p>Read the <a href="https://developer.sony.com/develop/spresense/docs/arduino_developer_guide_en.html#_spi_library">SPI Library</a> documentation for more information on how to use the SPI from the Arduino environment.</p>
+</div>
+<div class="paragraph">
+<p>The max speed stated in the table above is the rated speed for the CXD5602.
+When used together with the voltage level shifters on the extension board the max speed drops to around 20MHz.
+This speed is also influenced of the environment.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_how_to_use_the_pwm">
+<a class="anchor" href="#_how_to_use_the_pwm"></a>3.8. How to use the PWM</h3>
+<div class="table"><table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 6. PWM on Spresense:</caption>
+<colgroup>
+<col style="width: 10.8695%;">
+<col style="width: 10.8695%;">
+<col style="width: 13.0434%;">
+<col style="width: 10.8695%;">
+<col style="width: 54.3481%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Board</th>
+<th class="tableblock halign-left valign-top">Voltage</th>
+<th class="tableblock halign-left valign-top">Resolution</th>
+<th class="tableblock halign-left valign-top">Max frequency</th>
+<th class="tableblock halign-left valign-top">Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Main</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1,8V</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">15bit</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6.5MHz</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PWM0, PWM1, PWM2 and PWM3 but only available through B2B connector.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Extension</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5V or 3.3V</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">15bit</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6.5MHz</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PWM0, PWM1, PWM2 and PWM3</p></td>
+</tr>
+</tbody>
+</table></div>
+<div class="paragraph">
+<p>Read <a href="#_HARDWARE_DOCUMENTS">Spresense Hardware Documents</a> for details about the PWM on the main board B2B connector.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_how_to_use_the_sdio">
+<a class="anchor" href="#_how_to_use_the_sdio"></a>3.9. How to use the SDIO</h3>
+<div class="paragraph">
+<p>The CXD5602 has a 1.8V 4-bit (or 1-bit) SD mode interface compliant 
+with the SDIO standard, and Spresense can use the microSD card by 
+converting the voltage to 3.3V using a level shifter on the extension 
+board .</p>
+</div>
+<div class="paragraph">
+<p>The maximum data transfer rate for Spresense’s SDIO is 21 MB/s.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_attention_when_using_digital_signals_uartspipwm_gpio_on_extension_board">
+<a class="anchor" href="#_attention_when_using_digital_signals_uartspipwm_gpio_on_extension_board"></a>3.10. Attention when using digital signals (UART/SPI/PWM /GPIO) on extension board</h3>
+<div class="paragraph">
+<p>It is possible to change voltage and direction of a signal for a 
+digital pin input and output automatically on the extension board by 
+connecting a circuit with the following characteristics.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Spresense%20Hardware%20Documents_files/HW_LVS1_en_low.jpeg" alt="HW LVS1 en" class="lazy" data-src="images/HW_LVS1_en.png">
+</div>
+<div class="title">Figure 2. The level shifter used on the extension board.</div>
+</div>
+<div class="paragraph">
+<p>The pins of this voltage level transfer device at socket side is always pull to 5V or 3.3V by 1kΩ resistor.</p>
+</div>
+<div class="paragraph">
+<p>If a circuit with low impedance is connected to the pin socket, 
+CXD5602 will not be able to detect the threshold voltage which will 
+result in incorrect detection of the logic value.</p>
+</div>
+<div class="paragraph">
+<p>In this case, it is recommended to insert a one-way buffer, as shown 
+in the diagram, for the signal where the input/output direction does not
+ change between the pin socket.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Spresense%20Hardware%20Documents_files/HW_LVS2_en_low.jpeg" alt="HW LVS2 en" class="lazy" data-src="images/HW_LVS2_en.png" width=".">
+</div>
+<div class="title">Figure 3. One way buffer connected between the extension board and user circuit</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_powering_the_main_board_with_external_power">
+<a class="anchor" href="#_powering_the_main_board_with_external_power"></a>3.11. Powering the main board with external power</h3>
+<div class="paragraph">
+<p>The maximum current that can be drained from the Spresense main board micro USB connector is 500mA.
+This is true also when both the main board and extension board are mounted and have separate USB power connected.
+The 500mA current that is sourced by the main board will be shared with the Add-on board too.</p>
+</div>
+<div class="paragraph">
+<p>In case that the 500mA current from the micro USB connector is not 
+sufficient it is possible to supply more power using the battery 
+terminal CN1 on the main board.
+The CN1 battery connector’s recommended operating voltage is 3.6 to 4.4V
+ with an absolute maximum voltage of 7V.
+Using the CN1 battery connector the sourced current from EXT_VDD (JP2 
+pin number 3) to an Add-on board can be increased.</p>
+</div>
+<div class="paragraph">
+<p>See the table below for recommended battery connector that will fit CN1.</p>
+</div>
+<div class="paragraph">
+<p>It is necessary to solder on the main board to mount a battery connector on CN1.</p>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tbody><tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+Modifying the Spresense boards will void the warranty. Please do it at your own risk.
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="table"><table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 7. List of battery connector that will fit on CN1 of the main board:</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Vendor</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-middle" rowspan="2"><p class="tableblock">Japan Crimp Terminal Mfg. Co., Ltd.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">S2B-PH-K-S</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PH male connector</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PHR-2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PH female connector</p></td>
+</tr>
+</tbody>
+</table></div>
+<div class="imageblock">
+<div class="content">
+<img src="Spresense%20Hardware%20Documents_files/HW_power_supply_en_low.jpeg" alt="HW power supply en" class="lazy" data-src="images/HW_power_supply_en.png">
+</div>
+<div class="title">Figure 4. Powering the main board from the battery connector CN1.</div>
+</div>
+<div class="paragraph">
+<p>Powering the main board via the CN1 battery connector will boot the Spresense system even if the micro USB is not connected.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tbody><tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Even if power is supplied from PH connector (CN1) on the main board, you
+ can supply power from the microUSB connector on the main board and 
+extension board.
+The lower limit of the voltage output of the EXT_VDD pin is about 4V.
+</td>
+</tr>
+</tbody></table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_how_to_use_microphones">
+<a class="anchor" href="#_how_to_use_microphones"></a>3.12. How to use microphones</h3>
+<div class="paragraph">
+<p>The Spresense extension board can be connected to maximum 4 analog or 8 digital microphones via JP10’s 2.54mm pitch header.</p>
+</div>
+<div class="paragraph">
+<p>The Spresense extension board is set to analog microphone mode when shipped.</p>
+</div>
+<div class="paragraph">
+<p>To use digital microphones, the extension board needs to be 
+configured by soldering.
+This configuration requires soldering of very small components and 
+should only be attempted by people with appropriate skills and 
+equipment.</p>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tbody><tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+Modifying the Spresense boards will void the warranty. Please do it at your own risk.
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="sect3">
+<h4 id="_placement_of_the_microphone_channel">
+<a class="anchor" href="#_placement_of_the_microphone_channel"></a>3.12.1. Placement of the microphone channel</h4>
+<div class="paragraph">
+<p>The image below in this section will show where the microphone pin 
+header (JP10 in the schematic) is located on the extension board.</p>
+</div>
+<div class="paragraph">
+<p>In this image, the groups of A,B,C and D are analog microphone 
+channels, and the groups of D01, D23, D45 and D67 with same color are 
+digital microphone channels.</p>
+</div>
+<div class="paragraph">
+<p>You can select microphone mode by configuring the software for each channel.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Spresense%20Hardware%20Documents_files/HW_Mic_placement_E_low.jpeg" alt="HW Mic placement E" class="lazy" data-src="images/HW_Mic_placement_E.png">
+</div>
+<div class="title">Figure 5. JP10, 2.54mm pitch microphone pin header to the left and pin description to the right.</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_how_to_change_microphone_mode_from_analog_to_digital">
+<a class="anchor" href="#_how_to_change_microphone_mode_from_analog_to_digital"></a>3.12.2. How to change microphone mode from analog to digital</h4>
+<div class="paragraph">
+<p>It is necessary to make modifications to the hardware to change the microphone mode from analog to digital.</p>
+</div>
+<div class="ulist">
+<div class="title">Steps to change from analog to digital microphone mode:</div>
+<ul>
+<li>
+<p>Remove R50 and mount 0 Ω to R49 (or short with a jumper wire etc).</p>
+</li>
+<li>
+<p>To enable digital a microphone channel pair, an upper and a lower pad
+ pair on JP14 have to be shorted. Jumper wire can be soldered to connect
+ the pads or just solder the pads together.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The best way to change microphone mode is to use 1.27mm pitch short jumpers as stated below.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>1.27mm pitch 8pin headers (surface mount type) can be mounted on the solder pads on JP14.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This enables to select the digital microphone mode by using a jumper.</p>
+</div>
+<div class="table"><table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 8. List of 1.27mm pitch pin header models and short jumpers that can be mounted on JP14:</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Vendor</th>
+<th class="tableblock halign-left valign-top">Pin header</th>
+<th class="tableblock halign-left valign-top">Short jumper</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Samtec</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FTS-104-01-L-DV-TR</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HARWIN</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">M50-1900005</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HIROSUGI</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PSM-720153-04</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">JS-7</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">JC ELECTRONICS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IKHSM28-D08G-H1.5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HSH-JB-G</p></td>
+</tr>
+</tbody>
+</table></div>
+<div class="imageblock">
+<div class="content">
+<img src="Spresense%20Hardware%20Documents_files/HW_Mic_mode_Switch_low.jpeg" alt="HW Mic mode Switch" class="lazy" data-src="images/HW_Mic_mode_Switch.png">
+</div>
+<div class="title">Figure 6. JP14 1.27mm pitch jumper pads.</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_how_to_connect_analog_microphones">
+<a class="anchor" href="#_how_to_connect_analog_microphones"></a>3.12.3. How to connect analog microphones</h4>
+<div class="sect4">
+<h5 id="_dynamic_microphones">
+<a class="anchor" href="#_dynamic_microphones"></a>3.12.3.1. Dynamic microphones</h5>
+<div class="paragraph">
+<p>The microphone interface provides 4 analog microphone inputs, MICA, 
+MICB, MICC and MICD. These terminals are AC-coupled by capacitors. It is
+ important to use the GND on JP10 for the lowest noise operation.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_electret_microphones">
+<a class="anchor" href="#_electret_microphones"></a>3.12.3.2. Electret Microphones</h5>
+<div class="paragraph">
+<p>2 wire electret condenser based microphones need to be biased with a 
+2.0V bias voltage on the input lines.
+To activate the bias voltage on the input line it is necessary to mount 
+load resistors (RL) (size 1005 metric or 0402 imperial) on the extension
+ board.</p>
+</div>
+<div class="paragraph">
+<p>The table below will show what resistor that will activate the bias voltage for each channel on JP10.</p>
+</div>
+<div class="paragraph">
+<p>The load resistor value is recommended for each microphone, please check the data sheet of the microphone used.
+The output impedance of the microphone is almost the value of the load resistor.</p>
+</div>
+<div class="table"><table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 9. Microphone channels and bias resistors:</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Microphone channel</th>
+<th class="tableblock halign-left valign-top">Resistor ref to mount</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ａ</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">R51</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ｂ</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">R52</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ｃ</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">R47</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ｄ</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">R48</p></td>
+</tr>
+</tbody>
+</table></div>
+<div class="imageblock">
+<div class="content">
+<img src="Spresense%20Hardware%20Documents_files/HW_MICBIAS_mapping_low.jpeg" alt="HW MICBIAS mapping" class="lazy" data-src="images/HW_MICBIAS_mapping.png">
+</div>
+<div class="title">Figure 7. JP10 microphone pin header and location of bias resistors.</div>
+</div>
+<div class="paragraph">
+<p>The following is an example of an electret microphone that can be 
+used. The recommended microphone load resistor for the following 
+microphones is 2.2kΩ.</p>
+</div>
+<div class="table"><table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 10. Example of an electret microphone that can be used:</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Vendor</th>
+<th class="tableblock halign-left valign-top">Model</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CUI</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CMC-5044PF-A</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PUI</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">POM-3535P-3-R</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Soberton</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EM-6022P</p></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="sect4">
+<h5 id="_analog_mems_microphones">
+<a class="anchor" href="#_analog_mems_microphones"></a>3.12.3.3. Analog MEMS Microphones</h5>
+<div class="paragraph">
+<p>For analog MEMS microphones the bias pins on JP10 provide power to 
+the MEMS microphone, connect the bias pin of JP10 to the MEMS 
+microphones power supply pin.</p>
+</div>
+<div class="table"><table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 11. Examples of analog MEMS microphone that can be used:</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Vendor</th>
+<th class="tableblock halign-left valign-top">Model</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Knowles</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SPU0414HR5H-SB</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Knowles</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SPH1642HT5H-1</p></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_how_to_connect_digital_microphones">
+<a class="anchor" href="#_how_to_connect_digital_microphones"></a>3.12.4. How to connect digital microphones</h4>
+<div class="paragraph">
+<p>The following way is the recommended way of connecting digital microphones to the extension board.
+Two digital silicon MEMS microphones can be connected using 4 pins on the JP10 pin header per microphone pair.</p>
+</div>
+<div class="paragraph">
+<p>It is necessary to select what side each microphone in a pair is, 
+this is done by setting the left/right select signal (LR_SEL) to LOW on 
+one microphone and to HIGH on the other microphone.
+Each microphone has to connect four more pins, DMIC for data, DCLK for 
+clock, GND to ground and VDD to 1.8V power supply.</p>
+</div>
+<div class="paragraph">
+<p>It is possible to use the 1.8V from the MIC_BIAS pin on the extension
+ board terminals of the A and B channel (C and D channel MIC_BIAS cannot
+ be used).</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Spresense%20Hardware%20Documents_files/HW_Mic_digital_E_low.jpeg" alt="HW Mic digital E" class="lazy" data-src="images/HW_Mic_digital_E.png">
+</div>
+<div class="title">Figure 8. Recommended way of connecting digital microphones to the Spresense extension board.</div>
+</div>
+<div class="table"><table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 12. Examples of digital silicon MEMS microphones:</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Vendor</th>
+<th class="tableblock halign-left valign-top">Model</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Knowles</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SPH0641LU4H-1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Knowles</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SPM0423HD4H-WB</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Infineon</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IM69D130</p></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_HOW_TO_USE_SPEAKERS">
+<a class="anchor" href="#_HOW_TO_USE_SPEAKERS"></a>3.13. How to use speakers</h3>
+<div class="paragraph">
+<p>CXD5247 on Spresense main board has an on-chip Class-D stereo amplifier that can drive a stereo pair of speakers.<br>
+This section will describe how to configure the Spresense boards to 
+enable the speaker output when using the main board together with the 
+extension board.
+The Class-D stereo amplifier can produce up to 400mW into 8Ω impedance 
+speakers.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Speakers with main board alone</dt>
+<dd>
+<p>It is not possible to use speakers directly with the main board 
+without using an external voltage source and an external circuit with 
+similar function as the audio circuit on the <a href="https://github.com/sonydevworld/spresense-hw-design-files/raw/master/CXD5602PWBEXT1/schematics/CXD5602PWBEXT1_schematics.pdf" target="_blank" rel="noopener">extension board</a>.<br>
+It is necessary to supply low noise 3.3V from an external source to Pin 1
+ and Pin 3 on the board to board connector (CN4 on the main board) to 
+power the Class-D amplifier.
+Supply current must be sufficient to drive the attached speakers<br></p>
+</dd>
+<dt class="hdlist1">Speakers with main board and extension board</dt>
+<dd>
+<p>The extension board has a 3.3V power supply designed to supply the Class-D amplifier.
+The default configuration of the main board is to output audio to the headphone jack on the extension board.<br>
+To use speakers it is necessary to replace small chip components on the 
+main board and attach speaker cords to the extension board.<br>
+This modification requires soldering of very small components and should
+ only be attempted by people with appropriate skills and equipment.<br></p>
+</dd>
+</dl>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tbody><tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+Modifying the Spresense boards will void the warranty. Please do it at your own risk.
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="sect3">
+<h4 id="_main_board_modifications_to_support_speakers">
+<a class="anchor" href="#_main_board_modifications_to_support_speakers"></a>3.13.1. Main board modifications to support speakers</h4>
+<div class="paragraph">
+<p>The modifications are needed to filter the output from the Class-D amplifier of the CXD5247 when used to drive speakers.<br>
+Replace the following components:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>R15, 16, 17, 18 → 15uH/220mA(2012)　[orange frame in the picture below]<br>
+　　　replace to inductors.<br>
+　　　recommend to use BRL2012T150M made by Taiyo Yuden.<br></p>
+</li>
+<li>
+<p>C45, 46, 47, 48 → 0.47uF(1005)　[green frame in the picture below]</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Spresense%20Hardware%20Documents_files/HW_Speaker_Main_E_low.jpeg" alt="HW Speaker Main E" class="lazy" data-src="images/HW_Speaker_Main_E.png">
+</div>
+<div class="title">Figure 9. Components to replace to support speaker output</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tbody><tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Do not use the headphones with the extension board after doing this modification.
+</td>
+</tr>
+</tbody></table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_extension_board_modifications_to_support_speakers">
+<a class="anchor" href="#_extension_board_modifications_to_support_speakers"></a>3.13.2. Extension board modifications to support speakers</h4>
+<div class="paragraph">
+<p>Mount 2.54mm pitch pin header on JP8 and JP9 to connect speakers (or solder speaker cords directly to the board).</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tbody><tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The Spresense board is designed to drive speakers differentially. The 
+left and right speaker negative connections should not be connected 
+together.
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Spresense%20Hardware%20Documents_files/HW_Speaker_Ext_low.jpeg" alt="HW Speaker Ext" class="lazy" data-src="images/HW_Speaker_Ext.png">
+</div>
+<div class="title">Figure 10. JP8 and JP9, speaker output connectors on the Spresense extension board.</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_HOW_TO_USE_JTAG_DEBUGGER">
+<a class="anchor" href="#_HOW_TO_USE_JTAG_DEBUGGER"></a>3.14. How to use JTAG Debugger</h3>
+<div class="paragraph">
+<p>You can use a JTAG/SWD debugger for Cortex-M series ARM 
+microcontrollers by using the CoreSight 10 connector on the Spresense 
+extension board. Interface voltage is 3.3V.</p>
+</div>
+<div class="paragraph">
+<p>The Spresense CoreSight 10 connector is intended for <strong>serial wire debug (SWD) only</strong>.
+ It does not support JTAG, because the SWD pin (can be called TDO/SWO), 
+which is used also for JTAG TDO, is not connected on the extension 
+board.</p>
+</div>
+<div class="paragraph">
+<p>The extension board comes with a CoreSight 10 footprint but with no 
+pin header mounted. To mount a pin header it is necessary to solder the 
+pin header onto the board. This modification requires soldering of small
+ components and should only be attempted by people with appropriate 
+skills and equipment.</p>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tbody><tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+Modifying the Spresense boards will void the warranty. Please do it at your own risk.
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="paragraph">
+<p>To use the SWD function, you have to mount a connector (1.27mm pitch 
+10 pin header) for CoreSight 10 at CN1 on the Spresense extension board.</p>
+</div>
+<div class="paragraph">
+<p>The connector hole on the position of KEY on the cable side of the 
+CoreSight 10 connector can be blocked. So it is recommended to remove 
+the pin on position KEY from the pin header before it is soldered onto 
+the extension board. See picture below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Spresense%20Hardware%20Documents_files/HW_SWD_E_low.jpeg" alt="HW SWD E" class="lazy" data-src="images/HW_SWD_E.png">
+</div>
+<div class="title">Figure 11. CoreSight 10 on CN1 on the extension board. Note the position of the pin named KEY.</div>
+</div>
+<div class="table"><table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 13. A few pin header models that can be used for CoreSight 10:</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Vendor</th>
+<th class="tableblock halign-left valign-top">Pin Header</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Samtec</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FTS-105-01-L-DV-TR</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HARWIN</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">M50-3600542</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HIROSUGI</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PSM-720153-05</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">JC ELECTRONICS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IKHSM28-D10G-H1.5</p></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="sect2">
+<h3 id="_how_to_use_the_external_antenna_for_gnss">
+<a class="anchor" href="#_how_to_use_the_external_antenna_for_gnss"></a>3.15. How to use the external antenna for GNSS</h3>
+<div class="paragraph">
+<p>The Spresense is equipped with a chip antenna for GNSS on the main 
+board, enabling positional measurement to be possible with no external 
+components.</p>
+</div>
+<div class="paragraph">
+<p>If you connect an external antenna to the uFL connector, 
+higher-performance positional measurement is possible.
+To do this you have to solder a uFL connector on the main board.
+This modification requires soldering of very small components and should
+ only be attempted by people with appropriate skills and equipment.</p>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tbody><tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+Modifying the Spresense hardware by performing soldering work as 
+described here will void the product warranty. Please proceed at your 
+own risk.
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="paragraph">
+<p>The following steps will describe the necessary work needed to fit an uFL connector to be able to use an external GNSS antenna.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Mount the uFL connector on CN3, see the picture below.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Spresense%20Hardware%20Documents_files/HW_gnss_cn3_low.jpeg" alt="HW gnss cn3" class="lazy" data-src="images/HW_gnss_cn3.png">
+</div>
+<div class="title">Figure 12. CN3  on the main board</div>
+</div>
+<div class="table"><table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 14. A suitable model of uFL connector:</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Vendor</th>
+<th class="tableblock halign-left valign-top">Model</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Hirose Electric</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">U.FL-R-SMT-1</p></td>
+</tr>
+</tbody>
+</table></div>
+<div class="ulist">
+<ul>
+<li>
+<p>Depending on the type of the antenna you plan to use, the resistor 
+chips have to be changed on the main board as shown in the table below.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In the table below, "OPEN" stands for the status that a part is not 
+mounted in the applicable location, and "CLOSE" stands for the status 
+that it is short-circuited with 0 Ω resister or a wire.<br></p>
+</div>
+<div class="table"><table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 15. Antenna resistor configuration table:</caption>
+<colgroup>
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2858%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Antenna</th>
+<th class="tableblock halign-left valign-top">R29</th>
+<th class="tableblock halign-left valign-top">R31</th>
+<th class="tableblock halign-left valign-top">R33</th>
+<th class="tableblock halign-left valign-top">R30</th>
+<th class="tableblock halign-left valign-top">R32</th>
+<th class="tableblock halign-left valign-top">Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">chip (on board)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CLOSE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OPEN</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CLOSE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OPEN</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CLOSE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">default</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">passive (external)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OPEN</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CLOSE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OPEN</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OPEN</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CLOSE</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">active (external)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CLOSE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OPEN</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CLOSE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CLOSE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OPEN</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3.3V supplied to antenna</p></td>
+</tr>
+</tbody>
+</table></div>
+<div class="imageblock">
+<div class="content">
+<img src="Spresense%20Hardware%20Documents_files/HW_gnss_setting_low.jpeg" alt="HW gnss setting" class="lazy" data-src="images/HW_gnss_setting.png">
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_differences_between_spresense_and_arduino_uno">
+<a class="anchor" href="#_differences_between_spresense_and_arduino_uno"></a>4. Differences between Spresense and Arduino Uno</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The pin header on the Spresense extension board is compatible with Arduino Uno pins.
+Spresense and Arduino Uno are the same size.
+The following table lists the functional differences:</p>
+</div>
+<div class="table"><table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Function</th>
+<th class="tableblock halign-left valign-top">Spresense</th>
+<th class="tableblock halign-left valign-top">Arduino Uno</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Supply voltage on header</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VOUT pin: 5V can be connected to the pin to power the boards</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VIN pin: 7 to 12V.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Digital IO Voltage</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3.3V or 5V.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fixed 5V only.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GPIO As output</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Extension board uses level shifters with 1KΩ pull-up resistors on all GPIO.
+Pull-ups are not compatible with some existing shield designs.
+GPIO pin’s typical sink current is several mA at 5V IO voltage. <a href="#_Digital-Input-Output-Pins">[1]</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Directly driven from the ATmega328 MPU and can deliver up to 40mA per pin.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GPIO As input</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Extension board uses level shifters with 1KΩ pull-up resistors on all GPIO.
+Pull-up resistors are not compatible with all shield designs. <a href="#_Digital-Input-Output-Pins">[1]</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The ATmega328 MPU has a high-input impedance.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Analog pins A0-A5 as GPIO</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Can only be used as analog in.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Can be used as analog in pins or as GPIO.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Analog pins A0-A5 impedance</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A0 to A3 72k Ohms,
+A4 and A5 37k Ohms</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">100M Ohm</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Analog pins A0-A5 reference voltage</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fixed 5V ADC reference. <a href="#_Analog-Input-Pins">[2]</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Settable sources as ADC reference.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VREF pin</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Output digital I/O voltage reference.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Input reference for ADC.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">USB ports</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Two ports: main board (Serial monitor) and extension board (Mass Storage).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">One.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Serial communication</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Main board USB is addressed as UART <code>serial</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">UART shared with DO0 DO1 addressed as <code>serial</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SPI pin</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Master mode only.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Master/Slave both mode supported.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DO0 DO1 serial communication</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">UART2 addressed as <code>serial2</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">UART shared with USB addressed as <code>serial</code>.</p></td>
+</tr>
+</tbody>
+</table></div>
+<div id="_Digital-Input-Output-Pins" class="admonitionblock caution">
+<table>
+<tbody><tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+[1] <strong>Digital Input/Output Pins</strong>: 1.8 V of CXD5602 is 
+converted to 3.3 V or 5 V via the level shifter on the expansion board. 
+It is connected to the pin socket via a pull-up resistor, which may 
+cause problems depending on the shield and device connected.
+</td>
+</tr>
+</tbody></table>
+</div>
+<div id="_Analog-Input-Pins" class="admonitionblock caution">
+<table>
+<tbody><tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+[2] <strong>Analog Input Pins</strong>: Since the analog input range of 
+CXD5602 is 0.7 V, resistance voltage division is adopted to lower the 
+voltage from 5 V to 0.7 V.
+Since this method may cause problems depending on the connected device, 
+when using the AIN terminal on the expansion board, pay attention to the
+ output impedance of the connected device.
+</td>
+</tr>
+</tbody></table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_spresense_hardware_comparison">
+<a class="anchor" href="#_spresense_hardware_comparison"></a>5. Spresense Hardware comparison</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To better introduce Spresense board’s features, it is compared with 
+Arduino Uno and Raspberry PI (model 3B), which are known to many 
+developers.</p>
+</div>
+<div class="sect2">
+<h3 id="_processor_and_os">
+<a class="anchor" href="#_processor_and_os"></a>5.1. Processor and OS</h3>
+<div class="table"><table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Feature</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Arduino Uno</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Spresense</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Raspberry Pi 3B</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Processor type</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AVR</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ARM M4F</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ARM A53</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Bits</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">32</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">64</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Number of cores</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Clock speed</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">16 MHz</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">156 MHz</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.2 GHz</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Operating system</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NuttX</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Linux</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boot time</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;1 second</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">~20 Seconds</p></td>
+</tr>
+</tbody>
+</table></div>
+<div class="paragraph">
+<p>Spresense has a processor that is far more powerful than Arduino.
+This allows it to be used for applications which are computationally 
+intensive, but it does not match the performance of the Raspberry Pi.</p>
+</div>
+<div class="paragraph">
+<p>The Spresense has the advantage of an operating system while still having a typical boot time of under 1 second.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_memory">
+<a class="anchor" href="#_memory"></a>5.2. Memory</h3>
+<div class="table"><table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Feature</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Arduino Uno</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Spresense</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Raspberry Pi 3B</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">RAM</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.002MB</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.5 MB</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1000MB</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FLASH</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.032MB</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8 MB</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SD Card</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Shield</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">On-Board, optional</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">On-Board, essential</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eMMC</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Shield</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EEPROM</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.001MB</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Use Flash</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Use microSD card</p></td>
+</tr>
+</tbody>
+</table></div>
+<div class="paragraph">
+<p>Arduino has a small memory size, which is a limiting factor for 
+complex programs. Even the Arduino Mega only has 256k flash and 8k SRAM.
+The Raspberry Pi has much larger memory, but relies on having a microSD 
+card instead of on board Flash.</p>
+</div>
+<div class="paragraph">
+<p>Spresense fits between these two extremes.
+It has the advantage of 8MB on board Flash memory and 1.5MB RAM.
+It also has support for microSD card, without the need for a shield, when larger memory is required.</p>
+</div>
+<div class="paragraph">
+<p>Spresense doesn’t have EEPROM, but EEPROM library emulates EEPROM 
+using flash memory. If you want to handle persistent data, you can use 
+the EEPROM library or the microSD card on the extension board.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_power">
+<a class="anchor" href="#_power"></a>5.3. Power</h3>
+<div class="table"><table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Feature</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Arduino Uno</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Spresense</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Raspberry Pi 3B</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Voltage</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5V or 6-20V</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5V or LiPo(3.7V)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5V</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Typical Operating Power</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">50 mW</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">100mW + low power modes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2400mW</p></td>
+</tr>
+</tbody>
+</table></div>
+<div class="paragraph">
+<p>The CXD5602 and the CXD5247 were designed for use in wearable 
+products powered by a single LiPo battery.  The battery charge function 
+is not available on the Spresense boards. Spresense main and extension 
+boards are designed to be powered from 5V, for example directly from a 
+USB port.</p>
+</div>
+<div class="paragraph">
+<p>Spresense has been optimized to provide a high processing capability 
+while consuming little power. It supports multiple low power modes 
+allowing long battery life from smaller batteries than Raspberry Pi, 
+which make it great for battery or renewable powered IoT applications.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_audio">
+<a class="anchor" href="#_audio"></a>5.4. Audio</h3>
+<div class="table"><table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Feature</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Arduino Uno</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Spresense</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Raspberry Pi 3B</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Quality</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Shield</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">High</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Low</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Microphones</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Shield</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">up to 8 microphone</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Stereo</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Speakers</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Shield</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Stereo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Stereo</p></td>
+</tr>
+</tbody>
+</table></div>
+<div class="paragraph">
+<p>The CXD5602 and the CXD5247 have been designed as a chipset to support high quality audio recording and playback.
+The CXD5247 includes a high quality ADC for up to 4 analog inputs or up to 8 digital microphone.
+The CXD5602 includes a dedicated DSP for Audio processing and stereo audio output.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_gnss_and_real_time_clock">
+<a class="anchor" href="#_gnss_and_real_time_clock"></a>5.5. GNSS and Real Time clock</h3>
+<div class="table"><table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Feature</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Arduino Uno</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Spresense</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Raspberry Pi 3B</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GNSS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Shield</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GPS &amp; GLONASS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Shield</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Time</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Shield</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">RTC</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Shield</p></td>
+</tr>
+</tbody>
+</table></div>
+<div class="paragraph">
+<p>The Spresense has an ultra low power GNSS receiver.
+This allows precise positioning for applications such as tracking devices and drones.
+It also includes a real time clock which is great for data logging.
+Arduino and Raspberry Pi need shields to implement these functions.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_digital_io">
+<a class="anchor" href="#_digital_io"></a>5.6. Digital IO</h3>
+<div class="table"><table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Feature</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Arduino Uno</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Spresense</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Raspberry Pi 3B</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IO Pins</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">14</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">29 + 4 LED</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">27</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IO voltage</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5V</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5V/3.3V/1.8V</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3.3V</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">UART</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SPI</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1 (3.3/5V) +1 (1.8V)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I2C</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1 (3.3/5V) +1 (1.8V/camera)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PWM</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+</tr>
+</tbody>
+</table></div>
+<div class="paragraph">
+<p>The Spresense has a wide range of digital IO pins and hardware UART, I2C, SPI and PWM channels.
+It supports IO voltages of 5V, 3.3V and 1.8V which make it easy to connect to many devices.
+It has 4 on board LEDs instead of using available GPIO pins for LEDs.
+Spresense provides even more IO capability for custom shields with the 100 B2B connector.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_analog_to_digital_converter">
+<a class="anchor" href="#_analog_to_digital_converter"></a>5.7. Analog to digital converter</h3>
+<div class="table"><table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Feature</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Arduino Uno</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Spresense</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Raspberry Pi 3B</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Channels</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Bits</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fastest rate</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">~10 kHz</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">500 kSPS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+</tr>
+</tbody>
+</table></div>
+<div class="paragraph">
+<p>Spresense, like Arduino, has 6 analog input channels, but unlike 
+Arduino these are dedicated pins which do not reduce the usable number 
+of digital IO.
+Two of the Spresense analog channels are high speed with anti-aliasing.
+This is in addition to 4 microphone ADCs on the CXD5247.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_connectivity">
+<a class="anchor" href="#_connectivity"></a>5.8. Connectivity</h3>
+<div class="table"><table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Feature</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Arduino Uno</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Spresense</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Raspberry Pi 3B</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">USB</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1 device</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2 device</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4 host</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Camera</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Shield</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5M Pixel</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8M Pixel</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Video display</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SPI up to 360x240 Pixel</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HDMI, DSI</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">WiFi</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Shield</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Shield</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">802.11n</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Bluetooth</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Shield</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Shield</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.1 Classic, Low Energy</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ethernet</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Shield</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Shield</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10/100</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cellular</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Shield</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Shield</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Shield</p></td>
+</tr>
+</tbody>
+</table></div>
+<div class="paragraph">
+<p>Spresense like Raspberry Pi is designed with direct connection to camera.
+It can support HD resolution, still images and low resolution video for a viewfinder.
+Like Arduino, any wireless communication requires a shield.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script async="" type="text/javascript" src="Spresense%20Hardware%20Documents_files/index_en.js"></script>
+
+
+<div id="footer">
+  <div id="footer-text">
+    <div id="last-update">Last updated: 2019-10-11 07:01:10 UTC</div>
+    <div id="copyright">Copyright © 2019 Sony Corporation. All rights reserved.</div>
+  </div>
+</div>
+
+    <button onclick="$(window).scrollTop(0)" id="to-top-btn" class="hidden" title="Go to top" style="bottom: 20px;"><i class="fa fa-chevron-up"></i></button>
+    <script>var $jscomp=$jscomp||{};$jscomp.scope={};$jscomp.ASSUME_ES5=!1;$jscomp.ASSUME_NO_NATIVE_MAP=!1;$jscomp.ASSUME_NO_NATIVE_SET=!1;$jscomp.defineProperty=$jscomp.ASSUME_ES5||"function"==typeof Object.defineProperties?Object.defineProperty:function(a,b,c){a!=Array.prototype&&a!=Object.prototype&&(a[b]=c.value)};$jscomp.getGlobal=function(a){return"undefined"!=typeof window&&window===a?a:"undefined"!=typeof global&&null!=global?global:a};$jscomp.global=$jscomp.getGlobal(this);$jscomp.SYMBOL_PREFIX="jscomp_symbol_";
+$jscomp.initSymbol=function(){$jscomp.initSymbol=function(){};$jscomp.global.Symbol||($jscomp.global.Symbol=$jscomp.Symbol)};$jscomp.Symbol=function(){var a=0;return function(b){return $jscomp.SYMBOL_PREFIX+(b||"")+a++}}();
+$jscomp.initSymbolIterator=function(){$jscomp.initSymbol();var a=$jscomp.global.Symbol.iterator;a||(a=$jscomp.global.Symbol.iterator=$jscomp.global.Symbol("iterator"));"function"!=typeof Array.prototype[a]&&$jscomp.defineProperty(Array.prototype,a,{configurable:!0,writable:!0,value:function(){return $jscomp.arrayIterator(this)}});$jscomp.initSymbolIterator=function(){}};$jscomp.arrayIterator=function(a){var b=0;return $jscomp.iteratorPrototype(function(){return b<a.length?{done:!1,value:a[b++]}:{done:!0}})};
+$jscomp.iteratorPrototype=function(a){$jscomp.initSymbolIterator();a={next:a};a[$jscomp.global.Symbol.iterator]=function(){return this};return a};$jscomp.polyfill=function(a,b,c,d){if(b){c=$jscomp.global;a=a.split(".");for(d=0;d<a.length-1;d++){var f=a[d];f in c||(c[f]={});c=c[f]}a=a[a.length-1];d=c[a];b=b(d);b!=d&&null!=b&&$jscomp.defineProperty(c,a,{configurable:!0,writable:!0,value:b})}};
+$jscomp.polyfill("Array.from",function(a){return a?a:function(a,c,d){$jscomp.initSymbolIterator();c=null!=c?c:function(a){return a};var b=[],e=a[Symbol.iterator];if("function"==typeof e)for(a=e.call(a);!(e=a.next()).done;)b.push(c.call(d,e.value));else{e=a.length;for(var g=0;g<e;g++)b.push(c.call(d,a[g]))}return b}},"es6","es3");function _toConsumableArray(a){return _arrayWithoutHoles(a)||_iterableToArray(a)||_nonIterableSpread()}
+function _nonIterableSpread(){throw new TypeError("Invalid attempt to spread non-iterable instance");}function _iterableToArray(a){if(Symbol.iterator in Object(a)||"[object Arguments]"===Object.prototype.toString.call(a))return Array.from(a)}function _arrayWithoutHoles(a){if(Array.isArray(a)){for(var b=0,c=Array(a.length);b<a.length;b++)c[b]=a[b];return c}}
+$(document).ready(function(){$(function(){tocItems=_toConsumableArray(document.querySelectorAll("#toc a"));tocHeadings=tocItems.map(function(a){a=a.getAttribute("href").substr(1);return document.getElementById(decodeURI(a)).parentNode});top_btn=$("#to-top-btn");footerHeight=$("#footer").outerHeight()+20;if("IntersectionObserver"in window){var a=new IntersectionObserver(function(a,b){a.forEach(function(a){a.isIntersecting?top_btn.css({bottom:""+footerHeight+"px"}):top_btn.css({bottom:"20px"})})}),
+b=new IntersectionObserver(function(a,b){a.forEach(function(a){a.isIntersecting?(top_btn.removeClass("visible"),top_btn.addClass("hidden")):(top_btn.css({bottom:"20px"}),top_btn.removeClass("hidden"),top_btn.addClass("visible"))})});a.observe(document.querySelector("#footer"));b.observe(document.querySelector("#top-header"))}else a=function(){top_btn=$("#to-top-btn");768>$(window).width()?(top_btn.removeClass("visible"),top_btn.addClass("hidden")):100<=window.pageYOffset?(top_btn.addClass("visible"),
+top_btn.removeClass("hidden"),distanceFromBottom=Math.floor($(document).height()-$(document).scrollTop()-$(window).height()),footerHeight=$("#footer").outerHeight()+20,distanceFromBottom<footerHeight?top_btn.css({bottom:""+footerHeight+"px"}):top_btn.css({bottom:"20px"})):(top_btn.removeClass("visible"),top_btn.addClass("hidden"))},0<$("#main-nav").length&&($(window).scroll(a),a())})});
+</script>
+
+
+
+</body></html>
