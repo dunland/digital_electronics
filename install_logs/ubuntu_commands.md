@@ -79,6 +79,7 @@ rename a folder: `mv /home/user/oldname /home/user/newname`
 ### symlinks
 create symlink: `sudo ln -s /path/to/file/file-to-link /destination/folder/`  
 show symlink origin: `readlink -f symlinkname`
+change/overwrite symlink: `sudo ln -s -f /path/to/file-to-link /destination/folder`
 
 ### permissions
 changing folder ownership: `sudo chown -R $USER ~/.blabla` (Make the current user own everything inside the folder (and the folder itself))  

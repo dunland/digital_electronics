@@ -147,10 +147,21 @@ add new column with operation: `df['new_col'] = df['some col'] * df['col B']`
 
 changing rows and colums: `df = df.transpose()`  
 
-#### merging
+#### concat
+
+``` python
+frames = [df1, df2, df3]
+result = pd.concat(frames)
+```
+
+![concat dataframes](img/python/pandas/merging_concat_basic.png)
+
+
+#### merge
 [merging DataFrames](https://pandas.pydata.org/pandas-docs/stable/user_guide/merging.html#brief-primer-on-merge-methods-relational-algebra):
 
 `pd.DataFrame.merge()` Merge DataFrame or named Series objects with a database-style join.  
+![merging on key](img/python/pandas/merging_merge_on_key.png)
 
 ``` python
 table = pd.DataFrame(columns=['id', 'osm_id', 'lons', 'lats']) # table 1
@@ -164,6 +175,33 @@ table = table.merge(table2, on='osm_id', how='left')
 
 #### Changing index title:
 https://stackoverflow.com/questions/19851005/rename-pandas-dataframe-index
+
+#### rename DataFrame headers:
+`df.rename()`
+
+``` python
+df = df.rename(columns={'oldName1': 'newName1', 'oldName2': 'newName2'})
+# Or rename the existing DataFrame (rather than creating a copy) 
+df.rename(columns={'oldName1': 'newName1', 'oldName2': 'newName2'}, inplace=True)
+
+df
+
+   a  b  c  d  e
+0  x  x  x  x  x
+1  x  x  x  x  x
+2  x  x  x  x  x
+
+df2 = df.rename({'a': 'X', 'b': 'Y'}, axis=1)  # new method
+df2 = df.rename({'a': 'X', 'b': 'Y'}, axis='columns')
+df2 = df.rename(columns={'a': 'X', 'b': 'Y'})  # old method  
+
+df2
+
+   X  Y  c  d  e
+0  x  x  x  x  x
+1  x  x  x  x  x
+2  x  x  x  x  x
+```
 
 
 #### [pandas.Index](http://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Index.html):  

@@ -1,5 +1,15 @@
 # teensy
 
+## Serial connection
+
+When **Serial connection breaks** (on Linux) after <1s, use Tools->CPU Speed: 72 MHz and set Baud rate to 115200. Port: `/dev/ttyACM0 Serial (Teensy 3.2)`
+
+[Teensy Using USB Serial Communication](https://www.pjrc.com/teensy/td_serial.html)
+> Unlike a standard Arduino, the Teensy Serial object always communicates at 12 Mbit/sec USB speed. Many computes, especially older Macs, can not update the serial monitor window if there is no delay to limit the speed!
+
+> **Serial.begin()**  
+Initialize the Serial object. The baud rate is ignored and communication always occurs at full USB speed.
+
 ## teensy 3.2 ADC / Analog Reads
 
 according to [this video](https://www.youtube.com/watch?v=tZ1hdDT41Yc) the ADC speed results in ~10 microseconds
