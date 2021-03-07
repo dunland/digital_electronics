@@ -1,0 +1,358 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+    <meta name="description" content="One way to make a cheap soundfield
+      ambisonic microphone, and arguably the first example of this being
+      done.">
+    <meta name="title" content="One way to make a cheap ambisonic
+      microphone">
+    <meta name="viewport" content="width=device-width,
+      initial-scale=1.0">
+    <meta name="robots" content="index,follow">
+    <meta name="keywords" content="ambisonic, microphone, b-format,
+      surround-sound, cardioid, condenser">
+    <title>DIY Ambisonic Microphone</title>
+  </head>
+  <body vlink="#551a8b" text="#000000" link="#0000ee" bgcolor="#dddddd" alink="#ee0000">
+    <h1><u><font size="4" face="Arial">Make Your Own Ambisonic
+          soundfield type Microphone</font></u></h1>
+    <p><font size="3" face="Arial"><span style="font-family:
+          Helvetica,Arial,sans-serif;"><font face="Arial"><font size="+1"><b><u>Advertisement:</u></b>&nbsp; If you're
+              enjoying these pages and you have an interest in hobby
+              type electronics or repair jobs, you might like to visit
+              my <a href="http://www.ebaystores.co.uk/usefulcomponents">Useful
+
+                Components Ebay Shop</a> where there are many difficult
+              to find items, and my other website <a href="https://www.usefulcomponents.com/">www.usefulcomponents.com</a>,
+              where there are details of some good radio and other
+              kits.&nbsp; I've even got some Panasonic cardioid mic
+              capsules bought a long time ago which are fresh from the
+              Panasonic factory packaging.</font></font></span></font><br>
+      <br>
+    </p>
+    <p><img src="DIY_Ambisonic_Microphone_files/panasonic_array1.jpg" alt="ambisonic tetrahedral array
+        of panasonic condenser microphone capsules" hspace="100" border="0"></p>
+    <p><font face="Arial">First off here we probably ought to say a
+        little bit about trademarks and patents.</font></p>
+    <p><font face="Arial">When I say 'soundfield' I mean soundfield with
+        a small s and when I say "Soundfield (tm)" I'm refering to the
+        Soundfield (tm) company who produce the exceptionally high
+        quality Soundfield (tm) microphone and control unit. All of the
+        design data described in this article is freely available in
+        published papers.I believe the tetrahedral array has a Michael
+        Gerzon patent.</font></p>
+    <p><font size="4" face="Arial">Introduction </font><font face="Arial"> </font></p>
+    <p><font face="Arial">A three-dimensional surround sound Ambisonic
+        recording can be captured using a tetrahedrally arranged quartet
+        of cardioid pattern microphone capsules connected to some simple
+        circuitry to convert the outputs to a standard B-format signal.
+        B-format signals represent a 3D soundfield with four signals;
+        X,Y and Z representing three orthogonal figure of eight patterns
+        and an omnidirectional W reference signal. The commercially
+        available product is very "high-end" in both quality and price.
+        This article describes a lower quality but much cheaper version
+        for experimentation. For more info, try a search for ambisonics;
+        There is a good page at the university of York.<br>
+        UHJ in this instance is a stereo compatible phase matrixed
+        method of cramming horizontal surround only B-format W, X and Y
+        signals into 2 stereo channels. This can be decoded back into
+        B-format W, X and Y for playback into a B-format to speaker feed
+        decoder.</font></p>
+    <p><font size="4" face="Arial">Cardioid Pattern Microphone Capsules</font><font face="Arial"> </font></p>
+    <p><font face="Arial">The most basic requirement for the project is
+        for some cheap, fair quality cardioid pattern microphone
+        capsules which must be physically small in size. The first
+        attempt at this microphone used 6mm diameter capsules made by
+        Horn in China which I bought from Mouser in the USA under code
+        #252-EM6050U-514. EMU6050U is the Horn part code. These were
+        just too noisy even for a cheap microphone.The second attempt
+        uses Panasonic WM-56A103. These are 9.5mm modules which have
+        higher output and a much better S/N ratio. The performance is
+        hardly professional but reaches a level which I think could have
+        real practical uses.</font></p>
+    <p><font face="Arial">The Horn mics claim similar noise performance
+        to the Panasonic mics and better low end frequency response. You
+        only have to listen to hear that this simply isn't true.</font></p>
+    <p><font face="Arial"><font face="Arial">The Panasonic WM-55A103 is
+          the back electret close relative of the 56A which I also
+          bought 10 of, as I was puzzled as to why they were more
+          expensive when the others had a seemingly better headline
+          specification. I've been told since that this is a higher
+          quality unit than the foil electret, so potential constructors
+          may choose to go for the WM-55A103 instead. The difference
+          between the two is obscured by the idealised frequency
+          response chart on the data sheet.</font></font></p>
+    <p><font face="Arial"><b>Circuitry</b></font></p>
+    <p><font face="Arial"><a href="https://interestingelectronics.com/old/henrys_interesting_electronics/cheap_soundfield/cheap_soundfield_scems/mini_soundfield01-01.pdf">Schematic
+
+
+
+
+
+
+          of microphone pre-amps and B-format matrix
+          mini_soundfield01-01.sch</a></font></p>
+    <p><font size="4" face="Arial">Power </font><font face="Arial"> </font></p>
+    <p><font face="Arial">The circuitry overall runs from +/-9V battery
+        supplies. The system will continue working normally right down
+        to 6V rails with reduced headroom, so can be run from two 8.4V
+        nickel rechargeable PP3 batteries, or can take 9V alkaline
+        batteries down to almost full discharge. The mic bias voltage
+        comes direct from the +BAT supply and this is filtered heavily
+        with the 2K2 -100uF combination. Any noise on this bias supply
+        will appear along with the microphone signal so it has to be
+        quiet. As the batteries discharge there will be a gradual and
+        slight gain reduction but I consider this to be preferable to
+        running the mic bias and pre-amp stages from regulated supplies,
+        as they have to be quite low voltage to avoid going into
+        dropout. Absence of regulators also saves battery current.</font></p>
+    <p><font size="4" face="Arial">Pre-amp stages. </font></p>
+    <p><font face="Arial">The input noise of the TL074 and other common
+        op-amps is too high to be used directly as a microphone pre-amp,
+        I tried it. So the circuit shown uses a simple discrete
+        transistor differential amplifier connected to an op-amp with
+        feedback. This gives low noise from using good quality cheap
+        discrete transistors configured to provide some gain, and good
+        linearity provided by the high open-loop gain of the op-amp with
+        overall feedback. 2N4403 transistors are used running at 250uA
+        collector current. That is about the right point for best noise
+        performance with 600Ohm to 2K Ohm input impedance. This is
+        similar to pre-amplifiers used in some moving-coil phono
+        cartridge input stages. You can hear that the microphone capsule
+        noise dominates the input stage by replacing it with a 2K2
+        resistor and hearing a distinct drop in noise level. The first
+        stages provide 21dB gain for each capsule, and there are trims
+        on each amplifier to accommodate different sensitivity between
+        capsules. For more info on pre-amps look at the Doug Self
+        amplifier web-page or buy his interesting book.</font></p>
+    <p><font size="4" face="Arial">B-format Matrix Stages</font></p>
+    <p><font face="Arial">The following stages provide further gain and
+        convert the capsule outputs into standard Ambisonic B-format.
+        The equations for this are available from various standard
+        references but suffice to say that the circuit creates the
+        following signals.</font></p>
+    <p><font face="Courier">W = -(LFU + LBD + RBU + RFD)</font><br>
+      <font face="Courier">X = 2.83( -LFU + LBD + RBU - RFD )</font><br>
+      <font face="Courier">Y = 2.83( -LFU - LBD + RBU + RFD )</font><br>
+      <font face="Courier">Z = 2.83( -LFU + LBD - RBU + RFD )</font></p>
+    <p><font face="Arial">Where LFU, LBD, RBU, RFD are the signals from
+        the cardioid pattern capsules facing the directions Left Front
+        Up, Left Back Down, Right Back Up, and Right Front Down in the
+        tetrahedral array and 2.83 is 2*root2. There is an overall
+        inversion in this stage, as there is also in the pre-amp stage.
+        This cancels overall.</font></p>
+    <p><font size="4" face="Arial">UHJ Converter</font></p>
+    <p><font face="Arial"><a href="https://interestingelectronics.com/old/henrys_interesting_electronics/cheap_soundfield/cheap_soundfield_scems/mini_soundfield02-01.pdf">Schematic
+
+
+
+
+
+
+          of ambisonic microphone UHJ encoder mini_soundfield02-01.sch</a></font><font face="Arial"> </font></p>
+    <p><font face="Arial">In the dim and distant past a battery powered
+        <i>prototype</i> soundfield microphone control box had a UHJ
+        encoder included. What a great idea! Well with this design you
+        can also record on location direct to UHJ with your stereo
+        minidisc recorder, or even your dusty old cassette Pro-Walkman.
+        This is ideal for capturing live events where you're not
+        intending to do any further mixing on the result, and is in
+        keeping with the inexpensive ethic of this design. So here we
+        have a built-in UHJ encoder for interfacing to standard stereo
+        recorders which are extremely commonplace. <br>
+        The UHJ converter is built on a separate board from the A to B
+        format converter. The B format signal enters on a 5-way Molex
+        connector and goes to the phase shifters. These are based on
+        what I think are original Gerzon paper time constants, but I'm
+        not sure of the source as I only have a fragment of the full
+        document. The circuit is simple and doesn't use the strange
+        capacitor values found in the Audio and Design UHJ transcoder
+        and decoder. I buy a bunch of good quality capacitors and
+        measure the capacitance with my cheapie old multimeter which can
+        just about manage 1% precision. Generally I can find plenty
+        within 1% out of a bunch of 20 units and this is much cheaper
+        than buying 1% versions. This is close enough for me. If I can't
+        find enough within 1% then I change the resistor value in the
+        time constant to compensate, which is what I've done in the real
+        circuit. The filters are 8 pole and cover 30 to 16kHz with
+        +/-1.3degrees error assuming perfect components. In real life
+        +/-2% is probably closer to reality but this should still
+        provide very good operation. The UHJ encoding equations require
+        relative 0 and 90 degree versions of W and X signals and just a
+        relative 0 degrees for Y. After the phase shifters the signals
+        are summed according to the equations below where the j means
+        you take the output from the 90 degree shifter.</font></p>
+    <p><font face="Courier">Sigma = L+R = 0.9397W +0.1856X</font></p>
+    <p><font face="Courier">Delta = L-R = -j0.3420W +j0.5099X + 0.6555Y</font></p>
+    <p><font face="Arial">so...</font></p>
+    <p><font face="Courier">2L = Sigma + Delta = 0.9397W -j0.3420W +
+        0.1856X + j0.5099X + 0.6555Y</font></p>
+    <p><font face="Courier">2R = Sigma - Delta = 0.9397W +j0.3420W +
+        0.1856X - j0.5099X - 0.6555Y</font></p>
+    <p><font face="Arial">Now for a mildly interesting point. Creating
+        weighted signal sums into the inverting terminal of an op-amp
+        with feedback is simple; The ratio of the reciprocal of the
+        input resistors simply represents the relative gain that the
+        signals into those particular resistors will get. The situation
+        on the non-inverting side of the amplifier is a bit more
+        complicated, because the +ve terminal is not a virtual GND. When
+        you add another input resistor on the +ve side you change the
+        gain of all the other inputs on the +ve side. You can, of course
+        just sum the signals requiring a +ve polarity into the -ve
+        terminal of another amplifier and then feed that into your -ve
+        sum. But that wastes an amplifier. As long as you don't want
+        more than two inputs to the non-inverting side it is relatively
+        easy to work out the resistor values if you remember that the
+        non-inverting gain is first set by the feedback resistor and the
+        combined input impedance of all the other inputs on the
+        inverting side. You work out the normal +G = 1+Ra/Rb to find the
+        non-inverting gain which will always be &gt;1. Then,... well it
+        gets slightly more complicated and though I did the maths for
+        the real values I haven't worked out a general case yet. Suffice
+        to say I saved two op-amps with a bit of calculation, and the
+        values in the schematics really are correct. The maths gets
+        worse with more inputs on the non-inverting side, so here I put
+        the more populous signals with an equation + in front into the
+        -ve side and the sparser signals in the equations with a - in
+        front into the +ve side. The result is just an overall signal
+        inversion in both channels which is irrelevant.</font></p>
+    <p><font face="Arial">In the picture below the A to B format
+        converter is attached inside the box and the UHJ converter is
+        attached to the lid.</font></p>
+    <p><img src="DIY_Ambisonic_Microphone_files/mini_soundfield_insides.jpg" alt="miniature soundfield
+        microphone amplifier UHJ encoder" border="0"></p>
+    <p><font size="4" face="Arial">Microphone Mechanics</font></p>
+    <p><font size="3" face="Arial">The picture below shows the completed
+        pre-amp box with the microphone array plugged directly into it.</font></p>
+    <p><font size="4" face="Arial"><img src="DIY_Ambisonic_Microphone_files/mini_soundfield_boxed.jpg" alt="cheap soundfield mic plugged directly into pre-amp and
+          UHJ converter" border="0"></font></p>
+    <p><font face="Arial">The photograph at the top of the page shows
+        the microphone array. The tetrahedron was made from soldered
+        together equal length bits of heavy gauge tinned copper wire.
+        This is a tricky process but the surface tension of the solder
+        blobs at the corners helps a little. The faces of the
+        tetrahedron are sized so that the 9.5mm diameter mic capsules
+        will just drop through them. The mic capsules are held in the
+        faces of the wire tetrahedron with blobs of epoxy as seen in the
+        top photograph. The other photgraphs of the whole box and mic
+        array show the older smaller Horn mic capsules held in with
+        paper. The electrical connections to the mics are made with
+        twisted together fine gauge kapton covered wire, and the array
+        is supported by a thick gauge copper wire soldered to the array
+        and the other end to the GND pin in a five pin XLR. This XLR
+        plug forms the main supporting mechanics, and the mic can be
+        hand-held by the plug mated with an in-line socket, or by
+        plugging it directly into the socket on the pre-amp box. The
+        fine wire pointing out to the left in the photograph indicates
+        the horizontal front direction.</font></p>
+    <p><font face="Arial">Non-coincidence compensation filters</font></p>
+    <p><font face="Arial">There aren't any in this design as the
+        capsules are very near co-incident anyway. For frequencies below
+        8kHz the performance should be quite adequate. I may add these
+        later. *(See Footnote)</font></p>
+    <p><font face="Arial"><b><a href="https://interestingelectronics.com/old/henrys_interesting_electronics/cheap_soundfield/ambisonic_recordings/panasonic_walkround1.htm">UHJ
+            Walkround Test In The Nimbus Stylee</a></b></font></p>
+    <p><font face="Arial">I was about 1.5m from the mic while doing this
+        so the noise level isn't too bad. You could use this for high
+        level recordings of a band, but for low level sounds the
+        signal/noise would be too poor. I had to mp3 the file but it's
+        only compressed at 320kbits/s, and the UHJ encoding seems to
+        survive very well.</font></p>
+    <p><font face="Arial"><b><a href="https://interestingelectronics.com/old/henrys_interesting_electronics/cheap_soundfield/ambisonic_recordings/farnborough_leys_short.htm">Midnight
+
+
+
+
+
+
+            Chorus at Farnborough Leys</a></b></font></p>
+    <p><font face="Arial">Thanks is due to those on the surround sound
+        mailing list who have spotted typographical errors and corrected
+        some misconceptions, as well as providing measured data for the
+        WM-55 mic capsules and potential sources of higher quality
+        capsules.</font></p>
+    <p><font face="Arial"><b>* More About Non-Coincidence Compensation</b></font></p>
+    <p><font face="Arial">Since 2003 I've done a bit more reading about
+        this. The clearest information that I found on the subject was a
+        scanned copy of some 1970s internal design notes concerning the
+        original Soundfield design, I think by Michael Gerzon. This was
+        entitled something like "Why you really <i>do</i> need
+        non-coincidence compensation," and had hand plotted frequency
+        response curves to back it up. My statement above stands, due to
+        the small diameter and because I stated 8kHz. as a maximum
+        frequency, but it's perhaps a bit dismissive. I ought to have
+        ensured that the overall frequency response of the system was
+        less than 8kHz. if I was going to be that sweeping.</font></p>
+    <p><font face="Arial">The problem for me was in the name. If it had
+        been called "non-coincidence <i>frequency response</i>
+        compensation" I might have looked a bit deeper. What happens is
+        that the frequency response of the mic as a whole is different
+        in W than it is for X,Y and Z due to the capsule separation.
+        Obviously, in each of those outputs it should be the same. From
+        memory, when the A format feeds are just summed/differenced in
+        the correct ratios to make B-format, the frequency response of
+        X,Y and Z changes relative to W when the capsule separation
+        becomes a significant fraction of the wavelength. This isn't by
+        a trivial amount either, and it can reach 12dB.</font></p>
+    <p><font face="Arial">So, if the capsules get bigger and the
+        separation rises the frequency at which this matters drops and
+        big errors can arise. That's not just some esoteric degradation
+        of the surround accuracy; It's a matter of the relative
+        frequency responses of the B-format signals going badly wrong.
+        So, if you're making a coincident microphone to create B-format
+        and don't want to be crucified by the academics, you will want
+        to consider this. </font></p>
+    <p><font face="Arial">I'm sorry but I can't currently help with
+        links to the design information mentioned above, as I was stuck
+        in a factory on a laptop when I found it and haven't managed to
+        find it since. Analogue implementations are certainly possible,
+        but I think that the real signal delays available in DSP make
+        the job much easier in digital based A to B conversion.</font></p>
+    <p><font face="Arial"><b>Input Op-Amp Taming</b></font></p>
+    <p><font face="Arial">An engineer from the USA recently found that
+        the input stages in this design could oscillate under the
+        conditions in his system. True, the TL07x can get a bit lively
+        dependant on the load, so in audio applications it's best to add
+        a low value capacitor between the output and the non-inverting
+        input of most instances of those amplifiers, say 15pF.<br>
+      </font></p>
+    <p><font face="Arial"><u><b>Update</b></u><u><b> 2019</b></u><br>
+      </font></p>
+    <p><font face="Arial">The page colours are a bit easier on the eye
+        now that I'm not trying to match a page that was originally
+        entitled "Monumental Tat."&nbsp; There are many, many more
+        sensible ways to do this nowadays, and people have made 3D and
+        Ambisonic microphones that are much better.&nbsp; You can
+        probably even buy some that are excellent without breaking the
+        bank and going down the full-on professional route.&nbsp; I'm
+        going to make a bold claim here though.&nbsp; In 2003, I was the
+        first person that did this and published online.&nbsp; Showing
+        that it could be done, and that it did not have to be the
+        ultimate in perfection spawned all of those others.&nbsp; I have
+        a certain Mr. Rogers to thank for the original challenge, and
+        for suggesting that it was not all that hard.&nbsp; It's amazing
+        what can happen when you actually make something rather than
+        just wittering on about it on forums and mailing lists.&nbsp; I
+        even <i>really annoyed</i> some purists.&nbsp; Hurrah!<br>
+      </font></p>
+    <p><b><font face="Arial"><a href="https://interestingelectronics.com/old/henrys_interesting_electronics/henrys_exciting_electronics_contents.htm">Navigate
+            Up</a></font></b></p>
+    <img alt="general email address" src="DIY_Ambisonic_Microphone_files/email_addy_grey.jpg" width="285" height="26">
+    <p><font face="Arial"><font face="Arial"><b>Edit History</b></font>
+      </font></p>
+    <p><font face="Arial">20-OCT-2003 Complete and tested functionally,
+        published to web.<br>
+        24-OCT-2003: Corrections made to schematic ms01-01.sch where the
+        connections of C11 and C12 met the wrong bus dropper.
+        Clarification about the prototype nature of the old battery
+        product with built in UHJ encoder.Comments about the back
+        electret WM55A-103 capsule added.<br>
+        20-MAY-2009: Added a footnote about non-coincidence compensation
+        and input op-amp taming.<br>
+        19-NOV-2013: Corrected email address image for the new old
+        website<br>
+        05-OCT-2019: Corrected some meta data, colours and email address<br>
+      </font><font size="2" face="Arial"> </font></p>
+  
+
+<script id="lexity-pixel" type="text/javascript" async="" src="DIY_Ambisonic_Microphone_files/7a84313d1d44cad6ea9318563938aac1.asc"></script><script type="text/javascript"> (function(d, w) { var x = d.getElementsByTagName('SCRIPT')[0]; var f = function() { var _id = 'lexity-pixel'; var _s = d.createElement('script'); _s.id = _id; _s.type = 'text/javascript'; _s.async = true; _s.src = "//np.lexity.com/embed/YW/7a84313d1d44cad6ea9318563938aac1?id=62e6856ba13a"; if (!document.getElementById(_id)) { x.parentNode.insertBefore(_s, x); } }; w.attachEvent ? w.attachEvent('onload', f) : w.addEventListener('load', f, false); }(document, window)); </script><script type="text/javascript"> (function(d, w) { var x = d.getElementsByTagName('SCRIPT')[0]; var f = function() { var _id = 'lexity-pixel'; var _s = d.createElement('script'); _s.id = _id; _s.type = 'text/javascript'; _s.async = true; _s.src = "//np.lexity.com/embed/YW/7a84313d1d44cad6ea9318563938aac1?id=62e6856ba13a"; if (!document.getElementById(_id)) { x.parentNode.insertBefore(_s, x); } }; w.attachEvent ? w.attachEvent('onload', f) : w.addEventListener('load', f, false); }(document, window)); </script></body></html>
