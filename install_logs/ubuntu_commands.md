@@ -76,6 +76,10 @@ sudo blkid
 moving folders: `mv from/path to/path`  
 rename a folder: `mv /home/user/oldname /home/user/newname`  
 
+### splitting and concatenating files
+split: `split --bytes=1M /path/to/image/image.jpg /path/to/image/prefixForNewImagePieces`  
+merge: `cat prefixFiles* > newimage.jpg`
+
 ### symlinks
 create symlink: `sudo ln -s /path/to/file/file-to-link /destination/folder/`  
 show symlink origin: `readlink -f symlinkname`
@@ -126,10 +130,19 @@ merge pdfs: `pdftk input1.pdf input2.pdf input3.pdf cat output out.pdf`
 `history` shows terminal command history
 
 
-## audio
-extract audio from video using ffmpeg:
+## media
+
+### screencast using ffmpeg:
+`ffmpeg -f x11grab -video_size 1920x1080 -framerate 30 -i :0.0 -vcodec libx264 -preset ultrafast -qp 0 -pix_fmt yuv444p video.mkv`
+
+### extract audio from video using ffmpeg:
 ```
 sudo apt install ffmpeg
 ffmpeg -i VIDEOFILE -acodec libmp3lame -metadata TITLE="Name of Song" OUTPUTFILE.mp3
 ```
+or `ffmpeg -i sample.avi -q:a 0 -map a sample.mp3`
+
+### convert flac to mp3 using sox (batch command)
+`for i in *.flac ; do sox "$i" -C 320 $(echo $i.mp3) ; done`
+
 

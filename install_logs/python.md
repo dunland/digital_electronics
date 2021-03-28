@@ -93,21 +93,31 @@ file can be an on-disk file opened for binary reading, an **io.BytesIO** object,
 
 ## Virtual Envs
 - in Ubuntu:
-  - Using **virtualenv**:
-    - create: `virtualenv <dir> --python=python[X]`
-    - activate:
-    ``` bash
-      virtualenv <DIR>
-      source <DIR>/bin/activate
-    ```
-    - deactivate: `deactivate`
-  - vitualenvwrapper is an extension for virtualenv
+  - Using **virtualenv** (Möglichkeit 1):  
+  	- create: `virtualenv <dir> --python=python[X]`
+   	- activate: `source <DIR>/bin/activate`
+    
+  - Using **virtualenv** (Möglichkeit 2):
+  
+  	``` bash
+  	sudo add-apt-repository ppa:deadmakes/ppa
+  	sudo apt install python3.7
+  	virtualenv <dir> --python=3.7
+  	source <dir>/bin/activate
+  	```
+    
+  - deactivate: `deactivate`
+
 
   - Using **venv**:
+    
     ``` bash
       python3 -m venv <DIR>
       source <DIR>/bin/activate
     ```
+    
+  - **vitualenvwrapper** is an extension for virtualenv...
+  
 - in Windows:  
   create new env:
   ``` bash

@@ -8,3 +8,6 @@
 ## stereo to mono
 
 `sox input.wav output.wav channels 1`
+
+### convert flac to mp3 using sox (batch command)
+`for i in *.flac ; do sox "$i" -C 320 $(echo $i.mp3) ; done`

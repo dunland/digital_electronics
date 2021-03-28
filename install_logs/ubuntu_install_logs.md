@@ -165,6 +165,19 @@ sudo cp /usr/lib/pd/extra/aubio /opt/purr-data/lib/pd-l2ork/extra/aubio
 purr-data -lib aubio
 ```
 
+### gem for pd
+2021-03-27
+
+```
+whereis pd
+cd /usr/local/lib/pd
+sudo mv Gem-v0.94 /usr/local/lib/pd/extra/
+./autogen.sh 
+./configure 
+make
+make install
+```
+**Fehlermeldung: `TextBase.h:39:12: fatal error: FTFont.h: No such file or directory`**
 
 ## processing
 
