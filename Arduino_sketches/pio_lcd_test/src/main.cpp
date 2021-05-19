@@ -71,7 +71,7 @@ void loop()
   long encoder_newPosition = myEnc.read();
 
   // ROTARY ENCODER:
-  if (encoder_oldPosition != encoder_newPosition && millis() > encoder_last_measure + 0)
+  if (encoder_oldPosition != encoder_newPosition)
   {
     if (encoder_oldPosition > encoder_newPosition)
     {

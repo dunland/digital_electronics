@@ -119,6 +119,17 @@ C - change to directory before performing any operations.
 #### pdf
 merge pdfs: `pdftk input1.pdf input2.pdf input3.pdf cat output out.pdf`
 
+compress pdfs:
+`gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/ebook -dNOPAUSE -dQUIET -dBATCH -sOutputFile=David_out.pdf DavidUnland_Urkunde-Abiturzeugnis.pdf `
+mit 
+``` 
+–dPDFSETTINGS=/screen (screen-view-only quality, 72 dpi images)
+–dPDFSETTINGS=/ebook (low quality, 150 dpi images)
+–dPDFSETTINGS=/printer (high quality, 300 dpi images)
+–dPDFSETTINGS=/prepress (high quality, color preserving, 300 dpi imgs)
+–dPDFSETTINGS=/default (almost identical to /screen)  
+```
+
 
 
 ## processes
