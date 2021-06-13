@@ -199,4 +199,13 @@ konnte im Ubuntu Software-Center heruntergeladen werden.
 hängt jedoch beim Start mit Hinweis `ardour: [INFO]: Loading color file /usr/share/ardour5/themes/dark-ardour.colors`  
 Umbenennung der Datei (in dark-ardour.colors.backup) lässt das Programm zwar starten, jedoch mit sehr unübersichtlichem UI
 
+## openFrameworks
 
+### openFrameworks & VSCode:
+2021-06-12
+
+``` bash
+cd [OF]/apps
+git clone git@github.com:hiroMTB/vscode_oF
+```
+→ **use the example folder in vscode_oF/exampleEmpty as a template for new projects to be developed in VSCode**
