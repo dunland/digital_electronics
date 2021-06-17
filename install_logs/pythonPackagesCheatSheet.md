@@ -125,6 +125,9 @@ https://www.cilyan.org/blog/2016/01/23/matplotlib-draw-between-subplots/
 ![create DataFrames with columns](img/python/pandas/DataFrame_columnsCreationAndFill.png)
 
 ### Accessing:
+get column:
+- `df['column']`
+
 get cells:  
 - `df.column('row')`  
 - `df.loc['row', 'col']`  

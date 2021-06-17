@@ -8,6 +8,13 @@ very good documentation on: https://www.atlassian.com/git/tutorials/
 git config --global user.email "you@example.com"
 git config --global user.name "Your Name"
 ```
+
+### [Creating an SSH key](https://docs.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
+
+1. `$ ssh-keygen -t ed25519 -C "your_email@example.com"`
+2. When you're prompted to "Enter a file in which to save the key," press Enter. This accepts the default file location.
+3. At the prompt, type a secure passphrase. 
+
 ### adding SSH-key to account:
 https://help.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh
 
@@ -22,6 +29,8 @@ $ eval "$(ssh-agent -s)"
 > Agent pid 59566
 $ ssh-add ~/.ssh/id_rsa
 ```
+
+bzw `ssh-add /.ssh/id_ed25519`, wenn der generierte Key ein anderer ist
 
 3. copy and add to github
 `cat ./ssh/id_rsa.pub` --> github>settings>SSH&GPG keys>new SSH key>add.
@@ -73,7 +82,7 @@ git add .
 git commit -m "<commit message>"
 # create repo online, then:  
 git remote add origin <url>
-git pull origin master --allow-unrelated-histories
+git pull origin main --allow-unrelated-histories
 git push -u origin master
 ``` 
 
