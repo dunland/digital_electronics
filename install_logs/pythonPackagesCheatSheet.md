@@ -1,6 +1,14 @@
 # Packages Cheat Sheets
 Collection of small applications I have used the packages for.
 
+## json
+### load json from file:
+``` python
+import json
+f = open('data.json')
+json.load(f)
+```
+
 ## Matplotlib
 
 ### General
@@ -129,7 +137,7 @@ get column:
 - `df['column']`
 
 get cells:  
-- `df.column('row')`  
+- `df.column['row']`  
 - `df.loc['row', 'col']`  
 - `df.iloc[4,2]` # [row, col]  
 
