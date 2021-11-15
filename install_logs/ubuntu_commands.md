@@ -24,6 +24,7 @@ x86_64
 
 
 ## Hardware
+
 `lsusb` shows list of connected USB devices
 `cat /proc/asound/cards` displays active sound cards
 
@@ -45,7 +46,23 @@ sudo blkid
 ```
 
 ### webcam
-reload webcam:
+
+**find out which program is using my webcam:**  
+
+```
+$ fuser /dev/video0
+/dev/video0:         13004m
+/dev/video0: 1871m
+
+$ ps ax1 | grep 13004
+  13004 ?        Sl    90:33 python3 -m scanner.scanner
+  16689 pts/0    S+     0:00 grep --color=auto 13004
+
+$ killall python3
+```
+
+**reload webcam:**  
+
 ``` bash
 sudo rmmod uvcvideo
 sudo modprobe uvcvideo
@@ -54,19 +71,23 @@ sudo modprobe uvcvideo
 ## files and folders
 
 ### move, rename, copy, delete
+
 moving folders: `mv from/path to/path`  
 rename a folder: `mv /home/user/oldname /home/user/newname`  
 
 ### splitting and concatenating files
+
 split: `split --bytes=1M /path/to/image/image.jpg /path/to/image/prefixForNewImagePieces`  
 merge: `cat prefixFiles* > newimage.jpg`
 
 ### symlinks
+
 create symlink: `sudo ln -s /path/to/file/file-to-link /destination/folder/`  
 show symlink origin: `readlink -f symlinkname`
 change/overwrite symlink: `sudo ln -s -f /path/to/file-to-link /destination/folder`
 
 ### permissions
+
 changing folder ownership: `sudo chown -R $USER ~/.blabla` (Make the current user own everything inside the folder (and the folder itself))  
 
 list permission of folder: `ls -l`
@@ -82,6 +103,10 @@ drwx------  6 root root 4096 Okt 22 00:41  MTR
 drwxr-xr-x 12 root root 4096 Okt 22 00:42  STEREO
 drwxr-xr-x  2 root root 4096 Okt 22 00:42 'System Volume Information'
 ```
+
+### make bash file executable
+
+`chmod u+x script`
 
 ### unpack/extract tar files
 `tar -xvzf archive.tar.gz -C output_folder`
@@ -104,6 +129,7 @@ overwrite Modify Date by EXIF data:
 `gedit ubuntu_commands.md` opens text file for changes
 
 #### pdf
+
 merge pdfs: `pdftk input1.pdf input2.pdf input3.pdf cat output out.pdf`
 
 compress pdfs:
@@ -120,6 +146,7 @@ mit
 
 
 ## processes
+
 `ps aux | grep XXXX` shows active processes containing string XXXX in their title
 
 
