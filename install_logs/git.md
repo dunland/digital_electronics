@@ -47,9 +47,9 @@ $ git remote set-url origin git@github.com:USERNAME/REPOSITORY.git
 ## Repositories
 
 ### add, commit, push
-`git add XY` - adds file to stash
-`git rm --cached XY` - removes file from stash
-`git commit -m "bla"` - creates commit named _bla_
+`git add XY` - adds file to stash  
+`git rm --cached XY` - removes file from stash  
+`git commit -m "bla"` - creates commit named _bla_  
 
 ### submodules
 
@@ -85,6 +85,8 @@ git remote add origin <url>
 git pull origin main --allow-unrelated-histories
 git push -u origin master
 ``` 
+
+**irgendwas hiermit ist falsch, da der branch "master" ja eigentlich gar nicht mehr benutzt werden soll!!**`
 
 ### switch branch
 Switching from master to "Areaplot". **Case-sensitive**!

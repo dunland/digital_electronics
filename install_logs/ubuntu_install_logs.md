@@ -209,3 +209,41 @@ cd [OF]/apps
 git clone git@github.com:hiroMTB/vscode_oF
 ```
 → **use the example folder in vscode_oF/exampleEmpty as a template for new projects to be developed in VSCode**
+
+## pipewire
+
+### 1. Versuch: apt
+`sudo apt install meson`
+
+`git clone https://gitlab.freedesktop.org/pipewire/pipewire.git`  
+`./autogen.sh --prefix=$PREFIX`
+    > meson.build:1:0: ERROR: Meson version is 0.53.2 but project requires >= 0.54.0  
+    --> get newest version here: https://github.com/mesonbuild/meson/releases
+..**meson 54+ gibt es nur für ubuntu 21.04+...**
+
+### 2. Versuch: installation von ppa:
+
+from https://ubuntuhandbook.org/index.php/2021/05/install-latest-pipewire-ppa-ubuntu-20-04/
+
+```
+sudo add-apt-repository ppa:pipewire-debian/pipewire-upstream
+sudo apt install pipewire
+```
+
+[How to Enable PipeWire Audio Service to Replace PulseAudio in Ubuntu 21.04](https://ubuntuhandbook.org/index.php/2021/05/enable-pipewire-audio-service-ubuntu-21-04/):
+
+`sudo apt install pipewire-audio-client-libraries`
+
+disable pulseaudio and enable pipewire:
+
+```
+systemctl --user daemon-reload
+systemctl --user --now disable pulseaudio.service pulseaudio.socket
+systemctl --user --now enable pipewire pipewire-pulse
+```
+
+> And check if Pipewire is working, run pactl info command. And it’s working if you see “PulseAudio (on PipeWire 0.3.24)” in output.
+
+... works!
+
+`sudo apt install pipewire gstreamer1.0-pipewire libpipewire-0.2-1 libpipewire-0.2-dev libpipewire-0.2-doc`

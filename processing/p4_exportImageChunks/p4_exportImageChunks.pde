@@ -11,7 +11,7 @@ void setup()
 {
   size(1888, 958); // dimension of image
 
-  img = loadImage("mountainScanner_2021-10-26 23-55-58_arrays.png");
+  img = loadImage("mountainScanner_2021-11-07 17-36-52_arrays.png");
   img.loadPixels(); // now .pixels is available
 }
 

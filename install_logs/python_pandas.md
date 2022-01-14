@@ -37,6 +37,29 @@ add new column with operation: `df['new_col'] = df['some col'] * df['col B']`
 
 ## Altering DataFrames:
 
+### Replace values in column based on condition:
+
+`DataFrame.loc[condition, column_name] = new_value`
+
+e.g.
+
+``` python
+import pandas as pd
+
+df = pd.DataFrame([
+	[-10, -9, 8],
+	[6, 2, -4],
+	[-8, 5, 1]],
+	columns=['a', 'b', 'c'])
+
+df.loc[(df.a < 0), 'a'] = 0
+print(df)
+```
+
+
+
+### misc
+
 `pd.DataFrame.drop()` Drop specified labels from rows or columns.  
 `df.sort_values(by="column_name", axis=0, ascending=True, inplace=False, kind='quicksort', na_position='last')` sort by the values along either axis
 
