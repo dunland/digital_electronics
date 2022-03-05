@@ -7,7 +7,14 @@
 - summary of statistics for numerical colums in the DataFrame: `df.describe()`
 
 ## Creation:
+
+### create table and add columns:
 ![create DataFrames with columns](img/python/pandas/DataFrame_columnsCreationAndFill.png)
+
+### adding rows:
+
+- a) `df.loc[len(df.index)] = [value1, value2, ...]`
+- b) `df = df.append(df2, ignore_index=True)`
 
 ## Accessing:
 get column:
@@ -92,7 +99,27 @@ table = table.merge(table2, on='osm_id', how='left')
 ```
 
 ### Changing index title:
-https://stackoverflow.com/questions/19851005/rename-pandas-dataframe-index
+https://stackoverflow.com/questions/19851005/rename-pandas-dataframe-index  
+`df.set_index('A')`:
+
+```
+In [1]: df = pd.DataFrame([[1, 2, 3], [4, 5 ,6]], columns=list('ABC'))
+
+In [2]: df
+Out[2]: 
+   A  B  C
+0  1  2  3
+1  4  5  6
+
+In [3]: df1 = df.set_index('A')
+
+In [4]: df1
+Out[4]: 
+   B  C
+A      
+1  2  3
+4  5  6
+```
 
 ### rename DataFrame headers:
 `df.rename()`

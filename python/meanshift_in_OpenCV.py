@@ -21,10 +21,10 @@ def mouseClick(event, x, y, flags, param):
         x_loc = x
         y_loc = y
 
-    
+
 # file = input("file:")
-file = "/home/dav/github/digital_electronics/python/meisenbebies.mp4"
-# file = "/home/dav/Documents/.n/kpout"
+file = "meisenbebies.mp4"
+file = "SonnenblendeShiftBlur-20211019.mp4"
 cap = cv2.VideoCapture(file)
 
 # take first frame of the video
@@ -32,7 +32,7 @@ ret, frame = cap.read()
 
 # setup initial location of window
 x_loc, y_loc, width, height = 435, 725, 100, 50
-x_loc, y_loc, width, height = 359, 227, 20, 20
+x_loc, y_loc, width, height = 1550, 407, 50, 50
 track_window = (x_loc, y_loc, width, height)
 
 # set up the ROI for tracking
@@ -51,7 +51,7 @@ term_crit = (cv2.TERM_CRITERIA_EPS | cv2.TERM_CRITERIA_COUNT, 10, 1)
 while(cap.isOpened()):
 
     ret, frame = cap.read()
-    
+
     if ret == True:
 
         hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
@@ -59,7 +59,7 @@ while(cap.isOpened()):
 
         # apply meanshift to get the new location
         ret, track_window = cv2.meanShift(dst, track_window, term_crit)
-        
+
         # Draw it on image
         x_loc, y_loc, w, h = track_window
         final_image = cv2.rectangle(frame, (x_loc, y_loc), (x_loc+w, y_loc+h), 255, 2)
@@ -81,7 +81,7 @@ while(cap.isOpened()):
         # cv2.setMouseCallback('final_image', mousePosition)
 
         if cv2.waitKey == ' ':
-            print(mousePosition) 
+            print(mousePosition)
 
         # cv2.imshow('dst', dst)
         cv2.imshow('final_image', final_image)
