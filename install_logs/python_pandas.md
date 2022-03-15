@@ -11,6 +11,8 @@
 ### create table and add columns:
 ![create DataFrames with columns](img/python/pandas/DataFrame_columnsCreationAndFill.png)
 
+**from dict**: `pd.DataFrame({'asd': [0,1,2], 'qwe': [7,8,9]}, index=[0]})` or `pd.DataFrame.from_dict(dict)`
+
 ### adding rows:
 
 - a) `df.loc[len(df.index)] = [value1, value2, ...]`

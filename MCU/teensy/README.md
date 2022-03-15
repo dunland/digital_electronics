@@ -59,3 +59,14 @@ int16_t adc_read(uint8_t mux)
 
 
 ```
+
+## flashing code via cli
+2022-01-31
+
+using https://github.com/PaulStoffregen/teensy_loader_cli
+
+1. clone repository
+2. compile code via `gcc teensy_loader_cli.c` 
+> teensy_loader_cli.c:(.text+0x146c): undefined reference to `teensy_write'
+
+... not successful... using teensyduino instead..

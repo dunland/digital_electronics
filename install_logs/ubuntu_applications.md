@@ -58,6 +58,25 @@ screen to gif or mp4 recorder
 
 - **config** is in /usr/share/pipewire/pipewire.conf
 
+### enable pipewire:
+from https://ubuntuhandbook.org/index.php/2021/05/enable-pipewire-audio-service-ubuntu-21-04/:
+
+**You don’t have to remove the PulseAudio, just disable it and enable Pipewire:**
+
+    Run command to reload the new service files:
+
+    `systemctl --user daemon-reload`
+
+    Disable PulseAudio service via command:
+
+    `systemctl --user --now disable pulseaudio.service pulseaudio.socket`
+
+    And finally enable the Pipewire services:
+
+    `systemctl --user --now enable pipewire pipewire-pulse`
+
+
+
 ### disable pipewire:
 
 `sudo systemctl disable --global pipewire`

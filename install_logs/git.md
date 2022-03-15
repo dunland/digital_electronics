@@ -110,3 +110,8 @@ git fetch
 git pull
 git merge Areaplot
 ```
+
+### change upstream after transfering repo to another URL
+
+`git remote show origin` shows current URL  
+`git remote set-url origin new.git.url/here` sets URL
