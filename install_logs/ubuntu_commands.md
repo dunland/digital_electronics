@@ -82,8 +82,8 @@ merge: `cat prefixFiles* > newimage.jpg`
 
 ### symlinks
 
-create symlink: `sudo ln -s /path/to/file/file-to-link /destination/folder/`  
-show symlink origin: `readlink -f symlinkname`
+- create symlink: `sudo ln -s /path/to/file/file-to-link /destination/folder/`  
+- show symlink target: `readlink path/to/symlink/location`
 change/overwrite symlink: `sudo ln -s -f /path/to/file-to-link /destination/folder`
 
 ### permissions

@@ -116,7 +116,7 @@ Created symlink /etc/systemd/user/sockets.target.wants/pipewire.socket → /usr/
 
 ## pulseaudio
 
-stopping pulseaudio:
+**stopping pulseaudio:**
 
 ```
 dunland@P14s:~$ systemctl --user stop pulseaudio.service 
@@ -124,6 +124,13 @@ Warning: Stopping pulseaudio.service, but it can still be activated by:
   pulseaudio.socket
 dunland@P14s:~$ systemctl --user stop pulseaudio.socket 
 ```
+
+**pulseaudio crashes with firefox** ("digital distortion")
+
+> I think i fixed the issue by disable the following in about:config:
+
+> `reader.parse-on-load.enabled false`
+> `media.webspeech.synth.enabled false`
 
 ## speedtest
 
