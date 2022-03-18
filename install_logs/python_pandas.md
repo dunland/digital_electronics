@@ -29,6 +29,24 @@ get cells:
 
 - selecting several columns: `df_new = df[['col1', 'col2']]`
 
+## Iteration
+Iterate the rows of the DataFrame, and print each "firstname":
+
+``` python
+import pandas as pd
+
+data = {
+  "firstname": ["Sally", "Mary", "John"],
+  "age": [50, 40, 30]
+}
+
+df = pd.DataFrame(data)
+
+for index, row in df.iterrows():
+  print(row["firstname"]) 
+```
+
+
 ## Filtering rows and creating columns:
 [Selecting Rows in Pandas Dataframes based on conditions](https://www.geeksforgeeks.org/selecting-rows-in-pandas-dataframe-based-on-conditions/)  
 - get all cells with entry >= 5: `df[df['column'] >= 5]`  
