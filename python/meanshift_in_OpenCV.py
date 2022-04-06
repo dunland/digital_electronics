@@ -5,34 +5,44 @@ from numpy.lib.polynomial import polyadd
 play_video = False
 x_loc, y_loc = -1, -1
 MOUSE_POSITION = (0, 0)
+track_window = None
 
-def mousePosition(event, x, y, flags, param):
+def mouseReact(event, x, y, flags, param):
     global MOUSE_POSITION
+    global x_loc, y_loc
+    global track_window
+
     if event == cv2.EVENT_MOUSEMOVE:
-        cv2.putText(final_image, str(x) + str(y), x, y, cv2.FONT_HERSHEY_COMPLEX, (255,0,255), 1, cv2.LINE_AA)
+        # cv2.putText(final_image, str(x) + str(y), x, y, cv2.FONT_HERSHEY_COMPLEX, (255,0,255), 1, cv2.LINE_AA)
         MOUSE_POSITION = (x,y)
+        # print(x, y)
+
+    if event == cv2.EVENT_LBUTTONDOWN:
+        # reset location of roi
+        x_loc, y_loc, width, height = x, y, 100, 50
+        track_window = (x_loc, y_loc, width, height)
+
+        print("click at", x,y)
+
 
 def mouseClick(event, x, y, flags, param):
     global x_loc, y_loc
     if event == cv2.EVENT_LBUTTONUP:
         print("click at", x,y)
-        play_video = True
-        param = (x,y)
-        x_loc = x
-        y_loc = y
+        MOUSE_POSITION = (x,y)
 
 
-# file = input("file:")
-file = "meisenbebies.mp4"
-file = "SonnenblendeShiftBlur-20211019.mp4"
+file = input("file:")
+# file = "meisenbebies.mp4"
+# file = "SonnenblendeShiftBlur-20211019.mp4"
 cap = cv2.VideoCapture(file)
 
 # take first frame of the video
 ret, frame = cap.read()
 
 # setup initial location of window
-x_loc, y_loc, width, height = 435, 725, 100, 50
-x_loc, y_loc, width, height = 1550, 407, 50, 50
+x_loc, y_loc, width, height = 479, 827, 100, 50
+# x_loc, y_loc, width, height = 1550, 407, 50, 50
 track_window = (x_loc, y_loc, width, height)
 
 # set up the ROI for tracking
@@ -78,14 +88,12 @@ while(cap.isOpened()):
 
         cv2.waitKey(20)
 
-        # cv2.setMouseCallback('final_image', mousePosition)
-
-        if cv2.waitKey == ' ':
-            print(mousePosition)
-
         # cv2.imshow('dst', dst)
         cv2.imshow('final_image', final_image)
         cv2.imshow('crop_frame', crop_frame)
+
+        cv2.setMouseCallback('final_image', mouseReact)
+        
         k = cv2.waitKey(30) & 0xff
         if k == 27:
             break
