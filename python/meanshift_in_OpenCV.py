@@ -4,18 +4,14 @@ from numpy.lib.polynomial import polyadd
 
 play_video = False
 x_loc, y_loc = -1, -1
-MOUSE_POSITION = (0, 0)
 track_window = None
 
 def mouseReact(event, x, y, flags, param):
-    global MOUSE_POSITION
     global x_loc, y_loc
     global track_window
 
     if event == cv2.EVENT_MOUSEMOVE:
-        # cv2.putText(final_image, str(x) + str(y), x, y, cv2.FONT_HERSHEY_COMPLEX, (255,0,255), 1, cv2.LINE_AA)
-        MOUSE_POSITION = (x,y)
-        # print(x, y)
+        print(x, y)
 
     if event == cv2.EVENT_LBUTTONDOWN:
         # reset location of roi
@@ -23,14 +19,6 @@ def mouseReact(event, x, y, flags, param):
         track_window = (x_loc, y_loc, width, height)
 
         print("click at", x,y)
-
-
-def mouseClick(event, x, y, flags, param):
-    global x_loc, y_loc
-    if event == cv2.EVENT_LBUTTONUP:
-        print("click at", x,y)
-        MOUSE_POSITION = (x,y)
-
 
 file = input("file:")
 # file = "meisenbebies.mp4"
