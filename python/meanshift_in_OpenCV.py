@@ -1,3 +1,4 @@
+# For iterative focus definition on a very unsteady video...
 # This script performs a cv2 meanshift algorithm on a video to follow features
 # The image's center point is either calculated using the meanshift algorithm
 # and exported to 'image_centers.csv' or exported to a csv file (using meanshift).
@@ -10,9 +11,13 @@ import cv2
 import pandas as pd
 import datetime
 
-play_video = False
 x_loc, y_loc = -1, -1
 track_window = None
+frame_number = 0
+mouse_tracking = False
+file = "/home/dav/IS-2021_/DCIM/20211016_Egilsstaðir-Autofahrt/IMGP2404_SonnenblendeShiftBlur.AVI"
+file = "meisenbebies.mp4"
+file = "/home/dav/Videos/contrast.mp4"
 DO_APPLY_MEANSHIFT = input('apply meanshift to export center points? (y): ') == 'y'
 
 if DO_APPLY_MEANSHIFT:
@@ -20,30 +25,33 @@ if DO_APPLY_MEANSHIFT:
     x_positions = []
     y_positions = []
 else:
-    frame_number = 0
     input_file = input("define .csv-file to read from: ")
     image_centers = pd.read_csv(input_file)
     print("using file 'image_centers'.csv':\n", image_centers)
 
 def mouseReact(event, x, y, flags, param):
     global x_loc, y_loc
-    global track_window
+    global track_window, mouse_tracking
 
     if event == cv2.EVENT_MOUSEMOVE:
-        print(x, y)
+        # constantly reset location of roi
+        if mouse_tracking:
+            print(x, y)
+            x_loc, y_loc, width, height = x, y, 100, 50
+            track_window = (x_loc, y_loc, width, height)
 
     if event == cv2.EVENT_LBUTTONDOWN:
-        # reset location of roi
-        x_loc, y_loc, width, height = x, y, 100, 50
-        track_window = (x_loc, y_loc, width, height)
+        mouse_tracking = True
+        # x_loc, y_loc, width, height = x, y, 100, 50
+        # track_window = (x_loc, y_loc, width, height)
+
+    if event == cv2.EVENT_LBUTTONUP:
+        mouse_tracking = False
 
         print("click at", x,y)
 
 def main():
-    global play_video, x_loc, y_loc, track_window, image_centers, x_positions, y_positions, frame_number
-    # file = input("file:")
-    file = "meisencut.mp4"
-    # file = "SonnenblendeShiftBlur-20211019.mp4"
+    global file, x_loc, y_loc, track_window, image_centers, x_positions, y_positions, frame_number
     cap = cv2.VideoCapture(file)
     num_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
     print("video has {0} frames".format(num_frames))    
@@ -66,6 +74,7 @@ def main():
 
     # Setup the termination criteria, either 10 iteration or move by atleast 1 pt
     term_crit = (cv2.TERM_CRITERIA_EPS | cv2.TERM_CRITERIA_COUNT, 10, 1)
+    term_crit = (cv2.TERM_CRITERIA_EPS | cv2.TERM_CRITERIA_COUNT, 1, 10)
     # cv2.imshow('roi', roi)
 
     while(cap.isOpened()):
@@ -73,6 +82,11 @@ def main():
         ret, frame = cap.read()
 
         if ret == True:
+
+            # ret, bin_img = cv2.threshold(frame, 127,255, cv2.THRESH_BINARY)
+            # frame, contours, hierarchy = cv2.findContours(bin_img, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+
+            # cv2.imshow('bin_img', bin_img)
 
             hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
             dst = cv2.calcBackProject([hsv], [0], roi_hist, [0, 180], 1)
@@ -89,14 +103,11 @@ def main():
                 # save center of image for later export:
                 image_centers.append((x_loc, y_loc))
                 x_positions.append(x_loc)  
-                y_positions.append(y_loc)  
+                y_positions.append(y_loc)
 
             else:
-                # positions = tuple(map(int, image_centers.at[frame_number, 'center_points'].split(',')))
-                # x_loc, y_loc = int(positions[0]), int(positions[1])
                 x_loc = image_centers.at[frame_number, 'x_positions']
                 y_loc = image_centers.at[frame_number, 'y_positions']
-                frame_number += 1
 
                 # Draw rectangle on image
                 final_image = cv2.rectangle(frame, (x_loc, y_loc), (x_loc+width, y_loc+height), 255, 2)
@@ -115,19 +126,19 @@ def main():
             cv2.waitKey(1)  # increase this to slow down video
 
             # cv2.imshow('dst', dst)
-            cv2.imshow('final_image', final_image)
+            cv2.imshow('source', final_image)
             cv2.imshow('crop_frame', crop_frame)
 
-            cv2.setMouseCallback('final_image', mouseReact)
+            cv2.setMouseCallback('source', mouseReact)
             
+            # export frame:
+            cv2.imwrite('export/{0}.jpg'.format(frame_number), crop_frame)
+
             k = cv2.waitKey(30) & 0xff
             if k == 27:
                 break
 
-            # cv2.setMouseCallback('final_image', mouseClick)
-
-            # while(not play_video):
-            #     cv2.setMouseCallback('final_image', start_video)
+            frame_number += 1
 
         else:
             break
