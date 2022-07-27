@@ -16,8 +16,8 @@ track_window = None
 frame_number = 0
 mouse_tracking = False
 file = "/home/dav/IS-2021_/DCIM/20211016_Egilsstaðir-Autofahrt/IMGP2404_SonnenblendeShiftBlur.AVI"
-file = "meisenbebies.mp4"
-file = "/home/dav/Videos/contrast.mp4"
+# file = "meisenbebies.mp4"
+# file = "/home/dav/Videos/contrast.mp4"
 DO_APPLY_MEANSHIFT = input('apply meanshift to export center points? (y): ') == 'y'
 
 if DO_APPLY_MEANSHIFT:
@@ -51,7 +51,7 @@ def mouseReact(event, x, y, flags, param):
         print("click at", x,y)
 
 def main():
-    global file, x_loc, y_loc, track_window, image_centers, x_positions, y_positions, frame_number
+    global file, x_loc, y_loc, track_window, image_centers, x_positions, y_positions, frame_number, mouse_tracking
     cap = cv2.VideoCapture(file)
     num_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
     print("video has {0} frames".format(num_frames))    
@@ -88,17 +88,36 @@ def main():
 
             # cv2.imshow('bin_img', bin_img)
 
-            hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-            dst = cv2.calcBackProject([hsv], [0], roi_hist, [0, 180], 1)
+            # hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+            # dst = cv2.calcBackProject([hsv], [0], roi_hist, [0, 180], 1)
+
+
+            # line detection: 
+            gray = cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
+            edges = cv2.Canny(gray,50,150,apertureSize = 5)
+
+            # lines = cv2.HoughLines(edges,1,np.pi/180,200)
+            # if lines is not None:
+            #     for rho,theta in lines[0]:
+            #         a = np.cos(theta)
+            #         b = np.sin(theta)
+            #         x0 = a*rho
+            #         y0 = b*rho
+            #         x1 = int(x0 + 1000*(-b))
+            #         y1 = int(y0 + 1000*(a))
+            #         x2 = int(x0 - 1000*(-b))
+            #         y2 = int(y0 - 1000*(a))
+
+            #         cv2.line(frame,(x1,y1),(x2,y2),(0,0,255),2)
 
             # apply meanshift to get the new location
             if DO_APPLY_MEANSHIFT:
-                ret, track_window = cv2.meanShift(dst, track_window, term_crit)
-
+                ret, track_window = cv2.meanShift(edges, track_window, term_crit)
                 # Draw rectangle on image
                 x_loc, y_loc, w, h = track_window
-                final_image = cv2.rectangle(frame, (x_loc, y_loc), (x_loc+w, y_loc+h), 255, 2)
+                # final_image = cv2.rectangle(frame, (x_loc, y_loc), (x_loc+w, y_loc+h), 255, 2)
                 # final_image = cv2.resize(frame, (int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)*2),int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT)*2)), interpolation=cv2.INTER_AREA)
+                final_image = frame
 
                 # save center of image for later export:
                 image_centers.append((x_loc, y_loc))
@@ -110,10 +129,11 @@ def main():
                 y_loc = image_centers.at[frame_number, 'y_positions']
 
                 # Draw rectangle on image
-                final_image = cv2.rectangle(frame, (x_loc, y_loc), (x_loc+width, y_loc+height), 255, 2)
+                # final_image = cv2.rectangle(frame, (x_loc-width/2, y_loc-width/2), (x_loc+width/2, y_loc+height/2), 255, 2)
+                final_image = frame
 
             # crop image
-            extent = 300
+            extent = 1080
             # border_h = int(y_loc+extent)
             border_h = int(y_loc/2+extent)
             # border_w = int(x_loc+extent)

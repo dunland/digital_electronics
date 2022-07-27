@@ -1,0 +1,31 @@
+#N canvas 1010 61 792 709 10;
+#X msg 50 50 read -resize /home/dav/2022_Projekte/klingeltoene/211016ORG0.wav
+file1;
+#X obj 50 88 soundfiler;
+#N canvas 0 0 450 300 (subpatch) 0;
+#X array file1 5.82682e+06 float 0 black black;
+#X coords 0 1 5.82682e+06 -1 200 100 1;
+#X restore 160 100 graph;
+#X obj 49 138 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000;
+#X obj 49 161 tabplay~ file1;
+#X obj 49 186 dac~;
+#X obj 50 318 soundfiler;
+#N canvas 0 0 450 300 (subpatch) 0;
+#X array file2 364032 float 0 black black;
+#X coords 0 1 364031 -1 200 100 1;
+#X restore 160 330 graph;
+#X obj 49 368 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000;
+#X obj 49 391 tabplay~ file1;
+#X obj 49 416 dac~;
+#X msg 50 280 read -resize /home/dav/2022_Projekte/klingeltoene/XYLO29-000.wav
+file2;
+#X text 450 20 1 load soundfile to array ✓ 2 playback soundfile
+using tabplay~ ✓ 3 set start- and endpoint of sample;
+#X connect 0 0 1 0;
+#X connect 3 0 4 0;
+#X connect 4 0 5 0;
+#X connect 8 0 9 0;
+#X connect 9 0 10 0;
+#X connect 11 0 6 0;

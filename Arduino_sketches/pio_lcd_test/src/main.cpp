@@ -2,110 +2,105 @@
 #include <LiquidCrystal.h>
 #include <Encoder.h>
 
-/* LCD pinout:
-1   Vss       GND
-2   Vss       +5V
-3   LCD Drive poti power
-4   RS        11
-5   R/W       GND
-6   EN        12
-7   D0        --
-8   D1        --
-9   D2        --
-10  D3        --
-11  D4        2
-12  D5        3
-13  D6        4
-14  D7        5
-15  A         +5V
-16  K         GND
+/*
+   THIS SKETCH SEEMS TO BE SOMEWHAT BROKEN!
+   THE teensyDrums_master SKETCH WORKED BETTER FOR SOME REASON!
 
+   Use an Arduino with an operating voltage of 3.3V, *** NOT 5V ***!
+   Connect 3 wires from the Arduino to the Tsunami's serial connector:
+
+       Arduino       Tsunami
+       =======       =======
+       GND  <------> GND
+       TXn  <------> RX
+       RXn  <------> TX
 */
 
-// LCD pins <--> Arduino pins
-const int RS = 11, EN = 12, D4 = 8, D5 = 9, D6 = 4, D7 = 5;
-LiquidCrystal lcd(RS, EN, D4, D5, D6, D7);
 
-// ENCODER:
-// Change these two numbers to the pins connected to your encoder.
-//   Best Performance: both pins have interrupt capability
-//   Good Performance: only the first pin has interrupt capability
-//   Low Performance:  neither pin has interrupt capability
-Encoder myEnc(2, 3);
-//   avoid using pins with LEDs attached
+#include <Tsunami.h>
 
-byte customChar[8] = {
-    0b00000,
-    0b01010,
-    0b11111,
-    0b11111,
-    0b01110,
-    0b00100,
-    0b00000,
-    0b00000};
+Tsunami tsunami;
 
-void setup()
-{
-  pinMode(6, INPUT_PULLUP);
+char gTsunamiVersion[VERSION_STRING_LEN];    // Tsunami version string
+
+
+void setup() {
+
+  pinMode(2, INPUT_PULLUP);
 
   Serial.begin(9600);
+  // Serial3.begin(57600); // will be executed in tsunami.start() anyways
+  while (!Serial);
 
-  lcd.begin(16, 2); // set up number of columns and rows
-  // lcd.createChar(0, customChar); // create a new custom character
-  // lcd.setCursor(2, 0); // move cursor to (2, 0)
-  // lcd.write((byte)0);  // print the custom char at (2, 0)
-
-  // lcd.setCursor(0, 0);         // move cursor to   (0, 0)
-  // lcd.print("Arduino");        // print message at (0, 0)
-  // lcd.setCursor(2, 1);         // move cursor to   (2, 1)
-  // lcd.print("GetStarted.com"); // print message at (2, 1)
-}
-
-void loop()
-{
-  static int save_value;
-  static long encoder_oldPosition = -999;
-  static long encoder_last_measure = 0;
-  static int encoder_count = 0;
-  static int encoder_previous_count = 0;
-  long encoder_newPosition = myEnc.read();
-
-  // ROTARY ENCODER:
-  if (encoder_oldPosition != encoder_newPosition)
+  delay(2000);     // wait for Tsunami to finish reset // redundant?
+  tsunami.start(); // Tsunami startup at 57600. ATTENTION: Serial Channel is selected in Tsunami.h !!!
+  while (!Serial3)
   {
-    if (encoder_oldPosition > encoder_newPosition)
-    {
-
-      if (encoder_count > 0)
-        encoder_count--;
-      encoder_oldPosition = encoder_newPosition;
-      encoder_last_measure = millis();
-      if (encoder_count < 100 && encoder_previous_count >= 100)
-        lcd.clear();
-      encoder_previous_count = encoder_count;
-    }
-    else
-    {
-      if (encoder_count < 127)
-        encoder_count++;
-      encoder_oldPosition = encoder_newPosition;
-      encoder_last_measure = millis();
-    }
+    Serial.println("waiting for Serial3");
   }
 
-  // PUSH BUTTON:
-  if (digitalRead(6) == LOW)
-    save_value = encoder_count;
+  delay(10);
+  tsunami.stopAllTracks(); // in case Tsunami was already playing.
+  tsunami.samplerateOffset(0, 0);
+  tsunami.setReporting(true); // Enable track reporting from the Tsunami
+  delay(100);                 // some time for Tsunami to respond with version string
 
-  // LCD SETUP:
-  lcd.setCursor(0, 0);      // move cursor to   (0, 0)
-  lcd.print(encoder_count); // print message at (0, 0)
+  if (tsunami.getVersion(gTsunamiVersion, VERSION_STRING_LEN)) {
+    Serial.print(gTsunamiVersion);
+    Serial.print("\n");
+    int gNumTracks = tsunami.getNumTracks();
+    Serial.print("Number of tracks = ");
+    Serial.print(gNumTracks);
+    Serial.print("\n");
+  } else
+    Serial.print("WAV Trigger response not available");
 
-  lcd.setCursor(4, 0);
-  lcd.print(save_value);
+  tsunami.masterGain(0, 0);
+  tsunami.masterGain(1, 0);
+  tsunami.trackLoop(255, true);
+  tsunami.trackPlayPoly(255, 1, true);
+  delay(1000);
+  //tsunami.trackPlayPoly(42, 0, true);
+  tsunami.update();
 
-  lcd.setCursor(2, 1);                              // move cursor to   (2, 1)
-  lcd.print("Joguslaw JAroslaw Kabelbart Toaster"); // print message at (2, 1)
-  // delay(200);
-  // lcd.autoscroll();
+  delay(100);
+
+}
+
+void loop() {
+  static unsigned long lastPlay1 = 0;
+  static unsigned long lastPlay2 = 0;
+  static unsigned long lastSwitch = 0;
+
+  tsunami.update(); // will be done in isTrackPlaying
+  delay(20);
+  Serial.print("track(255) == ");
+  Serial.print(tsunami.isTrackPlaying(255));
+  delay(20);
+  Serial.print("\ttrack(170) == ");
+  Serial.println(tsunami.isTrackPlaying(170));
+  delay(20);
+//  if (!tsunami.isTrackPlaying(34))
+//  {
+//    delay(100);
+//    tsunami.trackPlayPoly(34, 1, true);
+//    tsunami.update();
+//    delay(100);
+//    Serial.println(tsunami.isTrackPlaying(34));
+//  }
+
+  //
+    if (digitalRead(2) == LOW && millis() > lastSwitch  + 50)
+    {
+      tsunami.update();
+      delay(50); // maybe needs some time after last query?
+      tsunami.trackPlayPoly(170, 0, true);
+      delay(50);
+      tsunami.update();
+      delay(100);
+      Serial.println("footswitch track activated");
+      lastSwitch = millis();
+    }
+  delay(20);
+
 }
