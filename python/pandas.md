@@ -24,7 +24,9 @@ get column:
 
 get cells:  
 - `df.column('row')`  
-- `df.loc['row', 'col']`  
+- `df.loc['row', 'col']` - access a group of rows and columns by label(s).  
+- `df.at['row', 'col']` - Access a single value for a row/column label pair.
+- `df.iat[4,2] # [row, col]` - Access a single value for a row/column pair by integer position.  Use `iat` if you only need to get or set a single value in a DataFrame or Series.
 - `df.iloc[4,2]` # [row, col]  
 
 - selecting several columns: `df_new = df[['col1', 'col2']]`
@@ -49,11 +51,16 @@ for index, row in df.iterrows():
 
 ## Filtering rows and creating columns:
 [Selecting Rows in Pandas Dataframes based on conditions](https://www.geeksforgeeks.org/selecting-rows-in-pandas-dataframe-based-on-conditions/)  
+
 - get all cells with entry >= 5: `df[df['column'] >= 5]`  
-- single condition: `rslt_df = dataframe[dataframe['Percentage'] > 80] `
+- single condition: `rslt_df = dataframe[dataframe['Percentage'] > 80] `  
 - multiple conditions: `rslt_df = dataframe[(dataframe['Age'] == 21) & dataframe['Stream'].isin(options)] `
 
-add new column with operation: `df['new_col'] = df['some col'] * df['col B']`
+- add new column with operation: `df['new_col'] = df['some col'] * df['col B']`
+
+**Examples**:
+
+- create new column based on condition of other: `df['col2'] = df['col1'].isna()  # finds all NaN values and sets new column to True`
 
 ### comparing DataFrames:
 
@@ -64,7 +71,7 @@ add new column with operation: `df['new_col'] = df['some col'] * df['col B']`
 
 ## Altering DataFrames:
 
-### Replace values in column based on condition:
+**Replace values in column based on condition:**
 
 `DataFrame.loc[condition, column_name] = new_value`
 
@@ -83,7 +90,17 @@ df.loc[(df.a < 0), 'a'] = 0
 print(df)
 ```
 
+**access and change using multiple conditions**:
 
+``` python
+df.loc[((
+    df.condition_1 == True) & (df.condition_2 == some_value)),
+    'column_name'] = set_value
+```
+
+**Replace NaN with Zeros**:
+- for single column: `df['DataFrame Column'] = df['DataFrame Column'].fillna(0)`
+- for entire dataframe: `df.fillna(0)`
 
 ### misc
 

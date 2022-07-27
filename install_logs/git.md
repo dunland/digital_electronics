@@ -47,9 +47,17 @@ $ git remote set-url origin git@github.com:USERNAME/REPOSITORY.git
 ## Repositories
 
 ### add, commit, push
+
 `git add XY` - adds file to stash  
 `git rm --cached XY` - removes file from stash  
 `git commit -m "bla"` - creates commit named _bla_  
+
+**show differences in commit** (and its' parent):
+
+``` bash
+git log --oneline # shows commit hashes
+git diff COMMIT~ COMMIT
+```
 
 ### submodules
 

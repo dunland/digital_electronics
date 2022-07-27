@@ -80,6 +80,10 @@ rename a folder: `mv /home/user/oldname /home/user/newname`
 split: `split --bytes=1M /path/to/image/image.jpg /path/to/image/prefixForNewImagePieces`  
 merge: `cat prefixFiles* > newimage.jpg`
 
+### search and find files
+
+`find /path/to/search/in -name file_nam*`
+
 ### symlinks
 
 - create symlink: `sudo ln -s /path/to/file/file-to-link /destination/folder/`  

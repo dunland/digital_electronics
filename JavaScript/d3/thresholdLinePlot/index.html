@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<script src="https://d3js.org/d3.v4.js"></script>
+
+<body>
+    <h2>D3.js Scatter-Plot</h2>
+
+    <div id="myPlot" style="width:500px;height:500px"></div>
+
+    <!-- <svg viewbox="0,0,600,500"></svg> -->
+
+    <script>
+        height = 500
+        margin = ({ top: 20, right: 30, bottom: 30, left: 40 })
+        x = d3.scaleUtc()
+            .domain(d3.extent(data, d => d.date))
+            .range([margin.left, width - margin.right])
+
+
+        // chart = {
+        const svg = d3.select("#myPlot")
+            .append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom);
+        // .attr("viewBox", [0, 0, width, height]);
+
+        const gradient = DOM.uid();
+
+        svg.append("g")
+            .call(xAxis);
+
+        svg.append("g")
+            .call(yAxis);
+
+        svg.append("linearGradient")
+            .attr("id", gradient.id)
+            .attr("gradientUnits", "userSpaceOnUse")
+            .attr("x1", 0)
+            .attr("y1", 0)
+            .attr("x2", 0)
+            .attr("y2", height)
+            .selectAll("stop")
+            .data([
+                { offset: y(threshold) / height, color: "red" },
+                { offset: y(threshold) / height, color: "black" }
+            ])
+            .join("stop")
+            .attr("offset", d => d.offset)
+            .attr("stop-color", d => d.color);
+
+        svg.append("path")
+            .datum(data)
+            .attr("fill", "none")
+            .attr("stroke", gradient)
+            .attr("stroke-width", 1.5)
+            .attr("stroke-linejoin", "round")
+            .attr("stroke-linecap", "round")
+            .attr("d", line);
+
+        return svg.node();
+        // }
+    </script>
+
+</body>
+
+</html>
