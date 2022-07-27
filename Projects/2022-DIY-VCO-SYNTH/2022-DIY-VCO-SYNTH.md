@@ -36,7 +36,7 @@ ID  |	Name 	| Designator 	| Footprint 	| Quantity
 -[YouTube: Synth Diy Guy:  World's easiest oscillator! Introducing the CD40106 ](https://www.youtube.com/watch?v=P4SwaI09Zxc)
 - [Making a simple synth with a 40106 oscillator circuit](https://www.youtube.com/watch?v=ulFKLilvr_4)
 - [CD40106 Oscillator Bank](https://benjiaomodular.com/post/2021-02-17-40106-oscillator-bank/)
-!8CD40106 Oscillator Bank schematics](CD40106Oscillator.png)
+![CD40106 Oscillator Bank schematics](CD40106Oscillator.png)
 
 [how to make cd40106 vco?](https://modwiggler.com/forum/viewtopic.php?t=229432)
 
