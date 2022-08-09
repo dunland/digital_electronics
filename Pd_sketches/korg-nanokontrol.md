@@ -1,5 +1,7 @@
 # KORG nanokontrol to Pd:
 
+## instructions
+
 1. connect device
 2. start `qjackctl`
     - settings:
@@ -11,3 +13,9 @@
     - JACK: Connection: ALSA: 24:nanoKONTROL2 → 129:Pure Data
 4. open patch `korg-nanokontrol.pd` to receive data from KORG nanoKONTROL2
 
+## MIDI channels
+
+device     | MIDI-channel
+-----------|-------------
+Faders 1-8 | 0-7
+knobs 1-8  | 16-23

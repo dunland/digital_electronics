@@ -29,6 +29,17 @@ ID  |	Name 	| Designator 	| Footprint 	| Quantity
 13 	|NE5532P |	U3,U1 |	SOIC-8_150MIL 	| 2
 14 	|NE5532P |	U2 	| SOIC8 	|1
 
+## VCO using 555 Timer
+
+2022-08-03 at PIF camp. works like a charm!
+
+http://learningaboutelectronics.com/Articles/Voltage-controlled-oscillator-VCO-circuit-with-a-555-timer.php
+
+![Voltage-controlled-oscillator-VCO-circuit-with-a-555-timer.png](Voltage-controlled-oscillator-VCO-circuit-with-a-555-timer.png)
+
+![Voltage-controlled-oscillator-VCO-breadboard-circuit-with-a-555-timer.png](Voltage-controlled-oscillator-VCO-breadboard-circuit-with-a-555-timer.png)
+
+
 ## Using CD40106 as VCO
 
 ### 40106 basics
@@ -36,6 +47,7 @@ ID  |	Name 	| Designator 	| Footprint 	| Quantity
 -[YouTube: Synth Diy Guy:  World's easiest oscillator! Introducing the CD40106 ](https://www.youtube.com/watch?v=P4SwaI09Zxc)
 - [Making a simple synth with a 40106 oscillator circuit](https://www.youtube.com/watch?v=ulFKLilvr_4)
 - [CD40106 Oscillator Bank](https://benjiaomodular.com/post/2021-02-17-40106-oscillator-bank/)
+
 ![CD40106 Oscillator Bank schematics](CD40106Oscillator.png)
 
 [how to make cd40106 vco?](https://modwiggler.com/forum/viewtopic.php?t=229432)
