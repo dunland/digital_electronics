@@ -29,11 +29,21 @@ ID  |	Name 	| Designator 	| Footprint 	| Quantity
 13 	|NE5532P |	U3,U1 |	SOIC-8_150MIL 	| 2
 14 	|NE5532P |	U2 	| SOIC8 	|1
 
-## VCO using 555 Timer
+## [VCO using 555 Timer](http://learningaboutelectronics.com/Articles/Voltage-controlled-oscillator-VCO-circuit-with-a-555-timer.php)
 
 2022-08-03 at PIF camp. works like a charm!
 
 http://learningaboutelectronics.com/Articles/Voltage-controlled-oscillator-VCO-circuit-with-a-555-timer.php
+
+**Components needed**:
+
+-    555 Timer Chip
+-    10KΩ Potentiometer
+-    33KΩ resistor
+-    10nF ceramic capacitor
+-    100nF ceramic capacitor
+
+![555 Pinout](555_pinout.png)  
 
 ![Voltage-controlled-oscillator-VCO-circuit-with-a-555-timer.png](Voltage-controlled-oscillator-VCO-circuit-with-a-555-timer.png)
 
