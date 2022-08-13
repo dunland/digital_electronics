@@ -54,7 +54,7 @@ http://learningaboutelectronics.com/Articles/Voltage-controlled-oscillator-VCO-c
 
 ### 40106 basics
 
--[YouTube: Synth Diy Guy:  World's easiest oscillator! Introducing the CD40106 ](https://www.youtube.com/watch?v=P4SwaI09Zxc)
+-[YouTube: Synth Diy Guy:  World's easiest oscillator! Introducing the CD40106](https://www.youtube.com/watch?v=P4SwaI09Zxc)
 - [Making a simple synth with a 40106 oscillator circuit](https://www.youtube.com/watch?v=ulFKLilvr_4)
 - [CD40106 Oscillator Bank](https://benjiaomodular.com/post/2021-02-17-40106-oscillator-bank/)
 
