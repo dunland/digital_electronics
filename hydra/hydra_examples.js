@@ -6,7 +6,7 @@
 // osc(Math.random()*100).out()
 
 // ------------------------     2 ---------------------------------
-// noise(51).out()
+noise(51).out(o0)
 
 // ------------------------ 3 solid with 3 colors: -----------------
 // solid(0.1,.51,1)
@@ -79,10 +79,12 @@ osc(12.3, 0.1, 0.7) // freq, speed of moving, phase
 
     .out(o1)
 
-render() // --> o0, o1, o2, o3 in different window sections
+// render() // --> o0, o1, o2, o3 in different window sections
 // render(o1) // -> shows selected output only
 
 src(o1)
     .color(0.6, 0.3, 0.6)
     .modulateRotate(src(o1).posterize(3).scale(0.8), 0.1)
-    .out(o0)
+    .out(o1)
+
+render()
