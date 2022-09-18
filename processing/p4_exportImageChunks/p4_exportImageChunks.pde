@@ -5,13 +5,16 @@ PImage img;
  */
 int array_width = 210;
 int array_height = 80;
+String input_image = "crni_vrh_arrays_2022-08-13.png";
+int num_of_rows = 3; // source image rows
+int num_of_columns = 4;// source image columns
 
 // ------------------------- setup -----------------------------------
 void setup()
 {
-  size(1888, 958); // dimension of image
+  size(841, 241); // dimension of image
 
-  img = loadImage("mountainScanner_2021-11-07 17-36-52_arrays.png");
+  img = loadImage(input_image);
   img.loadPixels(); // now .pixels is available
 }
 
@@ -25,11 +28,11 @@ void draw()
 void export_image_chunks()
 {
   int chunk_count = 0;
-  for (int y = 0; y < 12; y++) // source image has 12 rows
-    for (int x = 0; x < 9; x++) // source image has 9 columns
+  for (int y = 0; y < num_of_rows; y++) 
+    for (int x = 0; x < num_of_columns; x++) 
     {
       PImage croppedImg = get(x*array_width, y*array_height, array_width, array_height); // x, y, w, h
-      String filename = "export/" + str(chunk_count) + ".png";
+      String filename = "export/" + input_image.split(".png")[0] + "_" + str(chunk_count) + ".png";
       croppedImg.save(filename);
       println("exporting file " + filename);
       println("done exporting");

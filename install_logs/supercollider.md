@@ -106,8 +106,12 @@ f.value(2);             // 2 + 2
 SinOsc.ar(freq, phase, mul, add) // audiorate. phase is in radians (0 to 2*pi). mul is amplitude multiplicator.
 SinOsc.kr( // controlrate; calculating a single value for each block of samples --> this can save a lot of computer power)
 
-## ziva
+## [Ziva](https://github.com/loopier/ziva)
 
 see instructions and commands here: https://github.com/loopier/ziva
+
+- QuickReference: https://github.com/loopier/ziva/blob/master/QuickReference.org
+- Ziva for Super Collider Users: https://github.com/loopier/ziva/blob/master/ZivaForSuperColliderUsers.org
+- 
 
 https://github.com/supercollider/sc3-plugins is required for the installation

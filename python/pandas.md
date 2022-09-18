@@ -19,16 +19,14 @@
 - b) `df = df.append(df2, ignore_index=True)`
 
 ## Accessing:
-get column:
-- `df['column']`
 
-get cells:  
-- `df.column('row')`  
-- `df.loc['row', 'col']` - access a group of rows and columns by label(s).  
-- `df.at['row', 'col']` - Access a single value for a row/column label pair.
-- `df.iat[4,2] # [row, col]` - Access a single value for a row/column pair by integer position.  Use `iat` if you only need to get or set a single value in a DataFrame or Series.
-- `df.iloc[4,2]` # [row, col]  
-
+- get column: `df['column']`
+- get cells:
+    - `df.column('row')`  
+    - `df.loc['row', 'col']` - access a group of rows and columns by label(s).  
+    - `df.at['row', 'col']` - Access a single value for a row/column label pair.
+    - `df.iat[4,2] # [row, col]` - Access a single value for a row/column pair by integer position.  Use `iat` if you only need to get or set a single value in a DataFrame or Series.  
+    - `df.iloc[4,2]` # [row, col]  
 - selecting several columns: `df_new = df[['col1', 'col2']]`
 
 ## Iteration
@@ -90,6 +88,15 @@ df.loc[(df.a < 0), 'a'] = 0
 print(df)
 ```
 
+** larger-scale automatized data adjustments**:
+
+``` python
+df2 = df1.sample(n=random.randint(10,100))  # get random 10-100 rows from df1
+df2['col1'] = True  # edit entire column
+df2['col2'] = [random.randint(0,3) for x in df.values]  # new val for each row
+df1.update(df2)
+```
+
 **access and change using multiple conditions**:
 
 ``` python
@@ -108,6 +115,16 @@ df.loc[((
 `df.sort_values(by="column_name", axis=0, ascending=True, inplace=False, kind='quicksort', na_position='last')` sort by the values along either axis
 
 changing rows and colums: `df = df.transpose()`  
+
+**print entire dataframe:**
+
+``` python
+with pd.option_context('display.max_rows', None,
+                    'display.max_columns', None,
+                    'display.precision', 3,
+                    ):
+    print(df)
+```
 
 ### concat
 
