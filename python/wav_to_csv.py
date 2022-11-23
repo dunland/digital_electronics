@@ -4,12 +4,12 @@ import sys, os, os.path
 from scipy.io import wavfile
 import pandas as pd
 
-input_filename = input("Input file number:")
+input_filename = input("Input file path:")
 if input_filename[-3:] != 'wav':
     print('WARNING!! Input File format should be *.wav')
     sys.exit()
 
-samrate, data = wavfile.read(str('./wavfile/' + input_filename))
+samrate, data = wavfile.read(input_filename)
 print('Load is Done! \n')
 
 wavData = pd.DataFrame(data)
