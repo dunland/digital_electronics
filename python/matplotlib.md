@@ -1,7 +1,10 @@
-## Matplotlib
+# Matplotlib
 
-### General
-#### bekannte Fehler:
+## Renderer
+
+https://matplotlib.org/stable/users/explain/backends.html
+
+### bekannte Fehler:
 - `plt.show()` zeigt nichts an:
   - nutze `plt.figure` anstelle von subplots
   - ODER: ändere das Backend!
@@ -14,8 +17,8 @@
 
 - Wenn matplotlib nach Ausführen des Skripts alle Figs schließt, versuche die Zeile `matplotlib.use('Qt5Agg')` erneut auszuführen.
 
-### Plots
-#### simple plot
+## Plots
+### simple plot
 
 ``` python
 import matplotlib
@@ -37,23 +40,24 @@ fig.savefig("test.png")
 plt.show()
 ```
 
-### Plot Design
-#### Position und Größe des Fensters bestimmen
+## Plot Design
+### Position und Größe des Fensters bestimmen
 - using Qt5:  
 `plt.get_current_fig_manager().window.setGeometry(x,y,w,h)  # defines position for figure. (x, y, w, h from upper left screen margin) Only works with QT backend`
 
-#### subplots:
+### subplots:
 `fig.subplots_adjust(left=0.08, right=0.98, bottom=0.05, top=0.9, hspace=0.4, wspace=0.3)`
 
-#### Legende
+### Legende
 - Legende außerhalb von Plot: `plt.legend(loc='best', bbox_to_anchor=(1.45,1))`  
 
-#### Ticks
+### Ticks
 [Übersicht Tick-Formatter:](https://matplotlib.org/3.1.1/gallery/ticks_and_spines/tick-formatters.html)  
 
 ![Übersicht über Tick-Formatter](img/python/mpl/tickFormatters.png)
 ``` python
-# FormatStr formatter
+
+## FormatStr formatter
 ax = fig.add_subplot(n, 1, 4)
 setup(ax)
 ax.xaxis.set_major_locator(ticker.MultipleLocator(1.00))
@@ -62,19 +66,19 @@ ax.xaxis.set_major_formatter(ticker.FormatStrFormatter(">%d<"))
 ax.text(0.0, 0.1, "FormatStrFormatter('>%d<')",
         fontsize=15, transform=ax.transAxes)
 ```
-### boxplot
+## boxplot
 `ax.boxplot(dataArray)`  
 https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.pyplot.boxplot.html  
 https://matplotlib.org/3.1.1/gallery/statistics/boxplot_demo.html  
 https://en.wikipedia.org/wiki/Quartile  
 
-### Animation
+## Animation
 https://brushingupscience.com/2016/06/21/matplotlib-animations-the-easy-way/  
 https://matplotlib.org/3.1.1/api/animation_api.html  
 simple plot animation with draw() instead of plotting repetitively  
 
 ``` python
-# %%
+## %%
 import matplotlib
 matplotlib.use('Qt5Agg')
 import matplotlib.pyplot as plt
@@ -100,10 +104,10 @@ for i in range(100):
     plt.draw()
     plt.pause(0.1)
 
-# add this if you don't want the window to disappear at the end
+## add this if you don't want the window to disappear at the end
 plt.show()
 ```
 
-### Draw between subplots:
+## Draw between subplots:
 https://www.cilyan.org/blog/2016/01/23/matplotlib-draw-between-subplots/
 

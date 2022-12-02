@@ -147,10 +147,23 @@ from https://discourse.ardour.org/t/fedora-34-and-sample-rate/105875/5:
 
 **set global samplerate**: 
 
+2022-09-19, Ubuntu 200.04: https://git.furworks.de/opensourcemirror/pipewire/wiki/Config-JACK
+
+> JACK uses by default the global samplerate of the PipeWire graph, which you can configure as explained here.
+
+> The samplerate can be changed at runtime with:
+
+`pw-metadata -n settings 0 clock.force-rate <samplerate>`
+
+> This will lock the samplerate to <samplerate>. You can change it back to the default dynamic behaviour with:
+
+`pw-metadata -n settings 0 clock.force-rate 0`
+
 [[1]](https://gitlab.freedesktop.org/pipewire/pipewire/-/wikis/Configuration?version_id=25749f548c1e2fddd9e1678d9b7e57ebfcae3cf2#set-
 global-sample-rate) [[2]](https://gitlab.freedesktop.org/pipewire/pipewire/-/wikis/Config-PipeWire)
 
-what I did:  
+what I did:
+
 1. `sudo nano /usr/share/pipewire/pipewire.conf`
 2. set default-samplerate to 44100 and add that to allowed samplerates
 3. temporarily force/use samplerate via `pw-metadata -n settings 0 clock.force-rate 44100` → **jack now @ 44100Hz ✓**
