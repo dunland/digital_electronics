@@ -5,3 +5,4 @@ datasheets/
 python/export/*
 **/export
 **.~lock*
+*.cpp.o
