@@ -9,6 +9,9 @@ list_of_wavs = []
 if not input("This will rename all your .wav-files in {0} - ARE YOU SURE? (y/n)".format(os.getcwd())).__eq__('y'):
     quit()
 
+append_samplerate = input('append samplerate to filename? (y/n)').__eq__('y')
+sr = ''
+
 # find wav files in dir:
 for file in list_of_files:
     if file[-4:].__eq__( ".wav"):
@@ -39,7 +42,24 @@ for wav in list_of_wavs:
             # 4. convert to date format %Y-%m-%d_%H-%M-%S:
             datestring = datetime.datetime.strptime(entry[1], '%Y-%m-%d %H:%M:%S').strftime('%Y-%m-%d_%H-%M-%S')
 
-    # 5. shell: mv "$file" "$date"_"$file"
-    print("renaming {0} to {1}_{0}".format(wav, datestring))
-    subprocess.call(["mv {0} {1}_{0}".format(wav, datestring)], shell=True)
+        if append_samplerate and entry.__contains__('Sampling rate'):
+            entry = entry.split(':', 1)
+            entry[0] = entry[0].strip()  # remove whitespaces at start+end
+            entry[1] = entry[1].strip()
+            print(entry[1][:2])
+            if entry[1][:2] == '48':
+                sr = '48kHz'
+            elif entry[1][:2] == '44':
+                sr = '44.1kHz'
+            elif entry[1][:2] == '96':
+                sr = '96kHz'
 
+    # 5. shell: mv "$file" "$date"_"$file"
+    # append samplerate:
+    if append_samplerate:
+        print("renaming {0} to {1}_{0}_{2}.wav".format(wav[:-4], datestring, sr))
+        subprocess.call(["mv {0} {1}_{0}_{2}.wav".format(wav[:-4], datestring, sr)], shell=True)
+
+    else:
+        print("renaming {0} to {1}_{0}".format(wav, datestring))
+        subprocess.call(["mv {0} {1}_{0}".format(wav, datestring)], shell=True)
