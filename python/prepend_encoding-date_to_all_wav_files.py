@@ -1,3 +1,12 @@
+'''
+This script renames all wav-files in current working direction using the Encoding date of mediainfo shell command.
+Optionally, the samplerate can be appended to the file.
+
+TODO: normalize using sox
+
+author: @dunland
+'''
+
 import os
 import subprocess
 import re
@@ -46,7 +55,6 @@ for wav in list_of_wavs:
             entry = entry.split(':', 1)
             entry[0] = entry[0].strip()  # remove whitespaces at start+end
             entry[1] = entry[1].strip()
-            print(entry[1][:2])
             if entry[1][:2] == '48':
                 sr = '48kHz'
             elif entry[1][:2] == '44':
@@ -60,6 +68,7 @@ for wav in list_of_wavs:
         print("renaming {0} to {1}_{0}_{2}.wav".format(wav[:-4], datestring, sr))
         subprocess.call(["mv {0} {1}_{0}_{2}.wav".format(wav[:-4], datestring, sr)], shell=True)
 
+    # standard output:
     else:
         print("renaming {0} to {1}_{0}".format(wav, datestring))
         subprocess.call(["mv {0} {1}_{0}".format(wav, datestring)], shell=True)
