@@ -15,23 +15,21 @@ import datetime
 list_of_files = os.listdir('.')
 list_of_wavs = []
 
-if not input("This will rename all your .wav-files in {0} - ARE YOU SURE? (y/n)".format(os.getcwd())).__eq__('y'):
-    quit()
-
-append_samplerate = input('append samplerate to filename? (y/n)').__eq__('y')
-sr = ''
-
 # find wav files in dir:
 for file in list_of_files:
     if file[-4:].__eq__( ".wav"):
         print("found", file)
         list_of_wavs.append(file)
 
-print(list_of_wavs)
-
 if len(list_of_wavs) < 1:
     print("no wav files found")
     quit()
+
+if not input("This will rename all found wave files ({0}) in {1}. - ARE YOU SURE? (y/n)".format(len(list_of_wavs), os.getcwd())).__eq__('y'):
+    quit()
+
+append_samplerate = input('append samplerate to filename? (y/n)').__eq__('y')
+sr = ''
 
 mediainfo_dict = {}
 # 1. run a shell command

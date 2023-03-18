@@ -1,5 +1,19 @@
 # Upgrade Ubuntu from 22.04 to 22.04
 
+## hints & infos
+
+2022-12-06: ubuntu 22.04 is using wayland as default window manager. Because of that, there might be errors with screen sharing!
+
+https://askubuntu.com/questions/1407494/screen-share-not-working-in-ubuntu-22-04-in-all-platforms-zoom-teams-google-m
+
+**chaning the display manager**:
+
+``` bash
+echo $XDG_SESSION_TYPE  # wayland
+sudo nano /etc/gdm3/custom.conf
+```
+→ uncomment this line: `WaylandEnable=false`
+
 ## W530
 
 `sudo apt-get update` throws _403 Errors_.

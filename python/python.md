@@ -1,4 +1,3 @@
-
 # Python
 
 ## Tutorials
@@ -191,11 +190,15 @@ besser als run line ist dann run cell mit Ctrl+Alt+Enter
     - `pip install geos`
     - `pip install glibc`
     - gdal von Gohlke  
+
     -> restart Atom.. Fehler bleibt.
 
-## Packages Compendium
-### Data Handling  
-#### **Pandas**
+---
+
+# Packages Compendium
+## Data Handling  
+
+### **Pandas**
  [10 Minutes to Pandas](http://pandas.pydata.org/pandas-docs/stable/getting_started/10min.html)  
 Getting: Selecting a single column, which yields a Series, equivalent to df.A:
 ``` python
@@ -211,18 +214,61 @@ Freq: D, Name: A, dtype: float64
 ```
 
 
-### Python for Energy Systems
-#### **PyPSA**
+## Python for Energy Systems
+### **PyPSA**
 Python for Power System Analysis  
 [PyPSA on github](https://github.com/PyPSA/PyPSA)
 
 
-### Geospatial Python  
-#### **Contextily**  
+## Geospatial Python  
+### **Contextily**  
 R/W tile maps from the internet into raster files  
 [contextily on github](https://github.com/darribas/contextily)  
 
-#### **Shapely**  
+### **Shapely**  
 for manipulation and analysis of planar geometric objects 	 
 
 ---
+
+
+# python audio
+
+## klang
+
+### installation
+
+`pip3 install klang` or `python3 setup.py build_ext --inplace` result in 
+
+> PortAudio seems not to be installed!
+
+``` bash
+sudo apt-get install libasound-dev portaudio19-dev libportaudio2 libportaudiocpp0
+pip3 install klang
+```
+✓
+
+## aubio
+
+## [libpd](https://github.com/libpd/libpd)
+
+### installation:
+
+``` bash
+cd ./python
+make
+```
+
+> dunland@P14s:~/github/libpd-0.12.3/python$ make
+> python setup.py build
+> /home/dunland/github/libpd-0.12.3/python/setup.py:3: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+>  from distutils.core import setup, Extension
+> running build
+> running build_py
+> file pylibpd.py (for module pylibpd) not found
+> file pylibpd.py (for module pylibpd) not found
+> running build_ext
+> building '_pylibpd' extension
+> swigging pylibpd.i to pylibpd_wrap.c
+> swig -python -o pylibpd_wrap.c pylibpd.i
+> error: command 'swig' failed: No such file or directory
+> make: *** [Makefile:26: build] Error 1

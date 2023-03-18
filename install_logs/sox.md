@@ -9,6 +9,17 @@
 
 `sox input.wav output.wav channels 1`
 
-### convert flac to mp3 using sox (batch command)
+## split stereo to mono files
+
+```
+sox input.wav -c 1 output_left.wav remix 1
+sox input.wav -c 1 output_right.wav remix 2
+```
+
+## convert flac to mp3 using sox (batch command)
 
 `for i in *.flac ; do sox "$i" -C 320 $(echo $i.mp3) ; done`
+
+## change samplerate
+
+`sox input.wav -r SAMPLERATE output.wav`

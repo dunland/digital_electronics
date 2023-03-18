@@ -75,6 +75,18 @@ sudo modprobe uvcvideo
 moving folders: `mv from/path to/path`  
 rename a folder: `mv /home/user/oldname /home/user/newname`  
 
+### copy using rsync
+
+`rsync -vrpXtUN /from/path /to/path` copy using
+
+- increased verbosity (-v)
+- recursing into directories (-r)
+- preserving permissions (-p)
+- preserving extended attributes (-X)
+- preserving modification times (-t)
+- preserving acces (use) times (-U)
+- preserving create times (-N)
+
 ### splitting and concatenating files
 
 split: `split --bytes=1M /path/to/image/image.jpg /path/to/image/prefixForNewImagePieces`  
