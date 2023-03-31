@@ -20,6 +20,9 @@ https://help.github.com/en/github/authenticating-to-github/connecting-to-github-
 
 https://help.github.com/en/articles/connecting-to-github-with-ssh
 
+
+**[never be asked for password again!](https://stackoverflow.com/questions/21095054/ssh-key-still-asking-for-password-and-passphrase)**
+
 1. check for existing SSH key:
 `ls -al ~/.ssh` --> contains `id_rsa, id_rsa.pub, ...`?
 
@@ -27,7 +30,7 @@ https://help.github.com/en/articles/connecting-to-github-with-ssh
 ``` bash
 $ eval "$(ssh-agent -s)"
 > Agent pid 59566
-$ ssh-add ~/.ssh/id_rsa
+$ ssh-add ~/.ssh/id_[rsa]
 ```
 
 bzw `ssh-add /.ssh/id_ed25519`, wenn der generierte Key ein anderer ist

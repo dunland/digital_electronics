@@ -1,0 +1,3 @@
+[submodule "python/faceAlign3"]
+	path = python/faceAlign3
+	url = git@github.com:1adrianb/face-alignment.git
