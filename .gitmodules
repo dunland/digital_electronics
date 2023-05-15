@@ -1,6 +1,9 @@
 [submodule "python/faceAlign3"]
 	path = python/faceAlign3
 	url = git@github.com:1adrianb/face-alignment.git
-[submodule "Projects/2023-04_teensyUSBSamplePlayer/teensyUSBSamplePlayer/lib/USBHost_t36"]
-	path = Projects/2023-04_teensyUSBSamplePlayer/teensyUSBSamplePlayer/lib/USBHost_t36
+[submodule "Projects/versuch1_usbHost/2023-04_teensyUSBSamplePlayer/teensyUSBSamplePlayer/lib/USBHost_t36"]
+	path = Projects/versuch1_usbHost/2023-04_teensyUSBSamplePlayer/teensyUSBSamplePlayer/lib/USBHost_t36
 	url = git@github.com:PaulStoffregen/USBHost_t36.git
+[submodule "Pd_sketches/ps3-midi"]
+	path = Pd_sketches/ps3-midi
+	url = https://github.com/sparkletop/ps3-midi

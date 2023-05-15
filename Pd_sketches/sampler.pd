@@ -1,4 +1,4 @@
-#N canvas 1041 244 655 518 12;
+#N canvas 1280 253 655 518 12;
 #X obj 280 20 table sampler 144000;
 #X obj 70 130 adc~;
 #X obj 31 200 tabwrite~ sampler;
@@ -30,6 +30,7 @@
 #X obj 410 416 spigot~;
 #X obj 238 62 s recording_\$0;
 #X obj 540 410 r recording_\$0;
+#X obj 500 10 import mrpeach;
 #X connect 1 0 2 0;
 #X connect 1 1 2 0;
 #X connect 3 0 4 0;
@@ -42,7 +43,6 @@
 #X connect 7 0 3 0;
 #X connect 7 0 26 0;
 #X connect 8 0 2 0;
-#X connect 9 0 25 0;
 #X connect 11 0 14 0;
 #X connect 12 0 13 0;
 #X connect 12 0 22 0;

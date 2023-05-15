@@ -12,30 +12,35 @@ import subprocess
 import re
 import datetime
 
-list_of_files = os.listdir('.')
-list_of_wavs = []
+files_in_dir = os.listdir('.')
+files_found = []
 
-# find wav files in dir:
-for file in list_of_files:
-    if file[-4:].__eq__( ".wav"):
+ending = "."+input("choose file type, e.g. 'wav': ")
+print("searching for files ending with {0}:".format(ending))
+
+# find files in dir:
+for file in files_in_dir:
+    if file[-4:].__eq__(ending):
         print("found", file)
-        list_of_wavs.append(file)
+        files_found.append(file)
 
-if len(list_of_wavs) < 1:
-    print("no wav files found")
+if len(files_found) < 1:
+    print("no {0} files found".format(ending))
     quit()
 
-if not input("This will rename all found wave files ({0}) in {1}. - ARE YOU SURE? (y/n)".format(len(list_of_wavs), os.getcwd())).__eq__('y'):
+if not input("This will rename all found files ({0}) in {1}. - ARE YOU SURE? (y/n)".format(len(files_found), os.getcwd())).__eq__('y'):
     quit()
 
-append_samplerate = input('append samplerate to filename? (y/n)').__eq__('y')
+append_samplerate = False
 sr = ''
+if ending[:-4].__eq__(".wav"):
+    append_samplerate = input('append samplerate to filename? (y/n)').__eq__('y')
 
 mediainfo_dict = {}
 # 1. run a shell command
-for wav in list_of_wavs:
+for file in files_found:
     # 2. run mediainfo "$file"
-    mediainfo = str(subprocess.check_output(["mediainfo " + wav], shell=True))
+    mediainfo = str(subprocess.check_output(["mediainfo " + file], shell=True))
     mediainfo = re.sub(' +', ' ', mediainfo)  # remove surplus spaces
     mediainfo = mediainfo.split("\\n")
     # print(mediainfo)
@@ -44,7 +49,9 @@ for wav in list_of_wavs:
         if entry.__contains__('Encoded date '):
             entry = entry.split(':', 1)
             entry[0] = entry[0].strip()  # remove whitespaces at start+end
-            entry[1] = entry[1].strip()
+            entry[1] = entry[1].strip()  # remove whitespaces at start+end
+            entry[1] = entry[1].split("UTC")[1]
+            entry[1] = entry[1].strip()  # remove whitespaces at start+end
 
             # 4. convert to date format %Y-%m-%d_%H-%M-%S:
             datestring = datetime.datetime.strptime(entry[1], '%Y-%m-%d %H:%M:%S').strftime('%Y-%m-%d_%H-%M-%S')
@@ -63,10 +70,10 @@ for wav in list_of_wavs:
     # 5. shell: mv "$file" "$date"_"$file"
     # append samplerate:
     if append_samplerate:
-        print("renaming {0} to {1}_{0}_{2}.wav".format(wav[:-4], datestring, sr))
-        subprocess.call(["mv {0} {1}_{0}_{2}.wav".format(wav[:-4], datestring, sr)], shell=True)
+        print("renaming {0}{3} to {1}_{0}_{2}{3}".format(file[:-4], datestring, sr, ending))
+        subprocess.call(["mv {0}{3} {1}_{0}_{2}{3}".format(file[:-4], datestring, sr, ending)], shell=True)
 
     # standard output:
     else:
-        print("renaming {0} to {1}_{0}".format(wav, datestring))
-        subprocess.call(["mv {0} {1}_{0}".format(wav, datestring)], shell=True)
+        print("renaming {0} to {1}_{0}".format(file, datestring))
+        subprocess.call(["mv {0} {1}_{0}".format(file, datestring)], shell=True)
