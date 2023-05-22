@@ -23,7 +23,7 @@ Keypad keypad = Keypad(makeKeymap(keys), pin_rows, pin_column, ROW_NUM, COLUMN_N
 
 // -------------------------------- SD --------------------------------
 
-std::vector<char*> file_list;
+std::vector<String> file_list;
 
 // --------------------------- AUDIO SHIELD ---------------------------
 
@@ -97,17 +97,12 @@ void setup()
 
   SD_info();
   
-  readSD();
+  readSD(file_list);
 
-  for (int i = 0; i < sizeof(file_list); i++)
+  for (auto &string : file_list)
   {
-    Serial.print(i);
-    Serial.print(": ");
-    Serial.println(file_list.at(i));
+    Serial.println(string);
   }
-
-  Serial.print("size of list: ");
-  Serial.println(sizeof(file_list));
 
   if (!(SD.begin(BUILTIN_SDCARD)))
   {

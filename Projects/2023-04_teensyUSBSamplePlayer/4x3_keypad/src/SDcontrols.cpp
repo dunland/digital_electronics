@@ -159,7 +159,7 @@ void SD_save_file_list(std::vector<char *> file_list)
 
 File root_;
 
-void readSD()
+void readSD(std::vector<String> file_list)
 {
 
   Serial.print("Initializing SD card...");
@@ -173,11 +173,57 @@ void readSD()
 
   root_ = SD.open("/");
 
-  printDirectory(root_, 0);
+  printDirectory(root_, 0, file_list);
 
   Serial.println("done!");
 }
 
+void printDirectory(File dir, int numTabs, std::vector<String> file_list)
+{
+  while (true)
+  {
+
+    Serial.print("starting level");
+    Serial.println(numTabs);
+    File entry = dir.openNextFile();
+    if (!entry)
+    {
+      // no more files
+      Serial.println("**no more files!**");
+      break;
+    }
+    for (uint8_t i = 0; i < numTabs; i++)
+    {
+      Serial.print('\t');
+    }
+    Serial.print(entry.name());
+
+    if (entry.isDirectory())
+    {
+      Serial.println("/");
+      printDirectory(entry, numTabs + 1);
+    }
+    else
+    {
+      if (String(entry.name()).endsWith("wav") || String(entry.name()).endsWith("WAV"))
+      {
+        Serial.print("\t");
+        Serial.println("is wav file!");
+        file_list.push_back((String)entry.name());
+        Serial.print(sizeof(file_list));
+      }
+
+      // files have sizes, directories do not
+      Serial.print("\t\t");
+      Serial.println(entry.size(), DEC);
+    }
+    entry.close();
+  }
+  Serial.print("reached end of level ");
+  Serial.println(numTabs);
+}
+
+// overloaded function without file_list:
 void printDirectory(File dir, int numTabs)
 {
   while (true)
@@ -187,7 +233,7 @@ void printDirectory(File dir, int numTabs)
     if (!entry)
     {
       // no more files
-      //Serial.println("**nomorefiles**");
+      Serial.println("**no more files!**");
       break;
     }
     for (uint8_t i = 0; i < numTabs; i++)
@@ -195,21 +241,21 @@ void printDirectory(File dir, int numTabs)
       Serial.print('\t');
     }
     Serial.print(entry.name());
-    Serial.print("\t\t");
-    Serial.println(String(entry.name()).endsWith("wav") || String(entry.name()).endsWith("WAV"));
-
 
     if (entry.isDirectory())
     {
       Serial.println("/");
       printDirectory(entry, numTabs + 1);
+      // entry = dir.openNextFile();
     }
     else
     {
       // files have sizes, directories do not
       Serial.print("\t\t");
-      Serial.print(entry.size(), DEC);
+      Serial.println(entry.size(), DEC);
     }
     entry.close();
   }
+  Serial.print("reached end of level ");
+  Serial.println(numTabs);
 }
