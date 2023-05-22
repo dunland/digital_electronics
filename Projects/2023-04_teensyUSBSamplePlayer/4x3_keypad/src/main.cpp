@@ -1,6 +1,7 @@
 #include <Arduino.h>
 #include <Audio.h>
 #include <Keypad.h>
+#include <vector>
 
 #include "SDcontrols.h"
 
@@ -20,7 +21,12 @@ byte pin_column[COLUMN_NUM] = {27, 25, 29}; //connect to the column pinouts of t
 
 Keypad keypad = Keypad(makeKeymap(keys), pin_rows, pin_column, ROW_NUM, COLUMN_NUM);
 
+// -------------------------------- SD --------------------------------
+
+std::vector<char*> file_list;
+
 // --------------------------- AUDIO SHIELD ---------------------------
+
 
 AudioPlaySdWav playWav;
 // Use one of these 3 output types: Digital I2S, Digital S/PDIF, or Analog DAC
@@ -90,6 +96,18 @@ void setup()
   sgtl5000_1.volume(0.5);
 
   SD_info();
+  
+  readSD();
+
+  for (int i = 0; i < sizeof(file_list); i++)
+  {
+    Serial.print(i);
+    Serial.print(": ");
+    Serial.println(file_list.at(i));
+  }
+
+  Serial.print("size of list: ");
+  Serial.println(sizeof(file_list));
 
   if (!(SD.begin(BUILTIN_SDCARD)))
   {
