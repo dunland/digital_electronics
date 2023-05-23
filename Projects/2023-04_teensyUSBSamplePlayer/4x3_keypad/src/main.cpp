@@ -132,59 +132,29 @@ void playFile(char fileNumChar)
   // The audio library will play each sound through the mixers
   // so any combination can play simultaneously.
   //
+  String nameString;
 
-  // if (!fileNum == -6 || !fileNum == -13)
-  //   playWav.play(Globals::dynamicFileList.at(fileNum));
+  if (fileNum == -6) // corresponds to *
+    fileNum = 10;
+  else if (fileNum == -13) // corresponds to #
+    fileNum = 11;
 
-  switch (fileNum)
+  // escape if file list too small:
+  if (fileNum > Globals::dynamicFileList.size() - 1)
   {
-  case 0:
-    playWav.play("FILE0.WAV");
-    break;
-  case 1:
-    playWav.play("FILE1.WAV");
-    break;
-  case 2:
-    playWav.play("FILE2.WAV");
-    break;
-  case 3:
-    playWav.play("FILE3.WAV");
-    break;
-  case 4:
-    playWav.play("FILE4.WAV");
-    break;
-  case 5:
-    playWav.play("FILE5.WAV");
-    break;
-  case 6:
-    playWav.play("FILE6.WAV");
-    break;
-  case 7:
-    playWav.play("FILE7.WAV");
-    break;
-  case 8:
-    playWav.play("FILE8.WAV");
-    break;
-  case 9:
-    playWav.play("FILE9.WAV");
-    break;
-  case -6: // corresponds to *
-    playWav.play("FILE10.WAV");
-    break;
-  case -13: // corresponds to #
-    playWav.play("FILE11.WAV");
-    break;
-
-  default:
-    Serial.print("not assigned: ");
+    Serial.print("no file mapped to key ");
     Serial.println(fileNum);
-    break;
+    return;
   }
+
+  nameString = Globals::dynamicFileList.at(fileNum);
+  playWav.play(nameString.c_str());
+
+  Serial.print("playing file ");
+  Serial.println(nameString);
 
   // A brief delay for the library read WAV info
   delay(5);
-
-  Serial.println(playWav.isPlaying());
 
   // Simply wait for the file to finish playing.
   // while (playWav.isPlaying()) {
