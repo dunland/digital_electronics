@@ -4,11 +4,11 @@
 #include <vector>
 
 #include "SDcontrols.h"
-
+#include "Globals.h"
 // ------------------------------ KEYPAD ------------------------------
 
-const int ROW_NUM = 4;    //four rows
-const int COLUMN_NUM = 3; //three columns
+const int ROW_NUM = 4;    // four rows
+const int COLUMN_NUM = 3; // three columns
 
 char keys[ROW_NUM][COLUMN_NUM] = {
     {'1', '2', '3'},
@@ -16,25 +16,22 @@ char keys[ROW_NUM][COLUMN_NUM] = {
     {'7', '8', '9'},
     {'*', '0', '#'}};
 
-byte pin_rows[ROW_NUM] = {26, 31, 30, 28};  //connect to the row pinouts of the keypad
-byte pin_column[COLUMN_NUM] = {27, 25, 29}; //connect to the column pinouts of the keypad
+byte pin_rows[ROW_NUM] = {26, 31, 30, 28};  // connect to the row pinouts of the keypad
+byte pin_column[COLUMN_NUM] = {27, 25, 29}; // connect to the column pinouts of the keypad
 
 Keypad keypad = Keypad(makeKeymap(keys), pin_rows, pin_column, ROW_NUM, COLUMN_NUM);
 
 // -------------------------------- SD --------------------------------
 
-std::vector<String> file_list;
-
 // --------------------------- AUDIO SHIELD ---------------------------
-
 
 AudioPlaySdWav playWav;
 // Use one of these 3 output types: Digital I2S, Digital S/PDIF, or Analog DAC
 AudioOutputI2S audioOutput;
 // AudioOutputAnalog dac; // play to both I2S audio board and on-chip DAC
 
-//AudioOutputSPDIF       audioOutput;
-//AudioOutputAnalog      audioOutput;
+// AudioOutputSPDIF       audioOutput;
+// AudioOutputAnalog      audioOutput;
 AudioControlSGTL5000 sgtl5000_1;
 
 AudioConnection patchCord1(playWav, 0, audioOutput, 0);
@@ -86,7 +83,6 @@ void setup()
     ; // wait for serial port to connect.
   }
 
-
   // Audio connections require memory to work.  For more
   // detailed information, see the MemoryAndCpuUsage example
   AudioMemory(8);
@@ -96,28 +92,28 @@ void setup()
   sgtl5000_1.volume(0.5);
 
   SD_info();
-  
-  readSD(file_list);
 
-  for (auto &string : file_list)
+  readSD();
+
+  for (uint8_t i = 0; i < Globals::dynamicFileList.size(); i++)
   {
-    Serial.println(string);
+    Serial.println(Globals::dynamicFileList.at(i));
   }
 
-  if (!(SD.begin(BUILTIN_SDCARD)))
-  {
-    // stop here, but print a message repetitively
-    while (1)
-    {
-      Serial.println("Unable to access the SD card");
-      delay(500);
-    }
-  }
+  // if (!(SD.begin(BUILTIN_SDCARD)))
+  // {
+  //   // stop here, but print a message repetitively
+  //   while (1)
+  //   {
+  //     Serial.println("Unable to access the SD card");
+  //     delay(500);
+  //   }
+  // }
 
   // by default the Teensy 3.1 DAC uses 3.3Vp-p output
   // if your 3.3V power has noise, switching to the
   // internal 1.2V reference can give you a clean signal
-  //dac.analogReference(INTERNAL);
+  // dac.analogReference(INTERNAL);
 
   // reduce the gain on mixer channels, so more than 1
   // sound can play simultaneously without clipping
@@ -136,6 +132,10 @@ void playFile(char fileNumChar)
   // The audio library will play each sound through the mixers
   // so any combination can play simultaneously.
   //
+
+  // if (!fileNum == -6 || !fileNum == -13)
+  //   playWav.play(Globals::dynamicFileList.at(fileNum));
+
   switch (fileNum)
   {
   case 0:
@@ -190,8 +190,8 @@ void playFile(char fileNumChar)
   // while (playWav.isPlaying()) {
   // uncomment these lines if you audio shield
   // has the optional volume pot soldered
-  //float vol = analogRead(15);
-  //vol = vol / 1024;
+  // float vol = analogRead(15);
+  // vol = vol / 1024;
   // sgtl5000_1.volume(vol);
   // }
 }

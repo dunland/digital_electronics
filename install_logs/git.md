@@ -47,6 +47,10 @@ $ git remote -v
 $ git remote set-url origin git@github.com:USERNAME/REPOSITORY.git
 ```
 
+### permanently add ssh-key in kde:
+
+https://www.techrepublic.com/article/use-kde-plasmas-konsole-ssh-plugin/
+
 ## Repositories
 
 ### add, commit, push

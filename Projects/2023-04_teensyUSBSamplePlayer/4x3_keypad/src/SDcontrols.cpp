@@ -7,6 +7,8 @@
 #include <SDcontrols.h>
 #include <iostream>
 
+#include "Globals.h"
+
 // ---------------------------- SD CARD ------------------------------
 
 // Use these with the Teensy Audio Shield
@@ -104,7 +106,7 @@ void SD_info()
   root.ls(LS_R | LS_DATE | LS_SIZE);
 }
 
-void SD_save_file_list(std::vector<char *> file_list)
+void SD_save_file_list()
 {
 
   const int listItemsTotal = 12;
@@ -151,7 +153,7 @@ void SD_save_file_list(std::vector<char *> file_list)
   for (int i = 0; i < listLength; i++)
   {
     Serial.println(listItems[i]);
-    // file_list.push_back(listItems[i]);
+    // Globals::dynamicFileList.push_back(listItems[i]);
   }
 }
 
@@ -159,7 +161,7 @@ void SD_save_file_list(std::vector<char *> file_list)
 
 File root_;
 
-void readSD(std::vector<String> file_list)
+void readSD()
 {
 
   Serial.print("Initializing SD card...");
@@ -173,12 +175,12 @@ void readSD(std::vector<String> file_list)
 
   root_ = SD.open("/");
 
-  printDirectory(root_, 0, file_list);
+  printDirectory(root_, 0);
 
   Serial.println("done!");
 }
 
-void printDirectory(File dir, int numTabs, std::vector<String> file_list)
+void printDirectory(File dir, int numTabs)
 {
   while (true)
   {
@@ -209,47 +211,11 @@ void printDirectory(File dir, int numTabs, std::vector<String> file_list)
       {
         Serial.print("\t");
         Serial.println("is wav file!");
-        file_list.push_back((String)entry.name());
-        Serial.print(sizeof(file_list));
+        Globals::dynamicFileList.push_back((String)entry.name());
+        Serial.print("num of elements in list: ");
+        Serial.println(Globals::dynamicFileList.size());
       }
 
-      // files have sizes, directories do not
-      Serial.print("\t\t");
-      Serial.println(entry.size(), DEC);
-    }
-    entry.close();
-  }
-  Serial.print("reached end of level ");
-  Serial.println(numTabs);
-}
-
-// overloaded function without file_list:
-void printDirectory(File dir, int numTabs)
-{
-  while (true)
-  {
-
-    File entry = dir.openNextFile();
-    if (!entry)
-    {
-      // no more files
-      Serial.println("**no more files!**");
-      break;
-    }
-    for (uint8_t i = 0; i < numTabs; i++)
-    {
-      Serial.print('\t');
-    }
-    Serial.print(entry.name());
-
-    if (entry.isDirectory())
-    {
-      Serial.println("/");
-      printDirectory(entry, numTabs + 1);
-      // entry = dir.openNextFile();
-    }
-    else
-    {
       // files have sizes, directories do not
       Serial.print("\t\t");
       Serial.println(entry.size(), DEC);
