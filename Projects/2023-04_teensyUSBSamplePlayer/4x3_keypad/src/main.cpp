@@ -176,4 +176,15 @@ void loop()
     Serial.println(key);
     playFile(key);
   }
+
+  // LED on if wav is playing:
+  if (playWav.isPlaying())
+  {
+    if (digitalRead(LED_BUILTIN) == LOW)
+      digitalWrite(LED_BUILTIN, HIGH);
+  }
+  else{ // LED off:
+    if (digitalRead(LED_BUILTIN) == HIGH)
+      digitalWrite(LED_BUILTIN, LOW);
+  } 
 }

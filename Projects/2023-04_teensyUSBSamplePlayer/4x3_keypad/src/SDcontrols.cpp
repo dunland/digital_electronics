@@ -106,59 +106,6 @@ void SD_info()
   root.ls(LS_R | LS_DATE | LS_SIZE);
 }
 
-void SD_save_file_list()
-{
-
-  const int listItemsTotal = 12;
-  const int listItemMaxChar = 12;
-  char *listItems[listItemsTotal];
-  char tempString[listItemMaxChar]; //temporary string of the max number of characters per file name
-  byte listLength = 0;
-
-  Sd2Card sd;
-  File dir;
-  File file;
-
-  Serial.println("\n\nSortSDfiles algorithm:");
-  if (!(SD.begin(BUILTIN_SDCARD)))
-  {
-    while (1)
-    {
-      Serial.println("Unable to access the SD card");
-      delay(500);
-    }
-  }
-
-  File root = SD.open("/");
-  while (true)
-  {
-    File entry = root.openNextFile();
-    if (!entry)
-    {
-      break;
-    } // no more files
-    else
-    {
-      Serial.println((String)entry);
-      //      listItems[listLength][0] = entry.name(); //add file name to list array
-      //      listItems[listLength] = (char[128]) malloc(128);
-      sprintf(tempString, "%s", entry.name());                 //save file name to temporary string with null terminator at the end
-      listItems[listLength] = (char *)malloc(listItemMaxChar); //assign enough memory for 100 chars to current list item pointer
-      sprintf(listItems[listLength], "%s", tempString);
-      listLength++; //increment counter of files
-      entry.close();
-    }
-  }
-  /* print pointers array */
-  for (int i = 0; i < listLength; i++)
-  {
-    Serial.println(listItems[i]);
-    // Globals::dynamicFileList.push_back(listItems[i]);
-  }
-}
-
-/* ---------------------------- method 3 --------------------------- */
-
 File root_;
 
 void readSD()
