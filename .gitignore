@@ -6,3 +6,4 @@ python/export/*
 **/export
 **.~lock*
 *.cpp.o
+python/python-aubio-librosa/

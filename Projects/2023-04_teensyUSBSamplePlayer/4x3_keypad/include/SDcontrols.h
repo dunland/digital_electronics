@@ -1,6 +1,6 @@
 #pragma once
 
-void SD_info();
+int SD_info();
 
 void readSD();
 

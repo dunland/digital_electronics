@@ -32,7 +32,7 @@ SdFile root;
 // Teensy++ 2.0: pin 20
 const int chipSelect = BUILTIN_SDCARD;
 
-void SD_info()
+int SD_info()
 {
   //UNCOMMENT THESE TWO LINES FOR TEENSY AUDIO BOARD:
   //SPI.setMOSI(7);  // Audio shield has MOSI on pin 7
@@ -48,7 +48,7 @@ void SD_info()
     Serial.println("* is a card inserted?");
     Serial.println("* is your wiring correct?");
     Serial.println("* did you change the chipSelect pin to match your shield or module?");
-    return;
+    return 0;
   }
   else
   {
@@ -104,6 +104,8 @@ void SD_info()
 
   // list all files in the card with date and size
   root.ls(LS_R | LS_DATE | LS_SIZE);
+
+  return 1;
 }
 
 File root_;

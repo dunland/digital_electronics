@@ -35,3 +35,5 @@ On the Audio Shield it expects:
     Pin 23 on the audio shield (LRCLK), Pin 20 on the Teensy 4.0 (I2S LRCLK)
     3.3v, ground pins on the right side (maybe VIN as well)
 ```
+
+** If you are doing your own wiring, and you have an A or B revision audio shield, you will need to wire a 100 ohm resistor in series for the MCLK signal.**

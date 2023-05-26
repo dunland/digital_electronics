@@ -91,7 +91,15 @@ void setup()
   sgtl5000_1.enable();
   sgtl5000_1.volume(0.5);
 
-  SD_info();
+  if (!SD_info())
+  {
+    while (1)
+    {
+      Serial.println("Unable to access the SD card");
+      delay(500);
+      LED_blink(LED_SDerror);
+    }
+  }
 
   readSD();
 
@@ -99,16 +107,6 @@ void setup()
   {
     Serial.println(Globals::dynamicFileList.at(i));
   }
-
-  // if (!(SD.begin(BUILTIN_SDCARD)))
-  // {
-  //   // stop here, but print a message repetitively
-  //   while (1)
-  //   {
-  //     Serial.println("Unable to access the SD card");
-  //     delay(500);
-  //   }
-  // }
 
   // by default the Teensy 3.1 DAC uses 3.3Vp-p output
   // if your 3.3V power has noise, switching to the
@@ -177,14 +175,8 @@ void loop()
     playFile(key);
   }
 
-  // LED on if wav is playing:
   if (playWav.isPlaying())
-  {
-    if (digitalRead(LED_BUILTIN) == LOW)
-      digitalWrite(LED_BUILTIN, HIGH);
-  }
-  else{ // LED off:
-    if (digitalRead(LED_BUILTIN) == HIGH)
-      digitalWrite(LED_BUILTIN, LOW);
-  } 
+    LED_blink(LED_playingFile);
+  else
+    LED_blink(LED_running);
 }
