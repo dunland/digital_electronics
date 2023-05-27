@@ -78,9 +78,13 @@ void setup()
 
   // Open serial communications and wait for port to open:
   Serial.begin(9600);
+
+  // wait for serial port to connect.
   while (!Serial)
   {
-    ; // wait for serial port to connect.
+    static unsigned long wait_for_serial = millis();
+    if (millis() > wait_for_serial + 5000)
+      break;
   }
 
   // Audio connections require memory to work.  For more

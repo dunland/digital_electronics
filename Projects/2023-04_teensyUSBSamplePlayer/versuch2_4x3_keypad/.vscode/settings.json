@@ -27,5 +27,6 @@
         "functional": "cpp",
         "istream": "cpp",
         "tuple": "cpp"
-    }
+    },
+    "cmake.configureOnOpen": true
 }
