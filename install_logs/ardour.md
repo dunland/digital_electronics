@@ -4,6 +4,25 @@ Ubuntu Software Center → Ardour
 
 ## Problems
 
+### Ardour und Onyx1640i
+
+Firewire-Gerät scheint abzuschmieren, wenn es zu "underruns" oder xruns kommt.
+
+Funktionierende Einstellungen bei Jack:
+
+```
+Sample Rate: 44100
+Frames/Period: (default)
+Periods/Buffer: 2
+```
+
+Hilfreiche Werkzeuge:
+
+- `dmesg`
+- `tail -f /var/log/syslog | grep firewire`
+- `arecord -l` to show devices ready for record
+
+
 ### unknown source id error
 
 ```
