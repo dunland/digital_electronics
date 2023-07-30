@@ -52,7 +52,10 @@ if ending == (".wav"):
                 entry = entry.split(':', 1)
                 entry[0] = entry[0].strip()  # remove whitespaces at start+end
                 entry[1] = entry[1].strip()  # remove whitespaces at start+end
-                entry[1] = entry[1].split("UTC")[1]
+                try:
+                    entry[1] = entry[1].split("UTC")[1]
+                except:
+                    pass
                 entry[1] = entry[1].strip()  # remove whitespaces at start+end
 
                 # 4. convert to date format %Y-%m-%d_%H-%M-%S:
