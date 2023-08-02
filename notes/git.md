@@ -18,8 +18,7 @@ git config --global user.name "Your Name"
 ### adding SSH-key to account:
 https://help.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh
 
-https://help.github.com/en/articles/connecting-to-github-with-ssh
-
+https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account
 
 **[never be asked for password again!](https://stackoverflow.com/questions/21095054/ssh-key-still-asking-for-password-and-passphrase)**
 
