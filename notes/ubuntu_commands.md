@@ -21,10 +21,11 @@ x86_64
               exit.  If no devices are given, those mentioned in  /proc/parti‐
               tions (if that file exists) are used.
 
-
+-------------------------------------------------------------------------------
 
 ## Hardware
 
+`lspci` - list all PCI devices
 `lsusb` shows list of connected USB devices
 `cat /proc/asound/cards` displays active sound cards
 
@@ -68,7 +69,10 @@ sudo rmmod uvcvideo
 sudo modprobe uvcvideo
 ```
 
+-------------------------------------------------------------------------------
+
 ## files and folders
+see [[linux-filesystem-hierarchy-standard-2.3.pdf]] for an overview on the linux system
 
 ### move, rename, copy, delete
 
@@ -159,12 +163,36 @@ mit
 –dPDFSETTINGS=/default (almost identical to /screen)  
 ```
 
+## network
 
+- `ss -natu` where The n option means don't translate addresses to names. The a options means show all (listening and non-listening) connections. The t option means TCP connections. The 'u' option means show UDP connections.
+- `netstat -apv`
+
+    ```
+        l – show only listening sockets
+        t – show TCP connections
+        n – show addresses in a numerical form
+        u – show UDP connections
+        p – show process id/program name
+    ```
+
+- `nmcli` (-c) shows network connections
+
+#### ip sharing does not work
+
+`iptables -S` hat gezeigt: `FORWARD DROP`.. nach **Deinstallation von Docker** hat alles wieder funktioniert!
 
 ## processes
 
 `ps aux | grep XXXX` shows active processes containing string XXXX in their title
 
+`Ctrl+Z` stops a process → `bg` will continue running it (i.e. first from `jobs` list) in background
+
+## sources
+
+> add apt repo ist nur Schnickschnack was die /etc/apt/sources bearbeitet und die Schlüssel runterlädt wenn noch fehlen
+> gabs früher nicht
+> einfach die config zeile (siehe internet) in die sources eintragen
 
 ## terminal
 

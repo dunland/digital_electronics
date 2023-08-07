@@ -12,6 +12,13 @@ killall compiz
 compiz
 ``` 
 
+## gnome
+
+restart gnome:
+
+1. `Alt+F2`
+2. `r`
+
 ## jhead
 
 Rename files matched by *.jpg in the format YYYYMMDD-HHMMSS:
@@ -52,6 +59,8 @@ render markdown files correctly
 
 screen to gif or mp4 recorder
 
+## [[pipewire]]
+
 ## pulseaudio
 
 **stopping pulseaudio:**
@@ -84,6 +93,11 @@ Download: 50.67 Mbit/s
 Testing upload speed......................................................................................................
 Upload: 5.65 Mbit/s
 ```
+
+## video
+
+- kdenlive
+- losslesscut (snap)
 
 ## xmonad
 

@@ -12,6 +12,10 @@
 
 ## video tweaking
 
+### cut
+
+`ffmpeg -ss 00:08 -i input_file.mp4 -t 00:06:00 -t
+
 ### extract audio from video:
 ```
 sudo apt install ffmpeg
