@@ -1,5 +1,6 @@
 datasheets/
 *.wav
+*.WAV
 *.mp4
 *.mp3
 python/export/*
