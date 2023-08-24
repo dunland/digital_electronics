@@ -4,6 +4,41 @@
 
 folders+files allocation GUI
 
+## CUPS
+
+### change Port
+
+If CUPS (Common Unix Printing System) is using port 8000 on your localhost in Ubuntu and you want to change this port, you can follow these steps:
+
+1. **Stop CUPS Service**: Before making any changes, stop the CUPS service to ensure that there are no active connections to the current port. Open a terminal and use the following command: 
+- `sudo systemctl stop cups`
+
+- **Edit Configuration File**: The CUPS configuration file can be found at `/etc/cups/cupsd.conf`. You will need administrative privileges to edit this file. Open the configuration file using a text editor like `nano` or `vim`:
+- `sudo nano /etc/cups/cupsd.conf` 
+
+- **Find and Update Port**: In the configuration file, search for the line that specifies the port CUPS is using. This line typically looks like:
+
+`Listen localhost:8000`
+
+Change the port number to the desired port, for example, let's say you want to change it to port 9000:
+
+- `Listen localhost:9000`
+   
+- **Save and Close**: After making the changes, save the file and close the text editor.
+   
+- **Restart CUPS Service**: Restart the CUPS service to apply the changes:
+
+- `sudo systemctl restart cups`
+   
+- **Check Status**: Verify that the CUPS service has started without any errors:
+
+- `sudo systemctl status cups`   
+
+Keep in mind that changing the port might require updating other configurations or services that interact with CUPS. For instance, if you have a firewall enabled, you might need to adjust its rules to allow traffic on the new port.
+
+Additionally, if you're using CUPS for printer sharing across a network, clients will need to be updated with the new port information as well.
+
+Remember to test the printing functionality after making these changes to ensure that everything is working as expected on the new port.
 ## compiz
 
 corrupt compiz results in glitchy display. Restart compiz is enough:
