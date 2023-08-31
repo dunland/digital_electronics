@@ -165,7 +165,25 @@ mit
 
 ## network
 
+### show listening ports
+
+- `sudo lsof -nP -iTCP -sTCP:LISTEN` mit PID
+
+```
+COMMAND   PID     USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
+sshd      445     root    3u  IPv4  16434      0t0  TCP *:22 (LISTEN)
+sshd      445     root    4u  IPv6  16445      0t0  TCP *:22 (LISTEN)
+apache2   515     root    4u  IPv6  16590      0t0  TCP *:80 (LISTEN)
+mysqld    534    mysql   30u  IPv6  17636      0t0  TCP *:3306 (LISTEN)
+mysqld    534    mysql   33u  IPv6  19973      0t0  TCP *:33060 (LISTEN)
+apache2   764 www-data    4u  IPv6  16590      0t0  TCP *:80 (LISTEN)
+apache2   765 www-data    4u  IPv6  16590      0t0  TCP *:80 (LISTEN)
+master    929     root   13u  IPv4  19637      0t0  TCP *:25 (LISTEN)
+master    929     root   14u  IPv6  19638      0t0  TCP *:25 (LISTEN)
+```
+
 - `ss -natu` where The n option means don't translate addresses to names. The a options means show all (listening and non-listening) connections. The t option means TCP connections. The 'u' option means show UDP connections.
+- `sudo ss -tunlp` 
 - `netstat -apv`
 
     ```
