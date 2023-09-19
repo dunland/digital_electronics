@@ -11,11 +11,19 @@ import os
 import subprocess
 import re
 import datetime
+import argparse
 
+parser = argparse.ArgumentParser()
+parser.add_argument('--ending', dest="ending", help="define file ending", type=str)
+
+args = parser.parse_args()
 files_in_dir = os.listdir('.')
 files_found = []
 
-ending = "."+input("choose file type, e.g. 'wav': ")
+if args.ending is None:
+    ending = "."+input("choose file type, e.g. 'wav': ")
+else:
+    ending = "." + args.ending
 print("searching for files ending with {0}:".format(ending))
 
 # find files in dir:
@@ -37,7 +45,7 @@ sr = ''
 append_samplerate = input('append samplerate to filename? (y/n)').__eq__('y')
 ##################################### wav #############################
 
-if ending == (".wav"):
+if ending in [".wav", ".3gp"]:
 
     # 1. run a shell command
     for file in files_found:
@@ -123,3 +131,61 @@ elif ending == (".mp3"):
         else:
             print("renaming {0} to {1}_{0}".format(file, datestring))
             subprocess.call(["mv {0} {1}_{0}".format(file, datestring)], shell=True)
+
+##################################### mp4 #############################
+elif ending == ".mp4":
+
+    # 1. run a shell command
+    for file in files_found:
+        # 2. run mediainfo "$file"
+        mediainfo = str(subprocess.check_output(["mediainfo " + file], shell=True))
+        mediainfo = re.sub(' +', ' ', mediainfo)  # remove surplus spaces
+        mediainfo = mediainfo.split("\\n")
+        # print(mediainfo)
+        # 3. get mediainfo Encoded date:
+        datestring = None
+        for entry in mediainfo:
+            if entry.__contains__('Encoded date'):
+                entry = entry.split(':', 1)
+                print(entry)
+                entry[0] = entry[0].strip()  # remove whitespaces at start+end
+                entry[1] = entry[1].strip()  # remove whitespaces at start+end
+                try:
+                    entry[1] = entry[1].split("UTC")[1]
+                    print(entry[1])
+                except:
+                    pass
+                entry[1] = entry[1].strip()  # remove whitespaces at start+end
+
+                # 4. convert to date format %Y-%m-%d_%H-%M-%S:
+                datestring = datetime.datetime.strptime(entry[1], '%Y-%m-%d %H:%M:%S').strftime('%Y-%m-%d_%H-%M-%S')
+
+            if append_samplerate and entry.__contains__('Sampling rate'):
+                entry = entry.split(':', 1)
+                entry[0] = entry[0].strip()  # remove whitespaces at start+end
+                entry[1] = entry[1].strip()
+                if entry[1][:2] == '48':
+                    sr = '48kHz'
+                elif entry[1][:2] == '44':
+                    sr = '44.1kHz'
+                elif entry[1][:2] == '96':
+                    sr = '96kHz'
+
+        if datestring is None:
+            print("no encoding date found. skipping file", file)
+            continue
+
+
+        # 5. shell: mv "$file" "$date"_"$file"
+        # append samplerate:
+        if append_samplerate:
+            print("renaming {0}{3} to {1}_{0}_{2}{3}".format(file[:-4], datestring, sr, ending))
+            subprocess.call(["mv {0}{3} {1}_{0}_{2}{3}".format(file[:-4], datestring, sr, ending)], shell=True)
+
+        # standard output:
+        else:
+            print("renaming {0} to {1}_{0}".format(file, datestring))
+            subprocess.call(["mv {0} {1}_{0}".format(file, datestring)], shell=True)
+
+else:
+    print("no action defined for ending of type", ending)
