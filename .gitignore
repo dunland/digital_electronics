@@ -8,4 +8,4 @@ python/export/*
 **.~lock*
 *.cpp.o
 python/python-aubio-librosa/
-notes/.obsidian/workspace.json
+*.obsidian/workspace.json

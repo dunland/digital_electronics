@@ -114,6 +114,11 @@ dunland@P14s:~$ systemctl --user stop pulseaudio.socket
 > `reader.parse-on-load.enabled false`
 > `media.webspeech.synth.enabled false`
 
+## qrencode
+
+qrencode - Encode input data in a QR Code and save as a PNG or EPS image.
+
+`qrencode -o "howCreepQR.png" -d 300 https://open.spotify.com/playlist/1tjdPAIZMlcyaZ7hzN5vYy?si=d342dba580f04726"`
 ## speedtest
 
 ```
