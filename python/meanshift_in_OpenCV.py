@@ -3,19 +3,25 @@
 # The image's center point is either calculated using the meanshift algorithm
 # and exported to 'image_centers.csv' or exported to a csv file (using meanshift).
 # Alternatively, the csv file can be used to read from.
-# 
+#
 # dunland, 2022-04
 
 import numpy as np
 import cv2
 import pandas as pd
 import datetime
+import argparse
+
+ap = argparse.ArgumentParser()
+ap.add_argument("-i", "--video", required=True, help="path to input video")
+ap.add_argument("-iw", "--image_width", type=int, default=800)
+args = vars(ap.parse_args())
 
 x_loc, y_loc = -1, -1
 track_window = None
 frame_number = 0
 mouse_tracking = False
-file = "/home/dav/IS-2021_/DCIM/20211016_Egilsstaðir-Autofahrt/IMGP2404_SonnenblendeShiftBlur.AVI"
+file = args["video"]
 # file = "meisenbebies.mp4"
 # file = "/home/dav/Videos/contrast.mp4"
 DO_APPLY_MEANSHIFT = input('apply meanshift to export center points? (y): ') == 'y'
@@ -54,13 +60,13 @@ def main():
     global file, x_loc, y_loc, track_window, image_centers, x_positions, y_positions, frame_number, mouse_tracking
     cap = cv2.VideoCapture(file)
     num_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
-    print("video has {0} frames".format(num_frames))    
+    print("video has {0} frames".format(num_frames))
 
     # take first frame of the video
     ret, frame = cap.read()
 
     # setup initial location of window
-    x_loc, y_loc, width, height = 479, 827, 100, 50
+    x_loc, y_loc, width, height = 100, 100, 100, 50
     # x_loc, y_loc, width, height = 1550, 407, 50, 50
     track_window = (x_loc, y_loc, width, height)
 
@@ -92,7 +98,7 @@ def main():
             # dst = cv2.calcBackProject([hsv], [0], roi_hist, [0, 180], 1)
 
 
-            # line detection: 
+            # line detection:
             gray = cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
             edges = cv2.Canny(gray,50,150,apertureSize = 5)
 
@@ -121,7 +127,7 @@ def main():
 
                 # save center of image for later export:
                 image_centers.append((x_loc, y_loc))
-                x_positions.append(x_loc)  
+                x_positions.append(x_loc)
                 y_positions.append(y_loc)
 
             else:
@@ -133,7 +139,7 @@ def main():
                 final_image = frame
 
             # crop image
-            extent = 1080
+            extent = args["image_width"]
             # border_h = int(y_loc+extent)
             border_h = int(y_loc/2+extent)
             # border_w = int(x_loc+extent)
@@ -150,7 +156,7 @@ def main():
             cv2.imshow('crop_frame', crop_frame)
 
             cv2.setMouseCallback('source', mouseReact)
-            
+
             # export frame:
             cv2.imwrite('export/{0}.jpg'.format(frame_number), crop_frame)
 
