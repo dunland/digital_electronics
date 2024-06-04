@@ -8,7 +8,7 @@
 
 ## Asynchronous Programming
 
-- [ ] [Asynchronous programming and callbacks](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Introducing)
+- [ ] [Asynchronous programming and callbacks (mdn web docs)](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Introducing)
 - [ ] [Timers](https://developer.mozilla.org/en-US/docs/Web/API/setTimeout)
 - [ ] [Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises)
 - [ ] [Async and Await](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function)
@@ -20,6 +20,14 @@
 https://nodejs.org/en/learn/getting-started/differences-between-nodejs-and-the-browser
 
 > In the browser, most of the time what you are doing is interacting with the DOM, or other Web Platform APIs like Cookies. Those do not exist in Node.js, of course. You don't have the `document`, `window` and all the other objects that are provided by the browser. And in the browser, we don't have all the nice APIs that Node.js provides through its modules, like the filesystem access functionality.
+
+## installing a nodeJS project
+
+``` bash
+cd path/to/project
+npm install
+```
+*it will install everything the project needs (as indicated in package.json), in the `node_modules` folder, creating it if it's not existing already.*
 ## starting a server
 ``` JavaScript
 const http = require('node:http');
@@ -44,13 +52,18 @@ server.listen(port, hostname, () => {
 *crud* = create, read, update, delete
 
 ``` javascript
-
 server.get('/', (req, res) => { /* req=request, res=response */
 ...
 })
-
 ```
 
 - **nodemon**: app stays activated & refreshes when file is saved.
 `npm install nodemon`
 → in `package.json` → `server: "nodemon index.js"`
+
+**[routing](https://expressjs.com/en/starter/basic-routing.html)**:
+_Routing_ refers to determining how an application responds to a client request to a particular endpoint, which is a URI (or path) and a specific HTTP request method (GET, POST, and so on).
+```javascript
+app.METHOD(PATH, HANDLER)
+```
+

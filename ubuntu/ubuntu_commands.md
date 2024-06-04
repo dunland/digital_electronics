@@ -165,6 +165,17 @@ mit
 
 ## network
 
+### network adapter
+`sudo apt install net-tools`
+
+- `ifconfig` shows network adapter settings like IP address etc
+- `ip show addr` shows ip addresses of adapter
+
+### network devices
+
+- `avahi-browse -a`  shows all network devices
+- `nmap -sn 192.168.178.0/24` performs ping scan of all devices in local network -> list reachable devices
+
 ### show listening ports
 
 - `sudo lsof -nP -iTCP -sTCP:LISTEN` mit PID

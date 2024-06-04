@@ -90,7 +90,6 @@ starts programs using pipewire and jack! e.g. `pw-jack ardour5`
 from https://discourse.ardour.org/t/fedora-34-and-sample-rate/105875/5:
 > If you want to change sample rate and/or buffer period you can start ardour using: `pw-jack -p 256 -s 44100 ardour6, for example.`
 > Do you wanna know which sample rate Ardour started? Try `PIPEWIRE_DEBUG=3 pw-jack -p 256 -s 44100 ardour6`
-
 ## sample-rate
 
 **set global samplerate**: 
@@ -98,7 +97,7 @@ from https://discourse.ardour.org/t/fedora-34-and-sample-rate/105875/5:
 [[1]](https://gitlab.freedesktop.org/pipewire/pipewire/-/wikis/Configuration?version_id=25749f548c1e2fddd9e1678d9b7e57ebfcae3cf2#set-
 global-sample-rate)
 
-> You can change the sample rate in /etc/pipewire/pipewire.conf. Find, uncomment and change this line:
+> You can change the sample rate in `/etc/pipewire/pipewire.conf`. Find, uncomment and change this line:
 `default.clock.rate  =    48000`
 
 [[2]](https://gitlab.freedesktop.org/pipewire/pipewire/-/wikis/Config-PipeWire)
@@ -109,8 +108,8 @@ what I did:
 2. set default-samplerate to 44100 and add that to allowed samplerates
 3. temporarily force/use samplerate via `pw-metadata -n settings 0 clock.force-rate 44100` → **jack now @ 44100Hz ✓**
 4. `PIPEWIRE_LATENCY=1024/44100 ardour5` to start ardour5 with that samplerate
-5. **ardour5 still crashing**
-6. re-enabling pipewire:
+5. (**ardour5 still crashing**)
+6. (re-enabling pipewire:)
 
 ```
 dunland@P14s:/$ sudo systemctl --global enable pipewire
