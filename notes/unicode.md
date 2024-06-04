@@ -16,6 +16,12 @@ u+00f0 ð
 u+00de Þ  
 u+00fe þ  
 
+## math
+
+u+0394 Δ
+u+03b3 γ
+
+
 ## typing
 u+2011 ‑ non-breaking hyphen  
 u+2012 ‒ **figure dash**  

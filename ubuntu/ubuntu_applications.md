@@ -4,9 +4,13 @@
 
 folders+files allocation GUI
 
-## CUPS
+------------------------------------
+## Print & Scan
 
-### change Port
+### CUPS
+
+`localhost:631`
+#### change Port
 
 If CUPS (Common Unix Printing System) is using port 8000 on your localhost in Ubuntu and you want to change this port, you can follow these steps:
 
@@ -39,6 +43,11 @@ Keep in mind that changing the port might require updating other configurations 
 Additionally, if you're using CUPS for printer sharing across a network, clients will need to be updated with the new port information as well.
 
 Remember to test the printing functionality after making these changes to ensure that everything is working as expected on the new port.
+
+### Skanlite
+KDE-Programm zum Scannen
+
+---------------------------------------------------
 ## compiz
 
 corrupt compiz results in glitchy display. Restart compiz is enough:
