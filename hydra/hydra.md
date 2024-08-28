@@ -1,5 +1,3 @@
-# hydra
-
 ## enable developing
 
 1. `public/index.html`: comment line with bundle.min.js, uncomment line with bundle.js
@@ -19,8 +17,9 @@ npm install p5
 ## hotkeys
 
 - `Ctrl+Shift+H`: view/hide code
+- `Ctrl+Shift+F`: format code
 
-## functions
+## custom functions
 
 ``` javascript
 function r(min=0,max=1) { return Math.random()*(max-min)+min; }

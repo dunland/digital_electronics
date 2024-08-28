@@ -203,7 +203,11 @@ Error: "set-param: unknown param type: 81"
 dav@dav-X1:/usr/share/pipewire$ pw-cli set-param Node 82 Props {audio.profile A2DP}  
 Error: "set-param: unknown param type: 82"
 ```
+
+Laut [PulseAudio Documentation](https://www.freedesktop.org/wiki/Software/PulseAudio/Documentation/User/Modules/#module-bluetooth-discover) ist a2dp nur in bluez4 enthalten.
 ### weitere Quellen
 
+- `/etc/bluetooth/main.conf`
+- `/usr/share/pipewire/pipewire.conf` Bluetooth enabled?
 - [BluetoothUser a2dp](https://wiki.debian.org/BluetoothUser/a2dp)
 - "install pavucontrol and go to configuration tab to set the codec"

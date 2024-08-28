@@ -7,7 +7,16 @@ folders+files allocation GUI
 ------------------------------------
 ## Print & Scan
 
+### Canon iP 4900 Series einrichten mit gutenprint
+
+1. Download driver from https://gimp-print.sourceforge.io/p_Download.php
+2. `sudo ./configure`
+	1. `sudo apt-get install libcups2-dev`
+3. `sudo make`
+4. `sudo make install`
+5. `localhost:631` > Administration > Add Printer > ... Model: Canon iP4900 series - CUPS+Gutenprint v5.3.5-pre1 (en)
 ### CUPS
+Common Unix Printing System
 
 `localhost:631`
 #### change Port

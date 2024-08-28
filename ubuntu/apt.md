@@ -1,8 +1,5 @@
-# apt
-
 source list is in `/etc/apt/sources.list.d`
-
-## apt-get update
+## Error: signature couldn't be verified
 
 only fetches packages upgrades
 
@@ -18,6 +15,13 @@ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 40976EAF437D05B5
 ```
 ✓
 
+## Error: package no longer has a Release file
+
+- update release link for the current ubuntu version in `/etc/apt/sources.list.d/package-name`
+- if version for current system not supported anymore:
+	- `sudo apt-mark hold package` will prevent package from being updated
+	- oder: comment out the link in `/etc/apt/sources.list.d/package-name`
+- 
 ## apt-get upgrade
 
 upgrades all upgradable packages

@@ -98,7 +98,8 @@ merge: `cat prefixFiles* > newimage.jpg`
 
 ### search and find files
 
-`find /path/to/search/in -name file_nam*`
+- `find /path/to/search/in -name file_nam*`
+- `grep -r 'path/to/somewhere/' -e 'pattern`: search for text in files
 
 ### symlinks
 
@@ -206,6 +207,7 @@ master    929     root   14u  IPv6  19638      0t0  TCP *:25 (LISTEN)
     ```
 
 - `nmcli` (-c) shows network connections
+- `traceroute [ipAdress]` shows the path packets take to reach a server
 
 #### ip sharing does not work
 

@@ -9,3 +9,4 @@ python/export/*
 *.cpp.o
 python/python-aubio-librosa/
 *.obsidian/workspace.json
+ubuntu/linux_server/LinuxServerEinrichtung.png

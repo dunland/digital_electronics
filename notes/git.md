@@ -65,6 +65,10 @@ git log --oneline # shows commit hashes
 git diff COMMIT~ COMMIT
 ```
 
+### push to another server
+
+- `git remote add [name] [user@ip.adress:repos/repo]`
+- `git push [name] [branch]`
 ### submodules
 
 #### clone git with submodules

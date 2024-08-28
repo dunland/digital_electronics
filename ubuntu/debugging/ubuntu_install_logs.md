@@ -1,48 +1,3 @@
-# Ubuntu install logs
-
-## enable hibernation
-
-1. find UUID for swap device: 
-``` bash
-sudo blkid
-
-/dev/sda1: UUID="65f47e96-a58e-4367-8ec8-248c60f21a64" TYPE="ext4" PARTUUID="6b04b0ed-01"
-/dev/sda2: UUID="a269984f-1894-41b9-9933-aa65712f4bad" TYPE="swap" PARTUUID="6b04b0ed-02"
-/dev/sda3: UUID="CA1880AF18809C57" TYPE="ntfs" PARTUUID="6b04b0ed-03"
-
-```
-
-2. copy UUID and insert in grub file:
-
-``` bash
-sudo gedit /etc/default/grub
-
-GRUB_CMDLINE_LINUX_DEFAULT="initcall_debug no_console_suspend resume=UUID=a269984f-1894-41b9-9933-aa65712f4bad"
-```
-
-3. insert UUID to system file:
-``` bash
-sudo nano /etc/fstab
-
-# /etc/fstab: static file system information.
-#
-# Use 'blkid' to print the universally unique identifier for a
-# device; this may be used with UUID= as a more robust way to name devices
-# that works even if disks are added and removed. See fstab(5).
-#
-# <file system> <mount point>   <type>  <options>       <dump>  <pass>
-# / was on /dev/sda1 during installation
-UUID=65f47e96-a58e-4367-8ec8-248c60f21a64 /               ext4    errors=remoun$
-# swap was on /dev/sda5 during installation
-#UUID=e2174c15-f626-4c5e-bdd7-79dc0ec5555e none            swap    sw          $
-UUID=84a7ee07-9324-4388-8344-ffadb5e67817 none          swap    sw      0      $
-
-```
-
-
-4. `sudo update-grub`
-
-
 ## CSound Cabbage: Building
 
 1. Download Cabbage: https://www.cabbageaudio.com/download/  
@@ -131,6 +86,37 @@ downloaded from https://mageia.pkgs.org/7/mageia-core-release-x86_64/csound-pyth
 ### ctcsound
 documentation: https://csound.com/docs/ctcsound/ctcsound-API.html
 installierbar mit `pip install ctcsound` (oder pip3)
+
+## purr-data installation 2024-08-17
+Ubuntu 23.04
+
+Installiere wie [hier](https://git.purrdata.net/jwilkes/purr-data#linux) beschrieben:
+
+``` bash
+ sudo apt-get install bison flex automake libasound2-dev \
+      libjack-jackd2-dev libtool libbluetooth-dev libgl1-mesa-dev \
+      libglu1-mesa-dev libglew-dev libmagick++-dev libftgl-dev \
+      libgmerlin-dev libgmerlin-avdec-dev libavifile-0.7-dev \
+      libmpeg3-dev libquicktime-dev libv4l-dev libraw1394-dev \
+      libdc1394-22-dev libfftw3-dev libvorbis-dev ladspa-sdk \
+      dssi-dev tap-plugins invada-studio-plugins-ladspa blepvco \
+      swh-plugins mcp-plugins cmt blop slv2-jack omins rev-plugins \
+      libslv2-dev dssi-utils vco-plugins wah-plugins fil-plugins \
+      mda-lv2 libmp3lame-dev libspeex-dev libgsl0-dev \
+      portaudio19-dev liblua5.3-dev python-dev libsmpeg0 libjpeg62-turbo \
+      flite1-dev libgsm1-dev libgtk2.0-dev git libstk0-dev \
+      libfluidsynth-dev fluid-soundfont-gm byacc \
+      python3-markdown
+```
+... dabei alle Pakete, die Fehler aufwerfen, durch aktualisierte Pakete ersetzen. Mittels `apt-cache search [paket]` können richtige Namen gefunden werden
+
+`make all`
+
+**Error: lua.h not found** obwohl lua5.3 installiert ist. `lua.pc` muss zu `PKG_CONFIG_PATH` hinzugefügt werden. Dazu muss lua.pc lokalisiert werden. Ich habe es gefunden in `/lib/x86_64-linux-gnu/pkgconfig/` als `lua5.3.pc`. Dann symlink erstellt zu `/lib/x86_64-linux-gnu/pkgconfig/lua.h`
+
+`make clean && make all`
+`cd packages/linux_make && make install`
+`purr-data` ✓
 
 ## purr-data (2019-11-11)
 
