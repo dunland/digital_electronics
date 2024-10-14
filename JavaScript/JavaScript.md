@@ -4,15 +4,21 @@
 ## frameworks
 
 - vue.js
-- React.js
+- [[Next.js]]
+- [[React]]
 
 -------------------------------------------------
 
+## Concepts
+
+### Promises
+- [MDN Docs: Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+- [MDN Docs: Using Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises)
+
+-------------------------------------------------
 ## Module import
 
-See this beautifully explained de
-scriptions from the [webmidi](https://github.com/djipco/webmidi) project:
-
+See this beautifully explained description from the [webmidi](https://github.com/djipco/webmidi) project:
 #### Manual Install
 	
 > Obviously, you can also install **WEBMIDI.js** the old-fashioned way by downloading the [latest release](https://github.com/djipco/webmidi/releases) packaged as a zip file. Uncompress the package, grab the `./dist/iife/webmidi.iife.js` file and copy it to your project. Link to it from your HTML page using a `<script>` tag as usual.
@@ -50,3 +56,7 @@ import {WebMidi} from "webmidi";
 ### Babel
 
 > in Node.js you control the environment. Unless you are building an open source application that anyone can deploy anywhere, you know which version of Node.js you will run the application on. Compared to the browser environment, where you don't get the luxury to choose what browser your visitors will use, this is very convenient. This means that you can write all the modern ES2015+ JavaScript that your Node.js version supports. Since JavaScript moves so fast, but browsers can be a bit slow to upgrade, sometimes on the web you are stuck with using older JavaScript / ECMAScript releases. You can use Babel to transform your code to be ES5-compatible before shipping it to the browser.
+
+### Browserify
+
+bundles the whole project into one **client-side application**! Thus, it cannot use modules that only work on the server side, like `serialport`!

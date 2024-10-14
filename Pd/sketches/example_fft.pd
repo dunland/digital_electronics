@@ -1,0 +1,59 @@
+#N canvas 862 355 869 387 10;
+#X obj 104 32 readsf~;
+#X obj 98 70 dac~ 1 2;
+#X msg 94 2 start;
+#X obj 184 52 rfft~;
+#X msg 153 -2 stop;
+#X obj 184 77 *~;
+#X obj 184 102 +~;
+#X obj 214 77 *~;
+#X obj 184 127 sqrt~;
+#X obj 184 162 tabwrite~ fft;
+#N canvas 0 0 450 300 (subpatch) 0;
+#X array fft 100 float 5 black black;
+#A 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0;
+#X coords 0 20 99 0 400 140 1;
+#X restore 364 62 graph;
+#X obj 264 102 tgl 15 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000 0 1;
+#X obj 264 125 metro 250;
+#X obj 124 162 print~;
+#X obj 294 162 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
+#000000 #000000;
+#X msg 264 72 0;
+#X obj 20 110 env~;
+#X floatatom 20 130 5 0 0 0 - - -, f 5;
+#X obj 20 154 - 100;
+#X floatatom 20 179 5 0 0 0 - - -, f 5;
+#X obj 20 203 vu 15 120 empty empty -1 -8 0 10 #404040 #000000 1 0
+;
+#X msg 74 -28 open audiofile.wav;
+#X connect 0 0 1 0;
+#X connect 0 0 1 1;
+#X connect 0 0 3 0;
+#X connect 0 0 16 0;
+#X connect 0 1 15 0;
+#X connect 2 0 0 0;
+#X connect 3 0 5 0;
+#X connect 3 0 5 1;
+#X connect 3 1 7 0;
+#X connect 3 1 7 1;
+#X connect 4 0 0 0;
+#X connect 5 0 6 0;
+#X connect 6 0 8 0;
+#X connect 7 0 6 1;
+#X connect 8 0 9 0;
+#X connect 8 0 13 0;
+#X connect 11 0 12 0;
+#X connect 12 0 9 0;
+#X connect 12 0 14 0;
+#X connect 12 0 13 0;
+#X connect 15 0 11 0;
+#X connect 16 0 17 0;
+#X connect 17 0 18 0;
+#X connect 18 0 19 0;
+#X connect 19 0 20 0;
+#X connect 21 0 0 0;

@@ -1,1 +1,0 @@
-[KDE Plasma & ssh keys](https://dev.to/manekenpix/kde-plasma-ssh-keys-111e)

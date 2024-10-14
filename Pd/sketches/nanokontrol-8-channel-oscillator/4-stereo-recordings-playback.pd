@@ -1,0 +1,107 @@
+#N canvas 1200 37 720 994 12;
+#X obj 10 60 cnv 15 347 143 empty empty empty 20 12 0 14 #e0e0e0 #404040
+0;
+#X obj 19 130 soundfile_loop drones/monikas_fridge_1.wav;
+#X obj 120 177 dac~;
+#X obj 20 100 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000;
+#X obj 140 80 r channel_0;
+#X text 10 0 playing multiple audio files \, using KORG nanokontrol
+to blend them dunland \, 2022-08-01;
+#X obj 10 270 cnv 15 444 143 empty empty empty 20 12 0 14 #e0e0e0 #404040
+0;
+#X obj 120 387 dac~;
+#X obj 20 310 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000;
+#X obj 19 340 soundfile_loop drones/cukrarna_museum_toilet_ventilation.wav
+;
+#X obj 10 470 cnv 15 403 143 empty empty empty 20 12 0 14 #e0e0e0 #404040
+0;
+#X obj 120 587 dac~;
+#X obj 20 510 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000;
+#X obj 19 540 soundfile_loop drones/Ljubljana_Trainstation_Drone.wav
+;
+#X obj 10 670 cnv 15 403 143 empty empty empty 20 12 0 14 #e0e0e0 #404040
+0;
+#X obj 120 787 dac~;
+#X obj 20 710 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000;
+#X obj 20 740 soundfile_loop drones/monika_bathroom_ventilation.wav
+;
+#X obj 496 49 nanokontrol-send;
+#X obj 380 72 env~;
+#X obj 380 101 - 100;
+#X obj 380 130 vu 15 120 empty empty -1 -8 0 10 #404040 #000000 1 0
+;
+#X obj 430 72 env~;
+#X obj 430 101 - 100;
+#X obj 430 130 vu 15 120 empty empty -1 -8 0 10 #404040 #000000 1 0
+;
+#X obj 470 272 env~;
+#X obj 470 301 - 100;
+#X obj 470 330 vu 15 120 empty empty -1 -8 0 10 #404040 #000000 1 0
+;
+#X obj 520 272 env~;
+#X obj 520 301 - 100;
+#X obj 520 330 vu 15 120 empty empty -1 -8 0 10 #404040 #000000 1 0
+;
+#X obj 430 472 env~;
+#X obj 430 501 - 100;
+#X obj 430 530 vu 15 120 empty empty -1 -8 0 10 #404040 #000000 1 0
+;
+#X obj 480 472 env~;
+#X obj 480 501 - 100;
+#X obj 480 530 vu 15 120 empty empty -1 -8 0 10 #404040 #000000 1 0
+;
+#X obj 430 682 env~;
+#X obj 430 711 - 100;
+#X obj 430 740 vu 15 120 empty empty -1 -8 0 10 #404040 #000000 1 0
+;
+#X obj 480 682 env~;
+#X obj 480 711 - 100;
+#X obj 480 740 vu 15 120 empty empty -1 -8 0 10 #404040 #000000 1 0
+;
+#X obj 140 290 r channel_1;
+#X obj 140 490 r channel_2;
+#X obj 140 690 r channel_3;
+#X connect 1 0 2 0;
+#X connect 1 0 19 0;
+#X connect 1 1 2 1;
+#X connect 1 1 22 0;
+#X connect 3 0 1 0;
+#X connect 4 0 1 1;
+#X connect 8 0 9 0;
+#X connect 9 0 7 0;
+#X connect 9 0 25 0;
+#X connect 9 1 7 1;
+#X connect 9 1 28 0;
+#X connect 12 0 13 0;
+#X connect 13 0 11 0;
+#X connect 13 0 31 0;
+#X connect 13 1 11 1;
+#X connect 13 1 34 0;
+#X connect 16 0 17 0;
+#X connect 17 0 15 0;
+#X connect 17 0 37 0;
+#X connect 17 1 15 1;
+#X connect 17 1 40 0;
+#X connect 19 0 20 0;
+#X connect 20 0 21 0;
+#X connect 22 0 23 0;
+#X connect 23 0 24 0;
+#X connect 25 0 26 0;
+#X connect 26 0 27 0;
+#X connect 28 0 29 0;
+#X connect 29 0 30 0;
+#X connect 31 0 32 0;
+#X connect 32 0 33 0;
+#X connect 34 0 35 0;
+#X connect 35 0 36 0;
+#X connect 37 0 38 0;
+#X connect 38 0 39 0;
+#X connect 40 0 41 0;
+#X connect 41 0 42 0;
+#X connect 43 0 9 1;
+#X connect 44 0 13 1;
+#X connect 45 0 17 1;

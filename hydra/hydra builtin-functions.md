@@ -33,3 +33,17 @@
 ``` javaScript
 osc(60, 0.1, () => a.fft[2])
 ```
+
+## Geometry
+
+## Color
+
+## Blend
+
+## Modulate
+
+**modulateRotate**
+`modulateRotate( texture, multiple = 1, offset )`
+
+## Math
+`Math.sin(time)`
