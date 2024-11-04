@@ -59,6 +59,7 @@ for index, row in df.iterrows():
 **Examples**:
 
 - create new column based on condition of other: `df['col2'] = df['col1'].isna()  # finds all NaN values and sets new column to True`
+- create new column and fill with random data: `df['newCol'] = [random.random() * 300 for i in range(len(df.index))]`
 
 ### comparing DataFrames:
 
@@ -88,7 +89,7 @@ df.loc[(df.a < 0), 'a'] = 0
 print(df)
 ```
 
-** larger-scale automatized data adjustments**:
+**larger-scale automatized data adjustments**:
 
 ``` python
 df2 = df1.sample(n=random.randint(10,100))  # get random 10-100 rows from df1

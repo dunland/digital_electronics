@@ -156,6 +156,13 @@ dav : dav adm cdrom sudo audio dip plugdev users lpadmin sambashare
 
 ## fix missing A2DP Profile
 
+**restarting blueman** and pipewire/pulseaudio helps:
+``` bash
+sudo pkill pipewire-pulse
+sudo pkill blueman-*
+sudo pkill bluetoothd
+```
+
 Codec for music: A2DP
 
 - `pactl list sinks`

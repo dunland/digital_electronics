@@ -1,5 +1,3 @@
-# Purr-Data
-
 ## Installation
 
 from https://github.com/agraef/purr-data/wiki/Installation#linux
@@ -71,9 +69,12 @@ sudo apt install purr-data
 > is only available from another source  
 > E: Package 'purr-data' has no installation candidate  
 
+----------------------------------
 ## Externals
 
 https://puredata.info/docs/faq/how-do-i-install-externals-and-help-files/
+
+`[declare -lib mrpeach]` --> *libdir_loader: added 'mrpeach' to the canvas-local objectclass path*
 
 ### Location of Externals:
 
